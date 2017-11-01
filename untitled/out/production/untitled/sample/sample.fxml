@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #afeeee;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Main">
+   <children>
+      <AnchorPane layoutX="602.0" layoutY="47.0" prefHeight="506.0" prefWidth="361.0" style="-fx-background-color: #48d1cc;">
+         <children>
+            <Text layoutX="19.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Iniciar sesion" textAlignment="CENTER">
+               <font>
+                  <Font size="49.0" />
+               </font>
+            </Text>
+            <Text layoutX="15.0" layoutY="174.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre de usuario:" wrappingWidth="282.142578125">
+               <font>
+                  <Font size="26.0" />
+               </font>
+            </Text>
+            <Text layoutX="15.0" layoutY="322.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contrasenia:">
+               <font>
+                  <Font size="26.0" />
+               </font>
+            </Text>
+            <TextField fx:id="txUserName" layoutX="13.0" layoutY="181.0" prefHeight="50.0" prefWidth="321.0" promptText="Usuario" />
+            <PasswordField fx:id="txPassword" layoutX="13.0" layoutY="334.0" prefHeight="50.0" prefWidth="321.0" promptText="Contrasenia" />
+            <Button fx:id="btLogIn" layoutX="76.0" layoutY="420.0" mnemonicParsing="false" onAction="#mainPage" prefHeight="57.0" prefWidth="200.0" text="Ingresar">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Button>
+         </children></AnchorPane>
+      <Text layoutX="54.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bienvenido a Carpool" wrappingWidth="370.90576171875">
+         <font>
+            <Font size="61.0" />
+         </font>
+      </Text>
+      <Text layoutX="58.0" layoutY="243.0" strokeType="OUTSIDE" strokeWidth="0.0" text="La forma mas facil de viajar">
+         <font>
+            <Font size="29.0" />
+         </font>
+      </Text>
+      <Button fx:id="btRegister" layoutX="54.0" layoutY="362.0" mnemonicParsing="false" onAction="#btRegister"  text="Registrarse">
+         <font>
+            <Font size="31.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.collections.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.collections.FXCollections?>
+
+<AnchorPane prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #afeeee;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Main">
+   <children>
+      <Text layoutX="58.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nuevo Viaje">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Text>
+      <Label layoutX="58.0" layoutY="124.0" text="Desde">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="58.0" layoutY="168.0" text="Hasta">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="58.0" layoutY="216.0" text="Ruta">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="58.0" layoutY="263.0" text="Dia">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="57.0" layoutY="313.0" text="Hora">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="57.0" layoutY="360.0" text="Se permite fumar?">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="57.0" layoutY="420.0" text="Se permite comer?">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <TextField layoutX="142.0" layoutY="116.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </TextField>
+      <TextField layoutX="141.0" layoutY="162.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </TextField>
+      <TextField layoutX="140.0" layoutY="209.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </TextField>
+      <DatePicker layoutX="139.0" layoutY="263.0" prefHeight="35.0" prefWidth="268.0" />
+      <ChoiceBox fx:id="time" layoutX="142.0" layoutY="313.0" prefHeight="24.0" prefWidth="64.0">
+       <items>
+           <FXCollections fx:factory="observableArrayList">
+               <String fx:value="00" />
+               <String fx:value="01" />
+               <String fx:value="02" />
+               <String fx:value="03" />
+               <String fx:value="04" />
+               <String fx:value="05" />
+               <String fx:value="06" />
+               <String fx:value="07" />
+               <String fx:value="08" />
+               <String fx:value="09" />
+               <String fx:value="10" />
+               <String fx:value="11" />
+               <String fx:value="12" />
+               <String fx:value="13" />
+               <String fx:value="14" />
+               <String fx:value="15" />
+               <String fx:value="16" />
+               <String fx:value="17" />
+               <String fx:value="18" />
+               <String fx:value="19" />
+               <String fx:value="20" />
+               <String fx:value="21" />
+               <String fx:value="22" />
+               <String fx:value="23" />
+           </FXCollections>
+       </items>
+      </ChoiceBox>
+      <ChoiceBox fx:id="minutes" layoutX="220.0" layoutY="313.0" prefHeight="24.0" prefWidth="64.0">
+       <items>
+           <FXCollections fx:factory="observableArrayList">
+               <String fx:value="00" />
+               <String fx:value="15" />
+               <String fx:value="30" />
+               <String fx:value="45" />
+           </FXCollections>
+       </items>
+      </ChoiceBox>
+       <ChoiceBox fx:id="smoke" layoutX="275.0" layoutY="360.0" prefHeight="24.0" prefWidth="64.0">
+       <items>
+           <FXCollections fx:factory="observableArrayList">
+               <String fx:value="Si" />
+               <String fx:value="No" />
+           </FXCollections>
+       </items>
+       </ChoiceBox>
+       <ChoiceBox fx:id="eat" layoutX="276.0" layoutY="422.0" prefHeight="24.0" prefWidth="64.0">
+           <items>
+               <FXCollections fx:factory="observableArrayList">
+                   <String fx:value="Si" />
+                   <String fx:value="No" />
+               </FXCollections>
+           </items>
+       </ChoiceBox>
+      <Button fx:id="createRide" layoutX="53.0" layoutY="475.0" mnemonicParsing="false" onAction="#mainPage" prefHeight="78.0" prefWidth="278.0" text="Crear Viaje">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
