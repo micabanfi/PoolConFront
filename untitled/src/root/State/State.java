@@ -27,6 +27,14 @@ public class State {
         currentRides = new LinkedList<RideAdmin>();
         expiredRides = new ArrayList<RideAdmin>();
     }
+    //BORRAR DESPUES
+    @Override
+    public String toString() {
+        String rta=new String();
+        for(User usuario:users)
+            rta+=usuario.toString();
+        return rta;
+    }
 
     public User login(Credential cred) throws InvalidCredentials{
         return authorize(cred);
@@ -48,6 +56,7 @@ public class State {
         }
         throw new InvalidFields("User already Exists");
     }
+
 
    /* Metodo de Prueba
    private <T> boolean AddToList(T ent){

@@ -27,4 +27,9 @@ public class Credential {
         result = 31*result + userName.hashCode();
         return result;
     }
+
+    @Override
+    public String toString(){
+        return "UserName="+userName+"Pass:"+password;
+    }
 }

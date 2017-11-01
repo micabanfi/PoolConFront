@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -15,7 +16,7 @@ import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
 
-public class Controller implements Initializable{
+/*public class Controller implements Initializable{
 
     @FXML  private PasswordField txPassword;
 
@@ -34,4 +35,6 @@ public class Controller implements Initializable{
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //TODO
     }
-}
+
+
+}*/

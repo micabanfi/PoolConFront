@@ -17,6 +17,11 @@ public class User {
         this.person=person;
     }
 
+    @Override
+    public String toString() {
+        return person.toString()+credential.toString();
+    }
+
     public ArrayList<Ride> getActiveRides(){
         return activeRides;
     }
