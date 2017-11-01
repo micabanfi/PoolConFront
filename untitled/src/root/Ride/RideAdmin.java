@@ -20,6 +20,10 @@ public class RideAdmin {
 
     }
 
+    public Ride getRide() {
+        return ride;
+    }
+
     public ArrayList<Person> getPassengers(){
         return passengers;
     }

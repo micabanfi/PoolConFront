@@ -7,11 +7,11 @@ public class Person {
     private String name;
     private String surname;
     private String phone;
-    private Rating rating;
+    private Rating rating;//Porque en person y no en user? eso no seria menos objetoso?
     private String gender;
     private Date birthDate;
     private Preferences preferences;
-    private ArrayList<Vehicle> vehicles;
+    private ArrayList<Vehicle> vehicles;//lo tenemos repetido en person y en user..... sacarlo de user??
 
     public Person(String name, String surname, String career, String phone,boolean smoke,boolean food,String gender){
         this.name=name;

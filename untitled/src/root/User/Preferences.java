@@ -1,7 +1,8 @@
+
 package root.User;
 
 public class Preferences {
-    private String career;
+    private String career;//WTF para q carajo
     private boolean smoke;
     private boolean food;
 
@@ -31,5 +32,3 @@ public class Preferences {
         return s;
     }
 }
-
-

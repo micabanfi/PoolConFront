@@ -1,5 +1,6 @@
 package root.User;
 
+import root.Client.Client;
 import root.Ride.Ride;
 
 import java.util.ArrayList;
@@ -58,4 +59,19 @@ public class User {
     public boolean equalCredentials(Credential credential){
         return credential.equals(this.credential);
     }
+
+    @Override
+    public boolean equals(Object obj){
+        if (this == obj)
+            return true;
+        if (!(obj instanceof User))
+            return false;
+        User aux = (User) obj;
+        return aux.getCredential().equals(credential);
+    }
+    /*public double compatibility(User user) {
+
+    }
+    */
+
 }
