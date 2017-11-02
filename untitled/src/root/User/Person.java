@@ -57,7 +57,7 @@ public class Person {
     @Override
     public String toString() {
         String s="";
-        s="Nombre: "+ name+"\nApellido: "+surname+"\nTelefono: "+phone+"\nFecha de Nacimiento: "+birthDate+"\nSexo:"+gender+"\nPreferencias: "+preferences.toString();
+        s="Nombre: "+ name+"\nApellido: "+surname+"\nTelefono: "+phone+"\nFecha de Nacimiento: "+birthDate+"\nSexo:"+gender+"\n"+preferences.toString();
         return s;
     }
 }

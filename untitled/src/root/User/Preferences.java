@@ -2,12 +2,12 @@
 package root.User;
 
 public class Preferences {
-    private String career;//WTF para q carajo
+    private String career;
     private boolean smoke;
     private boolean food;
 
-    public Preferences(String career, boolean smoke, boolean food){
-        this.career = career;
+    public Preferences( String career,boolean smoke, boolean food){
+        this.career=career;
         this.smoke=smoke;
         this.food=food;
     }
@@ -28,7 +28,7 @@ public class Preferences {
         else {
             foodString = "NO";
         }
-        String s = "Preferencias del usuario:\nFUMAR: "+smokeString+"\nCOMIDA: "+ foodString;
+        String s = "Preferencias del usuario:\nCARRERA: "+career+"\nFUMAR: "+smokeString+"\nCOMIDA: "+ foodString+"\n";
         return s;
     }
 }
