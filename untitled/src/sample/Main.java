@@ -13,8 +13,12 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import root.ExistingRideException;
 import root.InvalidCredentials;
 import root.InvalidFields;
+import root.Ride.Permissions;
+import root.Ride.Ride;
+import root.Ride.Route;
 import root.State.State;
 import root.User.Credential;
 import root.User.Person;
@@ -26,6 +30,7 @@ import sample.*;
 import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 import static java.lang.System.out;
@@ -34,6 +39,7 @@ public class Main extends Application implements Initializable{
 
 
     public State estado=new State();
+    public User currentUser=null;
 
     //declaro todos los lugares donde se pueden completar informacion
     @FXML private TextField LogInUserNameTx;
@@ -74,16 +80,23 @@ public class Main extends Application implements Initializable{
         User user1 = new User(credential1, person1);
         User user2=new User(credential2,person2);
 
+        //creo rides
+        Ride ride1=new Ride(new Route("Victoria","Itba","Libertador"),vehicle1,person1,new Permissions(false,true,true),new Date(2017,10,11));
+
         try {
             //agrego user a estado
             estado.register(user1);
             estado.register(user2);
+            estado.AddRideToList(ride1);
             //imprimo los usuarios que cree
             System.out.println(estado.toString());
         } catch (InvalidFields e) {
             //este no deberia ir en possibleErrors porque lohacemos nosotros,no deberiamos ser tan tontos ;)
-            out.println("Usuario ya existente");
+            System.out.println("Usuario ya existente");
+        } catch (ExistingRideException e) {
+            System.out.println("No se pudo crear el ride");//este tampoco en error
         }
+
     }
 
     @Override
@@ -113,7 +126,8 @@ public class Main extends Application implements Initializable{
             System.out.println("Complete todos sus datos por favor!");
         else if(error==4)
             System.out.println("El usuario ya existe,cambie su nombre o contrasena");
-
+        else if(error==5)
+            System.out.println("El viaje ya existe");
     }
 
     public void newUser(){
@@ -146,6 +160,7 @@ public class Main extends Application implements Initializable{
         User usuario1 = new User(creddential1, persona1);
         try{
             estado.register(usuario1);
+            currentUser=estado.getUser(creddential1);
             Parent root2 = FXMLLoader.load(getClass().getResource("MainPage.fxml"));
             Stage stage = new Stage();
             stage.setTitle("MainPage");
@@ -156,7 +171,6 @@ public class Main extends Application implements Initializable{
         } catch (Exception e) {
             System.out.println("Cant load mainPage");
         }
-
     }
 
     public void btLogIn(ActionEvent event) {
@@ -167,9 +181,11 @@ public class Main extends Application implements Initializable{
 
             //si usuario o contrasenia estan vacios tirar error de completar campos.
             //si ambos estan vacios y se apreta iniciar secion tira error de completar campos
+            //si alguno esta vacio(null)me tira la excepcion,ver como que eso no pase
 
             try{
                 estado.login(credential);
+                currentUser=estado.getUser(credential);
                 Parent root2 = FXMLLoader.load(getClass().getResource("MainPage.fxml"));
                 Stage stage=new Stage();
                 stage.setTitle("MainPage");
@@ -207,14 +223,11 @@ public class Main extends Application implements Initializable{
          } catch (Exception e) {
              System.out.println("Cant load mainPage");
          }
-
-
-
-
      }
 
     public void myProfile(ActionEvent event) {
         try{
+
             Parent root2 = FXMLLoader.load(getClass().getResource("MyProfile.fxml"));
             Stage stage=new Stage();
             stage.setTitle("Mi Perfil");

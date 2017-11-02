@@ -34,6 +34,14 @@ public class State {
         return rta;
     }
 
+    public User getUser(Credential credential) throws InvalidCredentials{
+            for (User user : users) {
+                if (credential.equals(user.getCredential()))
+                    return user;
+            }
+            throw new InvalidCredentials();
+    }
+
     public User login(Credential cred) throws InvalidCredentials{
         return authorize(cred);
     }
