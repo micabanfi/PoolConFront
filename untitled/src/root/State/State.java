@@ -1,18 +1,16 @@
 
 package root.State;
 
-import root.AlreadyRated;
-import root.ExistingRideException;
-import root.InvalidCredentials;
-import root.InvalidFields;
+import root.Exceptions.AlreadyRated;
+import root.Exceptions.ExistingRideException;
+import root.Exceptions.InvalidCredentials;
+import root.Exceptions.InvalidFields;
 import root.User.Credential;
 import root.Ride.Ride;
 import root.Ride.RideAdmin;
-import root.User.Person;
 import root.User.User;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Date;
 
@@ -57,25 +55,12 @@ public class State {
         throw new InvalidFields("User already Exists");
     }
 
+    public void sendRideRequest(RideAdmin ride, Credential cred) throws InvalidCredentials{
+        User user = authorize(cred);
 
-   /* Metodo de Prueba
-   private <T> boolean AddToList(T ent){
-       boolean flag = false;
-       if (ent instanceof  User){
-           if (!(users.contains(ent))) {
-               users.add((User)ent);
-               flag = true;
-           }
-       }
-       if (ent instanceof  Ride){
-    	   if (!(currentRides.contains(ent))) {
-               currentRides.add((Ride)ent);
-               flag = true;
-           }
-       }
-       return flag;
-   }*/
+    }
 
+    //Me parece que ordenarlo no es tan necesario y va a ser poco claro
     public void AddRideToListByDate(Ride ride) throws ExistingRideException{//No me tiran los 50 errores que deberia tirar... arreglarlo dsps
         boolean flag = true;
         for(int i = 0; flag || i < currentRides.size(); i++){// Feo feo, dsps me lo cambio bien

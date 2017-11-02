@@ -1,4 +1,4 @@
-package root;
+package root.Exceptions;
 
 public class InvalidCredentials extends Exception{
     private static final String MESSAGE = "Usuario o contraseña incorrecto.";

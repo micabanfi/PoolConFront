@@ -1,4 +1,4 @@
-package root;
+package root.Exceptions;
 
 public class ExistingRideException extends Exception{
     private static final long serialVersionUID = 1L;

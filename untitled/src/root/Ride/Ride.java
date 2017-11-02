@@ -52,6 +52,7 @@ public class Ride {
 
         return aux.date.equals(date) && aux.driver.equals(driver); //DEBERIAMOS DE PROHIBIR Q UN USUARIO CREE
         //VIAJES DISTINTOS A LA MISMA HORA pq sino este equals no sirve.
+        //O cambiar el equals y que el usuario se joda. Porque tambien podria crearlo 1 min dps y eso no lo podemos validar
     }
 
     @Override

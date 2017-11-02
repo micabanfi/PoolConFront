@@ -1,20 +1,27 @@
 package root.Ride;
 
-import root.AlreadyRated;
+import root.Exceptions.AlreadyRated;
 import root.User.Person;
-import root.SeatsTaken;
-import root.NotInRide;
+import root.Exceptions.SeatsTaken;
+import root.Exceptions.NotInRide;
+import root.Exceptions.NotRequested;
+import root.Exceptions.NoPermission;
+import root.Exceptions.AlreadyRequested;
+import root.Exceptions.AlreadyInRide;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-//Podemos crear las clases ActiveRideAdmin y ExpiredRideAdmin
+
 public class RideAdmin {
     Ride ride;
     private ArrayList<Person> passengers;
 
     //Expired
     private HashMap<Person, Boolean> ratings;
+
+    //Active
+    private ArrayList<Person> requests;
 
     public RideAdmin(Ride ride){
 
@@ -63,5 +70,36 @@ public class RideAdmin {
         }else{
             throw new NotInRide();
         }
+    }
+
+    //Active
+    public void addRequest(Person person) throws AlreadyRequested, AlreadyInRide{
+        if(requests.contains(person)){
+            throw new AlreadyRequested();
+        }
+        if(passengers.contains(person) || person.equals(ride.getDriver())){
+            throw new AlreadyInRide();
+        }
+        requests.add(person);
+    }
+
+    private void validateRequest(Person driver, Person request) throws NoPermission, NotRequested{
+        if(!requests.contains(request)) {
+            throw new NotRequested();
+        }
+        if (driver.equals(ride.getDriver())) {
+            throw new NoPermission();
+        }
+    }
+
+    public void acceptRequest(Person driver, Person request) throws NoPermission, NotRequested{
+        validateRequest(driver, request);
+        passengers.add(request);
+        requests.remove(request);
+    }
+
+    public void declineRequest(Person driver, Person request)throws NoPermission, NotRequested{
+        validateRequest(driver, request);
+        requests.remove(request);
     }
 }
