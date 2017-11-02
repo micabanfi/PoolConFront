@@ -22,6 +22,12 @@ public class User {
         return person.toString()+credential.toString();
     }
 
+    public void setUser(User user){
+        this.credential=user.getCredential();
+        this.person=user.getPerson();
+        //this.vehicles=user.getVehicles;
+    }
+
     public ArrayList<Ride> getActiveRides(){
         return activeRides;
     }

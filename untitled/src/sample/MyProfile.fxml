@@ -12,7 +12,7 @@
    <children>
       <AnchorPane layoutX="51.0" layoutY="421.0" prefHeight="98.0" prefWidth="374.0" style="-fx-background-color: #48d1cc;">
          <children>
-            <TextField fx:id="MyProfilePasswordtx" layoutX="137.0" layoutY="54.0" prefHeight="38.0" prefWidth="237.0">
+            <TextField fx:id="MyProfilePasswordtx" editable="false" layoutX="137.0" layoutY="54.0" prefHeight="38.0" prefWidth="237.0">
                <font>
                   <Font size="20.0" />
                </font>
@@ -20,27 +20,27 @@
          </children></AnchorPane>
       <AnchorPane layoutX="51.0" layoutY="164.0" prefHeight="237.0" prefWidth="374.0" style="-fx-background-color: #48d1cc;">
          <children>
-            <TextField fx:id="MyProfileNametx" layoutX="112.0">
+            <TextField fx:id="MyProfileNametx" editable="false" layoutX="112.0">
                <font>
                   <Font size="20.0" />
                </font>
             </TextField>
-            <TextField fx:id="MyProfileSurnametx" layoutX="112.0" layoutY="47.0">
+            <TextField fx:id="MyProfileSurnametx" editable="false" layoutX="112.0" layoutY="47.0">
                <font>
                   <Font size="20.0" />
                </font>
             </TextField>
-            <TextField fx:id="MyProfileCareertx" layoutX="112.0" layoutY="92.0">
+            <TextField fx:id="MyProfileCareertx" editable="false" layoutX="112.0" layoutY="92.0">
                <font>
                   <Font size="20.0" />
                </font>
             </TextField>
-            <TextField fx:id="MyProfilePhonetx" layoutX="112.0" layoutY="141.0">
+            <TextField fx:id="MyProfilePhonetx" editable="false" layoutX="112.0" layoutY="141.0">
                <font>
                   <Font size="20.0" />
                </font>
             </TextField>
-            <TextField fx:id="MyProfileGenretx" layoutX="112.0" layoutY="188.0">
+            <TextField fx:id="MyProfileGenretx" editable="false" layoutX="112.0" layoutY="188.0">
                <font>
                   <Font size="20.0" />
                </font>
@@ -96,7 +96,7 @@
             <Font size="20.0" />
          </font>
       </Button>
-      <TextField fx:id="MyProfileUsernametx" layoutX="190.0" layoutY="424.0" prefHeight="38.0" prefWidth="237.0">
+      <TextField fx:id="MyProfileUsernametx" editable="false" layoutX="190.0" layoutY="424.0" prefHeight="38.0" prefWidth="237.0">
          <font>
             <Font size="20.0" />
          </font>
