@@ -13,9 +13,9 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import root.ExistingRideException;
-import root.InvalidCredentials;
-import root.InvalidFields;
+import root.Exceptions.ExistingRideException;
+import root.Exceptions.InvalidCredentials;
+import root.Exceptions.InvalidFields;
 import root.Ride.Permissions;
 import root.Ride.Ride;
 import root.Ride.Route;
@@ -57,6 +57,14 @@ public class Main extends Application implements Initializable{
     @FXML private ChoiceBox RgGenrech;
     @FXML private ChoiceBox RgSmokech;
     @FXML private ChoiceBox RgEatch;
+
+    @FXML private TextField MyProfileNametx;
+    @FXML private TextField MyProfileSurnametx;
+    @FXML private TextField MyProfileCareertx;
+    @FXML private TextField MyProfilePhonetx;
+    @FXML private TextField MyProfileGenretx;
+    @FXML private TextField MyProfileUsernametx;
+    @FXML private TextField MyProfilePasswordtx;
 
     public void Inicio() throws InvalidFields {
         //creo Users para inicializar el programa
@@ -227,6 +235,16 @@ public class Main extends Application implements Initializable{
 
     public void myProfile(ActionEvent event) {
         try{
+            /*MyProfileNametx.setDisable(true);
+            MyProfileSurnametx.setDisable(true);
+            MyProfileCareertx.setDisable(true);
+            MyProfileGenretx.setDisable(true);
+            MyProfilePhonetx.setDisable(true);
+            MyProfilePasswordtx.setDisable(true);
+            MyProfileUsernametx.setDisable(true);*/
+
+            MyProfileNametx.setText(currentUser.getPerson().getName());
+            MyProfileSurnametx.setText(currentUser.getPerson().getSurname());
 
             Parent root2 = FXMLLoader.load(getClass().getResource("MyProfile.fxml"));
             Stage stage=new Stage();
