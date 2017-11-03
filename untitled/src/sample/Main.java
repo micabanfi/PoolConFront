@@ -70,6 +70,7 @@ public class Main extends Application implements Initializable{
     @FXML private TextField MyProfileUsernametx;
     @FXML private TextField MyProfilePasswordtx;
 
+  //Función que crea Users para que cuando se inicialize el programa, ya hallan Users cargados.
     public void Inicio() throws InvalidFields {
         //Creo Users para que cuando inicialize el programa, ya hallan Users cargados.
         //Hay que chequar patente?
@@ -104,7 +105,7 @@ public class Main extends Application implements Initializable{
 
     }
     
-    //Creo la ventana principal
+    //Función que crea la ventana principal
     @Override
     public void start(Stage primaryStage) throws Exception {
         try {
@@ -267,10 +268,11 @@ public class Main extends Application implements Initializable{
             MyProfileSurnametx.setText(currentUser.getPerson().getSurname());
 
             Parent root2 = FXMLLoader.load(getClass().getResource("MyProfile.fxml"));
-            Stage stage=new Stage();
+            Stage stage=(Stage)(((Node) event.getSource()).getScene().getWindow());
             stage.setTitle("Mi Perfil");
             stage.setScene(new Scene(root2,1000,600));
             stage.show();
+            
         }catch (Exception e){
             out.println("Cant load window myProfile");
         }
@@ -279,10 +281,11 @@ public class Main extends Application implements Initializable{
      public void newRide(ActionEvent event) {
         try{
             Parent root3 = FXMLLoader.load(getClass().getResource("NewRide.fxml"));
-            Stage stage=new Stage();
+            Stage stage=(Stage)(((Node) event.getSource()).getScene().getWindow());
             stage.setTitle("Nuevo Viaje");
             stage.setScene(new Scene(root3,1000,600));
             stage.show();
+            
         }catch (Exception e){
             out.println("Cant load window newRide");
         }
