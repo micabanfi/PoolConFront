@@ -1,7 +1,6 @@
-package sample;
+package Views;
 
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,7 +12,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import root.Exceptions.ExistingRideException;
@@ -28,10 +26,6 @@ import root.User.Person;
 import root.User.User;
 import root.User.Vehicle;
 
-import sample.*;
-
-import java.awt.*;
-import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.Date;
@@ -110,7 +104,7 @@ public class Main extends Application implements Initializable{
     @Override
     public void start(Stage primaryStage) throws Exception {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("LogIn.fxml"));
             primaryStage.setTitle("Carpool");
             primaryStage.setScene(new Scene(root, 1000, 600));
             primaryStage.show();

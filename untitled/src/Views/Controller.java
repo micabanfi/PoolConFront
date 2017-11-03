@@ -1,20 +1,4 @@
-package sample;
-
-import javafx.application.Platform;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.PasswordField;
-import javafx.stage.Stage;
-
-import javax.xml.soap.Text;
-import java.awt.*;
-import java.net.URL;
-import java.util.ResourceBundle;
-
-import javafx.event.ActionEvent;
+package Views;
 
 /*public class Controller implements Initializable{
 
