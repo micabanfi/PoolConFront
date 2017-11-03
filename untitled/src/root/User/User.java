@@ -11,10 +11,12 @@ public class User {
     private ArrayList<Vehicle> vehicles;
     private ArrayList<Ride> expiredRides;
     private ArrayList<Ride> activeRides;
+    private Rating rating;
 
     public User(Credential credential, Person person){
         this.credential=credential;
         this.person=person;
+        this.rating = new Rating();
     }
 
     @Override
@@ -28,6 +30,9 @@ public class User {
         //this.vehicles=user.getVehicles;
     }
 
+    public Rating getRating() {
+        return rating;
+    }
     public ArrayList<Ride> getActiveRides(){
         return activeRides;
     }

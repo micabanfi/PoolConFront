@@ -1,5 +1,6 @@
 package root.User;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -7,20 +8,18 @@ public class Person {
     private String name;
     private String surname;
     private String phone;
-    private Rating rating;//Porque en person y no en user? eso no seria menos objetoso?
     private String gender;
-    private Date birthDate;
+    private LocalDate birthDate;
     private Preferences preferences;
     private ArrayList<Vehicle> vehicles;//lo tenemos repetido en person y en user..... sacarlo de user??
-
-    public Person(String name, String surname, String career, String phone,boolean smoke,boolean food,String gender){
+    	
+    public Person(String name, String surname, String career, String phone,boolean smoke,boolean food,String gender, LocalDate birthDate){
         this.name=name;
         this.surname=surname;
         this.phone=phone;
         this.preferences = new Preferences(career, smoke, food);
         this.gender=gender;
-        //this.birthDate=birthDate;
-        //inicializar raiting
+        this.birthDate=birthDate;
     }
 
     public void addVehicle(Vehicle vehicle){
@@ -43,11 +42,7 @@ public class Person {
         return gender;
     }
 
-    public Rating getRating() {
-        return rating;
-    }
-
-    public Date getBirthDate() {
+    public LocalDate getBirthDate() {
         return birthDate;
     }
     public Preferences getPreferences() {

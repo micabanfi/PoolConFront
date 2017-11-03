@@ -11,29 +11,29 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #afeeee;" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Main">
+<AnchorPane prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #afeeee;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Main">
    <children>
       <Text layoutX="133.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Por favor,complete sus datos para crear un nuevo usuario" textAlignment="CENTER" wrappingWidth="773.7578125">
          <font>
             <Font size="42.0" />
          </font>
       </Text>
-      <TextField fx:id="RgNametx" layoutX="148.0" layoutY="169.0">
+      <TextField fx:id="RgNametx" layoutX="148.0" layoutY="169.0" text="---">
          <font>
             <Font size="20.0" />
          </font>
       </TextField>
-      <TextField fx:id="RgSurnametx" layoutX="148.0" layoutY="216.0">
+      <TextField fx:id="RgSurnametx" layoutX="148.0" layoutY="216.0" text="---">
          <font>
             <Font size="20.0" />
          </font>
       </TextField>
-      <TextField fx:id="RgPhonetx" layoutX="147.0" layoutY="270.0">
+      <TextField fx:id="RgPhonetx" layoutX="147.0" layoutY="270.0" text="---">
          <font>
             <Font size="20.0" />
          </font>
       </TextField>
-      <TextField fx:id="RgCareertx" layoutX="146.0" layoutY="321.0">
+      <TextField fx:id="RgCareertx" layoutX="146.0" layoutY="321.0" text="---">
          <font>
             <Font size="20.0" />
          </font>
@@ -95,12 +95,12 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <TextField fx:id="RgUserNametx" layoutX="572.0" layoutY="208.0">
+      <TextField fx:id="RgUserNametx" layoutX="572.0" layoutY="208.0" text="---">
          <font>
             <Font size="20.0" />
          </font>
       </TextField>
-      <TextField fx:id="RgPasswordtx" layoutX="572.0" layoutY="310.0">
+      <TextField fx:id="RgPasswordtx" layoutX="572.0" layoutY="310.0" text="---">
          <font>
             <Font size="20.0" />
          </font>
