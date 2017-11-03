@@ -41,31 +41,12 @@ public class Main extends Application implements Initializable{
     public int userNumber;
 
     //Declaro todos los lugares donde se pueden completar informacion
-    @FXML private TextField LogInUserNameTx;
-    @FXML private TextField LogInPassTx;
 
-    @FXML private TextField RgNametx;
-    @FXML private TextField RgSurnametx;
-    @FXML private TextField RgPhonetx;
-    @FXML private TextField RgCareertx;
-    @FXML private TextField RgUserNametx;
-    @FXML private TextField RgPasswordtx;
 
-    @FXML private DatePicker RgBirthDate;
 
-    @FXML private ChoiceBox RgGenrech;
-    @FXML private ChoiceBox RgSmokech;
-    @FXML private ChoiceBox RgEatch;
 
-    @FXML private TextField MyProfileNametx;
-    @FXML private TextField MyProfileSurnametx;
-    @FXML private TextField MyProfileCareertx;
-    @FXML private TextField MyProfilePhonetx;
-    @FXML private TextField MyProfileGenretx;
-    @FXML private TextField MyProfileUsernametx;
-    @FXML private TextField MyProfilePasswordtx;
 
-  //Funci�n que crea Users para que cuando se inicialize el programa, ya hallan Users cargados.
+    //Funci�n que crea Users para que cuando se inicialize el programa, ya hallan Users cargados.
     public void Inicio() throws InvalidFields {
         //Creo Users para que cuando inicialize el programa, ya hallan Users cargados.
         //Hay que chequar patente?
@@ -99,7 +80,7 @@ public class Main extends Application implements Initializable{
         }
 
     }
-    
+
     //Funci�n que crea la ventana principal
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -115,170 +96,29 @@ public class Main extends Application implements Initializable{
 
     }
 
-    public void possibleErrors(int error) {
-        if (error == 1) {
-        	Alert alert = new Alert(AlertType.ERROR);
-        	alert.setTitle("Error");
-        	alert.setHeaderText("Introduzca nombre de usuario y contrasena o registrese si no tiene usuario");
-        	alert.setContentText(null);
-        	alert.showAndWait();
-        }
-        else if(error==2){
-        	Alert alert = new Alert(AlertType.ERROR);
-        	alert.setTitle("Error");
-        	alert.setHeaderText("Usuario o contrasena no encontrados");
-        	alert.setContentText(null);
-        	alert.showAndWait();
-        }
-        else if(error==3) {
-        	Alert alert = new Alert(AlertType.ERROR);
-    		alert.setTitle("Error");
-    		alert.setHeaderText("Complete todos los campos por favor");
-    		alert.setContentText(null);
-    		alert.showAndWait();
-        }
-        else if(error==4) {
-        	Alert alert = new Alert(AlertType.ERROR);
-        	alert.setTitle("Error");
-        	alert.setHeaderText("Usuario ya existente");
-        	alert.setContentText(null);
-        	alert.showAndWait();
-        }
-        else if(error==5) {
-        	Alert alert = new Alert(AlertType.ERROR);
-	    	alert.setTitle("Error");
-	    	alert.setHeaderText("El viaje ya existe");
-	    	alert.setContentText(null);
-	    	alert.showAndWait();
-        }
-    }
 
-    public void newUser(){
-        //MAL! ESTE WHILE PASARLO AL BOTON Iniciar Sesion DENTRO DE REGISTER.
-    	String name="---", surname="---", career="---", phone="---", username1="---", password1="---",genre="---";
-        //eat y smoke se inicializan en false por si no ponen nada.
-    	Boolean eat=false,smoke=false;
-        LocalDate bDate=null;
-        while(name=="---" || surname=="---"|| career=="---" || phone=="---"|| username1=="---"|| password1=="---"||genre=="---") {
-	        name = RgNametx.getText();
-	        surname = RgSurnametx.getText();
-	        career = RgCareertx.getText();
-	        phone = RgPhonetx.getText();
-	        username1 = RgUserNametx.getText();
-	        password1 = RgPasswordtx.getText();
-	        genre=RgGenrech.getValue().toString();
-	        bDate = RgBirthDate.getValue();
-	        		
-	        String rta=new String(RgEatch.getValue().toString());
-	        if(rta.compareTo("Si")==0)
-	            eat=true;
-	        else eat=false;
-	        rta=RgSmokech.getValue().toString();
-	        if(rta.compareTo("Si")==0)
-	            smoke=true;
-	        else smoke=false;
-         }
 
-        Credential creddential1 = new Credential(username1, password1);
-        Person persona1 = new Person(name, surname, career, phone, smoke, eat, genre, bDate);
-        User usuario1 = new User(creddential1, persona1);
+
+
+
+
+
+    public void mainPage(ActionEvent event) {
         try{
-            estado.register(usuario1);
-            //currentUser=new User(credential1,persona1);
+
             Parent root2 = FXMLLoader.load(getClass().getResource("MainPage.fxml"));
-            Stage stage = new Stage();
+            Stage stage=(Stage)(((Node) event.getSource()).getScene().getWindow());
             stage.setTitle("MainPage");
-            stage.setScene(new Scene(root2, 1000, 600));
+            stage.setScene(new Scene(root2,1000,600));
             stage.show();
-        } catch (InvalidFields e) {
-            possibleErrors(4);
         } catch (Exception e) {
             System.out.println("Cant load mainPage");
         }
     }
 
-    public void btLogIn(ActionEvent event) {
-            String userNameTx,passwordTx;
-            userNameTx=LogInUserNameTx.getText();
-            passwordTx=LogInPassTx.getText();
-            Credential credential=new Credential(userNameTx,passwordTx);
-
-            //si usuario o contrasenia estan vacios tirar error de completar campos.
-            //si ambos estan vacios y se aprieta iniciar secion tira error de completar campos
-            //si alguno esta vacio(null)me tira la excepcion,ver como que eso no pase
-
-            try{
-                estado.login(credential);
-                Person aux=estado.getUser(credential).getPerson();
-                //currentUser=new User(credential,aux);
-
-                Parent root2 = FXMLLoader.load(getClass().getResource("MainPage.fxml"));
-                Stage stage=(Stage)(((Node) event.getSource()).getScene().getWindow());
-                stage.setTitle("MainPage");
-                stage.setScene(new Scene(root2,1000,600));
-                stage.show();
-            }catch (InvalidCredentials e){
-                possibleErrors(2);
-            }
-            catch (Exception e){
-            System.out.println("Cant load window btLogIn");
-            }
-    }
-
-    public void btRegister(ActionEvent event) {
-        try{
-            Parent root2 = FXMLLoader.load(getClass().getResource("Register.fxml"));
-            Stage stage=(Stage)(((Node) event.getSource()).getScene().getWindow());
-            stage.setTitle("Register");
-            stage.setScene(new Scene(root2,1000,600));
-            stage.show();
-
-        }catch (Exception e){
-            System.out.println("Cant load window Register");
-        }
-    }
 
 
-     public void mainPage(ActionEvent event) {
-         try{
 
-             Parent root2 = FXMLLoader.load(getClass().getResource("MainPage.fxml"));
-             Stage stage=(Stage)(((Node) event.getSource()).getScene().getWindow());
-             stage.setTitle("MainPage");
-             stage.setScene(new Scene(root2,1000,600));
-             stage.show();
-         } catch (Exception e) {
-             System.out.println("Cant load mainPage");
-         }
-    }
-
-    public void myProfile(ActionEvent event) {
-        try{
-
-
-            Parent root2 = FXMLLoader.load(getClass().getResource("MyProfile.fxml"));
-            Stage stage=(Stage)(((Node) event.getSource()).getScene().getWindow());
-            stage.setTitle("Mi Perfil");
-            stage.setScene(new Scene(root2,1000,600));
-            stage.show();
-            
-        }catch (Exception e){
-            out.println("Cant load window myProfile");
-        }
-    }
-
-     public void newRide(ActionEvent event) {
-        try{
-            Parent root3 = FXMLLoader.load(getClass().getResource("NewRide.fxml"));
-            Stage stage=(Stage)(((Node) event.getSource()).getScene().getWindow());
-            stage.setTitle("Nuevo Viaje");
-            stage.setScene(new Scene(root3,1000,600));
-            stage.show();
-            
-        }catch (Exception e){
-            out.println("Cant load window newRide");
-        }
-    }
 
     //verdadera main
     public static void main(String[] args) {
@@ -287,8 +127,8 @@ public class Main extends Application implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        
-    	try {
+
+        try {
             Inicio();
         } catch (InvalidFields invalidFields) {
             invalidFields.printStackTrace();

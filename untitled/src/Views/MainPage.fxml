@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #afeeee;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.Main">
+<AnchorPane prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #afeeee;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.MainPage">
    <children>
       <Button fx:id="MyProfile" layoutX="734.0" layoutY="14.0" mnemonicParsing="false" onAction="#myProfile" prefHeight="70.0" prefWidth="256.0" text="Mi perfil">
          <font>
