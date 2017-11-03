@@ -27,6 +27,10 @@ public class RideAdmin {
 
     }
 
+    public String toString(){
+        return "Viaje\nRuta"+ride.getRoute()+"\nChofer"+ride.getDriver();
+    }
+
     public Ride getRide() {
         return ride;
     }

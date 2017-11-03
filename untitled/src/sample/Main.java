@@ -42,8 +42,9 @@ import static java.lang.System.out;
 public class Main extends Application implements Initializable{
 
 
-    public State estado=new State();
-    public User currentUser=null;
+    public State estado= State.getInstance();
+    //public User currentUser;
+    public int userNumber;
 
     //Declaro todos los lugares donde se pueden completar informacion
     @FXML private TextField LogInUserNameTx;
@@ -70,7 +71,7 @@ public class Main extends Application implements Initializable{
     @FXML private TextField MyProfileUsernametx;
     @FXML private TextField MyProfilePasswordtx;
 
-  //Función que crea Users para que cuando se inicialize el programa, ya hallan Users cargados.
+  //Funciï¿½n que crea Users para que cuando se inicialize el programa, ya hallan Users cargados.
     public void Inicio() throws InvalidFields {
         //Creo Users para que cuando inicialize el programa, ya hallan Users cargados.
         //Hay que chequar patente?
@@ -105,7 +106,7 @@ public class Main extends Application implements Initializable{
 
     }
     
-    //Función que crea la ventana principal
+    //Funciï¿½n que crea la ventana principal
     @Override
     public void start(Stage primaryStage) throws Exception {
         try {
@@ -163,7 +164,7 @@ public class Main extends Application implements Initializable{
     	String name="---", surname="---", career="---", phone="---", username1="---", password1="---",genre="---";
         //eat y smoke se inicializan en false por si no ponen nada.
     	Boolean eat=false,smoke=false;
-        LocalDate bDate =LocalDate.of(0, 0, 0);
+        LocalDate bDate=null;
         while(name=="---" || surname=="---"|| career=="---" || phone=="---"|| username1=="---"|| password1=="---"||genre=="---") {
 	        name = RgNametx.getText();
 	        surname = RgSurnametx.getText();
@@ -189,7 +190,7 @@ public class Main extends Application implements Initializable{
         User usuario1 = new User(creddential1, persona1);
         try{
             estado.register(usuario1);
-            currentUser=estado.getUser(creddential1);
+            //currentUser=new User(credential1,persona1);
             Parent root2 = FXMLLoader.load(getClass().getResource("MainPage.fxml"));
             Stage stage = new Stage();
             stage.setTitle("MainPage");
@@ -214,7 +215,9 @@ public class Main extends Application implements Initializable{
 
             try{
                 estado.login(credential);
-                currentUser=estado.getUser(credential);
+                Person aux=estado.getUser(credential).getPerson();
+                //currentUser=new User(credential,aux);
+
                 Parent root2 = FXMLLoader.load(getClass().getResource("MainPage.fxml"));
                 Stage stage=(Stage)(((Node) event.getSource()).getScene().getWindow());
                 stage.setTitle("MainPage");
@@ -244,6 +247,7 @@ public class Main extends Application implements Initializable{
 
      public void mainPage(ActionEvent event) {
          try{
+
              Parent root2 = FXMLLoader.load(getClass().getResource("MainPage.fxml"));
              Stage stage=(Stage)(((Node) event.getSource()).getScene().getWindow());
              stage.setTitle("MainPage");
@@ -252,20 +256,11 @@ public class Main extends Application implements Initializable{
          } catch (Exception e) {
              System.out.println("Cant load mainPage");
          }
-     }
+    }
 
     public void myProfile(ActionEvent event) {
         try{
-            /*MyProfileNametx.setDisable(true);
-            MyProfileSurnametx.setDisable(true);
-            MyProfileCareertx.setDisable(true);
-            MyProfileGenretx.setDisable(true);
-            MyProfilePhonetx.setDisable(true);
-            MyProfilePasswordtx.setDisable(true);
-            MyProfileUsernametx.setDisable(true);*/
 
-            MyProfileNametx.setText(currentUser.getPerson().getName());
-            MyProfileSurnametx.setText(currentUser.getPerson().getSurname());
 
             Parent root2 = FXMLLoader.load(getClass().getResource("MyProfile.fxml"));
             Stage stage=(Stage)(((Node) event.getSource()).getScene().getWindow());

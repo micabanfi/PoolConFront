@@ -13,17 +13,26 @@ import root.User.User;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Date;
+import java.util.List;
 
 
 public class State {
-    private ArrayList<User> users;
-    private LinkedList<RideAdmin> currentRides;
-    private ArrayList<RideAdmin> expiredRides;
 
-    public State() {
-        users = new ArrayList<User>();
-        currentRides = new LinkedList<RideAdmin>();
-        expiredRides = new ArrayList<RideAdmin>();
+    private static final State mainState = new State();
+
+    public static State getInstance() {
+        return mainState;
+    }
+
+    private List<User> users;
+    private List<RideAdmin> currentRides;
+    private List<RideAdmin> expiredRides;
+    private User userLogged;
+
+    private State() {
+        users = new ArrayList<>();
+        currentRides = new LinkedList<>();
+        expiredRides = new ArrayList<>();
     }
     //BORRAR DESPUES
     @Override
@@ -33,6 +42,7 @@ public class State {
             rta+=usuario.toString();
         return rta;
     }
+
 
     public User getUser(Credential credential) throws InvalidCredentials{
             for (User user : users) {
@@ -62,6 +72,8 @@ public class State {
         }
         throw new InvalidFields("User already Exists");
     }
+
+
 
     public void sendRideRequest(RideAdmin ride, Credential cred) throws InvalidCredentials{
         User user = authorize(cred);
@@ -129,10 +141,10 @@ public class State {
             throw new InvalidFields("No Ride With The Same Characteristics.");
        }
     */
-    public LinkedList<RideAdmin> getCurrentRides() { return currentRides; }
+    public List<RideAdmin> getCurrentRides() { return currentRides; }
 
     //Creo que no lo necesitamos
-    public ArrayList<RideAdmin> getExpiredRides() { return expiredRides; }
+    public List<RideAdmin> getExpiredRides() { return expiredRides; }
 
    /*
    public User modifyUser(User user) throw ExistingUserException{

@@ -49,6 +49,9 @@ public class User {
         return credential;
     }
 
+    public User getUser(){
+        return new User(this.credential,this.person);
+    }
 
 
     public void addRide(Ride ride){
