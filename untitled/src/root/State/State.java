@@ -5,11 +5,16 @@ import root.Exceptions.AlreadyRated;
 import root.Exceptions.ExistingRideException;
 import root.Exceptions.InvalidCredentials;
 import root.Exceptions.InvalidFields;
+import root.Ride.Permissions;
+import root.Ride.Route;
 import root.User.Credential;
 import root.Ride.Ride;
 import root.Ride.RideAdmin;
+import root.User.Person;
 import root.User.User;
+import root.User.Vehicle;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Date;
@@ -43,6 +48,40 @@ public class State {
         return rta;
     }
 
+
+    public void initState()   throws InvalidFields {
+            //Creo Users para que cuando inicialize el programa, ya hallan Users cargados.
+            //Hay que chequar patente?
+            Vehicle vehicle1 = new Vehicle("Fiat", "500", "Blanco", 2015, "ABC123", 4, false, true);
+            LocalDate bDayMica = LocalDate.of(2000, 1, 2);
+            LocalDate bDayMaite = LocalDate.of(2000, 6, 30);
+            Person person1 = new Person("Micaela", "Banfi", "Informatica", "1234567890", false, true, "Femenino", bDayMica);
+            Person person2=new Person("Maite","Herran","Infor","11112222",false,false,"" + "Femenino", bDayMaite);
+            Credential credential1 = new Credential("mica", "1234");
+            Credential credential2=new Credential("maimai","maite1234");
+            //Le agrego vehicle1 a person1
+            //person1.addVehicle(vehicle1);
+            User user1 = new User(credential1, person1);
+            User user2=new User(credential2,person2);
+
+            //Creo rides
+            Ride ride1=new Ride(new Route("Victoria","Itba","Libertador"),vehicle1,person1,new Permissions(false,true,true),new Date(2017,10,11));
+
+            //Agregamos los users al objeto estado que maneja el carPooling
+            try {
+                register(user1);
+                register(user2);
+                AddRideToList(ride1);
+                //Imprimo los usuarios que cree
+                System.out.println(toString());
+            } catch (InvalidFields e) {
+                //Este no deberia ir en possibleErrors porque lohacemos nosotros,no deberiamos ser tan tontos ;)
+                System.out.println("Usuario ya existente");
+            } catch (ExistingRideException e) {
+                System.out.println("No se pudo crear el ride");//este tampoco en error
+            }
+
+    }
 
     public User getUser(Credential credential) throws InvalidCredentials{
             for (User user : users) {
