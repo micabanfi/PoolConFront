@@ -1,10 +1,7 @@
 
 package root.State;
 
-import root.Exceptions.AlreadyRated;
-import root.Exceptions.ExistingRideException;
-import root.Exceptions.InvalidCredentials;
-import root.Exceptions.InvalidFields;
+import root.Exceptions.*;
 import root.Ride.Permissions;
 import root.Ride.Route;
 import root.User.Credential;
@@ -13,6 +10,8 @@ import root.Ride.RideAdmin;
 import root.User.Person;
 import root.User.User;
 import root.User.Vehicle;
+import root.Ride.ActiveRideAdmin;
+import root.Ride.ExpiredRideAdmin;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -30,25 +29,33 @@ public class State {
     }
 
     private List<User> users;
-    private List<RideAdmin> currentRides;
-    private List<RideAdmin> expiredRides;
+    private List<ActiveRideAdmin> currentRides;
+    private List<ExpiredRideAdmin> expiredRides;
+
+    //Malisimo
     private User userLogged;
 
-    private State() {
-        users = new ArrayList<>();
-        currentRides = new LinkedList<>();
-        expiredRides = new ArrayList<>();
-    }
-    //BORRAR DESPUES
-    @Override
-    public String toString() {
-        String rta=new String();
-        for(User usuario:users)
-            rta+=usuario.toString();
-        return rta;
+    private State() {}
+
+    private ActiveRideAdmin getActiveRideAdminOfRide(Ride ride) throws RideDoesNotExist{
+        for( ActiveRideAdmin rideAdmin: currentRides){
+            if(ride.equals(rideAdmin.getRide())){
+                return rideAdmin;
+            }
+        }
+        throw new RideDoesNotExist();
     }
 
+    private ExpiredRideAdmin getExpiredRideAdminOfRide(Ride ride) throws RideDoesNotExist{
+        for( ExpiredRideAdmin rideAdmin: expiredRides){
+            if(ride.equals(rideAdmin.getRide())){
+                return rideAdmin;
+            }
+        }
+        throw new RideDoesNotExist();
+    }
 
+    //Feisimo
     public void initState()   throws InvalidFields {
             //Creo Users para que cuando inicialize el programa, ya hallan Users cargados.
             //Hay que chequar patente?
@@ -83,6 +90,8 @@ public class State {
 
     }
 
+    //Authorize hace lo mismo. No lo borro para no cagar el front si lo estan usando
+    @Deprecated
     public User getUser(Credential credential) throws InvalidCredentials{
             for (User user : users) {
                 if (credential.equals(user.getCredential()))
@@ -112,14 +121,25 @@ public class State {
         throw new InvalidFields("User already Exists");
     }
 
-
-
-    public void sendRideRequest(RideAdmin ride, Credential cred) throws InvalidCredentials{
+    public void sendRideRequest(Credential cred, Ride ride) throws InvalidCredentials, RideDoesNotExist, AlreadyRequested, AlreadyInRide{
         User user = authorize(cred);
-
+        ActiveRideAdmin rideAdmin = getActiveRideAdminOfRide(ride);
+        rideAdmin.addRequest(user.getPerson());
     }
 
-    //Me parece que ordenarlo no es tan necesario y va a ser poco claro
+    public void acceptRideRequest(Credential cred, Ride ride, Person driver, Person request) throws InvalidCredentials, RideDoesNotExist, NoPermission, NotRequested{
+        User user = authorize(cred);
+        ActiveRideAdmin rideAdmin = getActiveRideAdminOfRide(ride);
+        rideAdmin.acceptRequest(driver, request);
+    }
+
+    public void rateRide(Credential cred, Ride ride, boolean goodRate) throws InvalidCredentials, AlreadyRated, RideDoesNotExist, NotInRide{
+        User user = authorize(cred);
+        RideAdmin rideAdmin = getRideAdminOfRide(ride, expiredRides);
+        rideAdmin.rate(user.getPerson(), goodRate);
+    }
+
+    //TE ROMPI ESTOS DOS METODOS. Ahora existen dos subclases de RideAdmin. Son ExpiredRideAdmin y ActiveRideAdmin.
     public void AddRideToListByDate(Ride ride) throws ExistingRideException{//No me tiran los 50 errores que deberia tirar... arreglarlo dsps
         boolean flag = true;
         for(int i = 0; flag || i < currentRides.size(); i++){// Feo feo, dsps me lo cambio bien
@@ -141,9 +161,10 @@ public class State {
         currentRides.add(aux);
     }
 
-    public void rateRide(Credential cred, Ride ride, boolean goodRating) throws InvalidCredentials, AlreadyRated{
 
-    }
+
+    //QUE QUILOMBO DE COMENTARIOS, VOY A BORRAR TODS
+
     /*
        public RideAdmin saveNewRide(Ride ride) throws InvalidFields{
            if (AddToList(ride))
@@ -151,6 +172,7 @@ public class State {
            throw new InvalidFields("Invalid Ride");
        }
     */
+
 // tenemos que settear una/entender la timezone para/de todo el proyecto. No entendi nada
     public void refreshRides(){
         boolean aux = true;
@@ -180,10 +202,10 @@ public class State {
             throw new InvalidFields("No Ride With The Same Characteristics.");
        }
     */
-    public List<RideAdmin> getCurrentRides() { return currentRides; }
+    public List<ActiveRideAdmin> getCurrentRides() { return currentRides; }
 
     //Creo que no lo necesitamos
-    public List<RideAdmin> getExpiredRides() { return expiredRides; }
+    public List<ExpiredRideAdmin> getExpiredRides() { return expiredRides; }
 
    /*
    public User modifyUser(User user) throw ExistingUserException{
