@@ -55,4 +55,24 @@ public class Person {
         s="Nombre: "+ name+"\nApellido: "+surname+"\nTelefono: "+phone+"\nFecha de Nacimiento: "+birthDate+"\nSexo:"+gender+"\n"+preferences.toString();
         return s;
     }
+
+    @Override
+    public boolean equals(Object obj){
+        if (this == obj)
+            return true;
+        if (!(obj instanceof Person))
+            return false;
+        Person aux = (Person) obj;
+        if (!(this.name.equals(aux.name)))
+            return false;
+        if (!(this.surname.equals(aux.surname)))
+            return false;
+        if (!(this.phone.equals(aux.phone)))
+            return false;
+        if (!(this.gender.equals(aux.gender)))
+            return false;
+        if (!(this.birthDate.equals(aux.birthDate)))
+            return false;
+        return this.preferences.equals(aux.preferences);
+    }
 }

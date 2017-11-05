@@ -11,6 +11,7 @@ public class ActiveRideAdmin extends RideAdmin {
 
     public ActiveRideAdmin(Ride ride){
         super(ride);
+        requests = new ArrayList<>();
     }
 
     public void addPassenger(Person passenger)throws SeatsTaken {
@@ -59,5 +60,7 @@ public class ActiveRideAdmin extends RideAdmin {
         requests.remove(request);
     }
 
-
+    public ArrayList<Person> getRequests() {
+        return requests;
+    }
 }

@@ -31,4 +31,14 @@ public class Preferences {
         String s = "Preferencias del usuario:\nCARRERA: "+career+"\nFUMAR: "+smokeString+"\nCOMIDA: "+ foodString+"\n";
         return s;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (!(obj instanceof Preferences))
+            return false;
+        Preferences aux = (Preferences) obj;
+        return smoke == aux.smoke && food == aux.food && career.equals(aux.career);
+    }
 }

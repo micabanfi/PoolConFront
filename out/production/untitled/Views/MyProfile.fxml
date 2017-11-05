@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #afeeee;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.MyProfile">
+   <children>
+      <AnchorPane layoutX="51.0" layoutY="421.0" prefHeight="98.0" prefWidth="374.0" style="-fx-background-color: #48d1cc;">
+         <children>
+            <TextField fx:id="MyProfilePasswordtx" editable="false" layoutX="137.0" layoutY="54.0" prefHeight="38.0" prefWidth="237.0">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </TextField>
+         </children></AnchorPane>
+      <AnchorPane layoutX="51.0" layoutY="164.0" prefHeight="237.0" prefWidth="374.0" style="-fx-background-color: #48d1cc;">
+         <children>
+            <TextField fx:id="MyProfileNametx" editable="true" layoutX="112.0">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="MyProfileSurnametx" editable="true" layoutX="112.0" layoutY="47.0">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="MyProfileCareertx" editable="false" layoutX="112.0" layoutY="92.0">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="MyProfilePhonetx" editable="false" layoutX="112.0" layoutY="141.0">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="MyProfileGenretx" editable="false" layoutX="112.0" layoutY="188.0">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </TextField>
+         </children></AnchorPane>
+      <Label layoutX="53.0" layoutY="42.0" text="Mi Perfil">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+      <Label layoutX="54.0" layoutY="169.0" text="Nombre">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="54.0" layoutY="218.0" text="Apellido">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="54.0" layoutY="267.0" text="Carrera">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="55.0" layoutY="314.0" text="Telefono">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="55.0" layoutY="359.0" text="Genero">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="55.0" layoutY="428.0" text="Usuario">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="54.0" layoutY="481.0" text="Contrasenia">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Button fx:id="editProfile" layoutX="813.0" layoutY="40.0" mnemonicParsing="false" text="Editar Perfil">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <Button fx:id="mainPage" layoutX="50.0" layoutY="533.0" mnemonicParsing="false" onAction="#mainPage" text="Menu Principal">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <TextField fx:id="MyProfileUsernametx" editable="false" layoutX="190.0" layoutY="424.0" prefHeight="38.0" prefWidth="237.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </TextField>
+   </children>
+</AnchorPane>

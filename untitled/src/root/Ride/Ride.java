@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
-public class Ride {
+public class Ride implements Comparable<Ride>{
     private Route route;
     private Vehicle vehicle;
     private Person driver;
@@ -61,6 +61,11 @@ public class Ride {
         result = 31*result + driver.hashCode();
         result = 31*result + date.hashCode();
         return result;
+    }
+
+    @Override
+    public int compareTo(Ride ride){
+        return ride.getDate().compareTo(date);
     }
 
 
