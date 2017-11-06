@@ -32,10 +32,10 @@ public class State {
     private List<ActiveRideAdmin> currentRides;
     private List<ExpiredRideAdmin> expiredRides;
 
-    //Malisimo. Estoy muuuy de acuerdo
+    //Malisimo. Estoy muuuy de acuerdo. Tenemos que modificarles el front asi no hacemos esta forrada.
     private User userLogged;
 
-    private State() {//Porque habias sacado el costructor??
+    private State() {//Porque habias sacado el costructor?? Por lo que dijo franco de que cree una unica instancia de State. Creo que vos habias dicho de hacer esto tmb y yo te dije que era mala palabra jaja
         users = new ArrayList<>();
         currentRides = new LinkedList<>();
         expiredRides = new ArrayList<>();
@@ -59,7 +59,6 @@ public class State {
         throw new RideDoesNotExist();
     }
 
-    //Feisimo
     public void initState()   throws InvalidFields {
             //Creo Users para que cuando inicialize el programa, ya hallan Users cargados.
             //Hay que chequar patente?
@@ -94,7 +93,7 @@ public class State {
 
     }
 
-    //Authorize hace lo mismo. No lo borro para no cagar el front si lo estan usando
+    //Authorize hace lo mismo. No lo borro para no cagar el front si lo estan usando. y porque queda fachero
     @Deprecated
     public User getUser(Credential credential) throws InvalidCredentials{
             for (User user : users) {
@@ -138,11 +137,11 @@ public class State {
     }
 
     public void rateRide(Credential cred, Ride ride, boolean goodRate) throws InvalidCredentials, AlreadyRated, RideDoesNotExist, NotInRide{
-        /*Trato de rehacer el metodo... cambialo si esta mal fac
         User user = authorize(cred);
-        RideAdmin rideAdmin = getRideAdminOfRide(ride, expiredRides);//que garcha es ese metodo
+        ExpiredRideAdmin rideAdmin = getExpiredRideAdminOfRide(ride);
         rideAdmin.rate(user.getPerson(), goodRate);
-        */
+
+        /* Arregle lo que deje arriba
         User user = authorize(cred);
         ExpiredRideAdmin era;
         for (ExpiredRideAdmin expRide : expiredRides) {
@@ -153,8 +152,8 @@ public class State {
                 }
             }
         throw new RideDoesNotExist();
+        */
     }
-
 
     public void AddRideToList(Ride ride) throws ExistingRideException{
         int i;
@@ -166,19 +165,7 @@ public class State {
         currentRides.add(i, aux);
     }
 
-
-
-    //QUE QUILOMBO DE COMENTARIOS, VOY A BORRAR TODS
-
-    /*
-       public RideAdmin saveNewRide(Ride ride) throws InvalidFields{
-           if (AddToList(ride))
-               return ride;
-           throw new InvalidFields("Invalid Ride");
-       }
-    */
-
-// Arreglar lo de Date en todo el programa
+    // Arreglar lo de Date en todo el programa
     public void refreshRides(){
         boolean aux = true;
         Date currentDate = new Date();
@@ -194,7 +181,33 @@ public class State {
         }
     }
 
-    /* Si es que usamos este metodo, cambiarlo para que sea compatible a RideAdmin
+    public List<ActiveRideAdmin> getCurrentRides() { return currentRides; }
+
+    public List<ExpiredRideAdmin> getExpiredRides() { return expiredRides; }
+
+    //Deberia recibir credentials para que sea consistente con los otros metodos y ademas verificar que tenga permiso para hacerlo.
+    public User modifyUser(User user) throws NotExistingUserException{
+       for(User us : users) {
+           if (us.equals(user)) {
+               users.remove(us);
+               users.add(user);
+               return user;
+           }
+       }
+       throw new NotExistingUserException();
+   }
+
+    //QUE QUILOMBO DE COMENTARIOS, VOY A BORRAR TODS
+
+    /*
+       public RideAdmin saveNewRide(Ride ride) throws InvalidFields{
+           if (AddToList(ride))
+               return ride;
+           throw new InvalidFields("Invalid Ride");
+       }
+    */
+
+        /* Si es que usamos este metodo, cambiarlo para que sea compatible a RideAdmin
         public Ride modifyRide(Ride ride) throws InvalidFields{
             for(int i = 0; i < users.size(); i++){
                 Ride aux = currentRides.get(i);
@@ -207,20 +220,5 @@ public class State {
             throw new InvalidFields("No Ride With The Same Characteristics.");
        }
     */
-    public List<ActiveRideAdmin> getCurrentRides() { return currentRides; }
-
-    public List<ExpiredRideAdmin> getExpiredRides() { return expiredRides; }
-
-
-   public User modifyUser(User user) throws NotExistingUserException{
-       for(User us : users) {
-           if (us.equals(user)) {
-               users.remove(us);
-               users.add(user);
-               return user;
-           }
-       }
-       throw new NotExistingUserException();
-   }
 
 }
