@@ -35,20 +35,9 @@ import static java.lang.System.out;
 
 public class Main extends Application implements Initializable{
 
-
     public State estado= State.getInstance();
-
     //public User currentUser;
     public int userNumber;
-
-    //Declaro todos los lugares donde se pueden completar informacion
-
-
-
-
-
-    //Funci�n que crea Users para que cuando se inicialize el programa, ya hallan Users cargados.
-
 
     //Funci�n que crea la ventana principal
     @Override
@@ -65,9 +54,6 @@ public class Main extends Application implements Initializable{
 
     }
 
-
-
-
     public void mainPage(ActionEvent event) {
         try{
 
@@ -82,9 +68,6 @@ public class Main extends Application implements Initializable{
     }
 
 
-
-
-
     //verdadera main
     public static void main(String[] args) {
         launch(args);
@@ -92,7 +75,7 @@ public class Main extends Application implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        
+
         //TODO
     }
 

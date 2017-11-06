@@ -20,15 +20,14 @@ import java.time.LocalDate;
 public class Register {
 
 
-    @FXML
-    private TextField RgNametx;
+    @FXML private TextField RgNametx;
     @FXML private TextField RgSurnametx;
     @FXML private TextField RgPhonetx;
     @FXML private TextField RgCareertx;
     @FXML private TextField RgUserNametx;
     @FXML private TextField RgPasswordtx;
 
-    @FXML private DatePicker RgBirthDate;
+   // @FXML private DatePicker RgBirthDate;
 
     @FXML private ChoiceBox RgGenrech;
     @FXML private ChoiceBox RgSmokech;
@@ -37,47 +36,64 @@ public class Register {
     public State estado= State.getInstance();
 
     public void newUser(){
-        //MAL! ESTE WHILE PASARLO AL BOTON Iniciar Sesion DENTRO DE REGISTER.
-        String name="---", surname="---", career="---", phone="---", username1="---", password1="---",genre="---";
-        //eat y smoke se inicializan en false por si no ponen nada.
-        Boolean eat=false,smoke=false;
+        String name=null, surname=null, career=null, phone=null, username1=null, password1=null,genre=null;
+        Boolean eat=null,smoke=null, emptyFields=true;
         //LocalDate bDate=null;
-        while(name==null || surname==null|| career==null|| phone==null|| username1==null|| password1==null||genre==null) {
-            name = RgNametx.getText();
-            surname = RgSurnametx.getText();
-            career = RgCareertx.getText();
-            phone = RgPhonetx.getText();
-            username1 = RgUserNametx.getText();
-            password1 = RgPasswordtx.getText();
-            genre=RgGenrech.getValue().toString();
-            //bDate = RgBirthDate.getValue();
 
-            String rta=new String(RgEatch.getValue().toString());
-            if(rta.compareTo("Si")==0)
-                eat=true;
-            else eat=false;
-            rta=RgSmokech.getValue().toString();
-            if(rta.compareTo("Si")==0)
-                smoke=true;
-            else smoke=false;
-        }
+        name = RgNametx.getText();
+        surname = RgSurnametx.getText();
+        career = RgCareertx.getText();
+        phone = RgPhonetx.getText();
+        username1 = RgUserNametx.getText();
+        password1 = RgPasswordtx.getText();
+        genre = RgGenrech.getValue().toString();
+        //bDate = RgBirthDate.getValue();
+
+        String rta = new String(RgEatch.getValue().toString());
+        if (rta.compareTo("Si") == 0)
+            eat = true;
+        else eat = false;
+        rta = RgSmokech.getValue().toString();
+        if (rta.compareTo("Si") == 0)
+            smoke = true;
+        else smoke = false;
 
         Credential creddential1 = new Credential(username1, password1);
         Person persona1 = new Person(name, surname, career, phone, smoke, eat, genre);
         User usuario1 = new User(creddential1, persona1);
-        try{
-            estado.register(usuario1);
-            //currentUser=new User(credential1,persona1);
-            Parent root2 = FXMLLoader.load(getClass().getResource("MainPage.fxml"));
-            Stage stage = new Stage();
-            stage.setTitle("MainPage");
-            stage.setScene(new Scene(root2, 1000, 600));
-            stage.show();
-        } catch (InvalidFields e) {
-            possibleErrors(4);
-        } catch (Exception e) {
-            System.out.println("Cant load mainPage");
+
+            try {
+                if(name.isEmpty() || surname.isEmpty()|| career.isEmpty()|| phone.isEmpty()|| username1.isEmpty()|| password1.isEmpty()||genre.isEmpty()){
+
+                }
+                estado.register(usuario1);
+                //currentUser=new User(credential1,persona1);
+                Parent root2 = FXMLLoader.load(getClass().getResource("MainPage.fxml"));
+                Stage stage = new Stage();
+                stage.setTitle("MainPage");
+                stage.setScene(new Scene(root2, 1000, 600));
+                stage.show();
+            }catch (Exception e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("Usuario o contrasena no encontrados");
+                alert.setContentText(null);
+                alert.showAndWait()
+            } catch (InvalidFields e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("Usuario ya existente");
+                alert.setContentText(null);
+                alert.showAndWait();
+            } catch (Exception e) {
+                System.out.println("Cant load mainPage");
+            }
         }
+
+    public void IsEmpty() throws IsEmptyException{
+
+        RgNametx.getText().isEmpty() || RgSurnametx.getText().isEmpty()|| RgCareertx.getText().isEmpty()|| RgPhonetx.getText().isEmpty()|| RgUserNametx.getText().isEmpty()|| RgPasswordtx.getText().isEmpty())
+
     }
 
     public void possibleErrors(int error) {

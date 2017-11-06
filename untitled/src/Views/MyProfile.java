@@ -11,8 +11,7 @@ import javafx.stage.Stage;
 
 public class MyProfile {
 
-    @FXML
-    private TextField MyProfileNametx;
+    @FXML private TextField MyProfileNametx;
     @FXML private TextField MyProfileSurnametx;
     @FXML private TextField MyProfileCareertx;
     @FXML private TextField MyProfilePhonetx;
@@ -23,7 +22,6 @@ public class MyProfile {
 
     public void mainPage(ActionEvent event) {
         try{
-
             Parent root2 = FXMLLoader.load(getClass().getResource("MainPage.fxml"));
             Stage stage=(Stage)(((Node) event.getSource()).getScene().getWindow());
             stage.setTitle("MainPage");

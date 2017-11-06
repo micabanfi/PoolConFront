@@ -10,7 +10,6 @@ import javafx.stage.Stage;
 public class NewRide {
     public void mainPage(ActionEvent event) {
         try{
-
             Parent root2 = FXMLLoader.load(getClass().getResource("MainPage.fxml"));
             Stage stage=(Stage)(((Node) event.getSource()).getScene().getWindow());
             stage.setTitle("MainPage");

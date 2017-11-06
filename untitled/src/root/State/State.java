@@ -39,6 +39,7 @@ public class State {
         users = new ArrayList<>();
         currentRides = new LinkedList<>();
         expiredRides = new ArrayList<>();
+        //initState();
     }
 
     private ActiveRideAdmin getActiveRideAdminOfRide(Ride ride) throws RideDoesNotExist{
@@ -63,10 +64,10 @@ public class State {
             //Creo Users para que cuando inicialize el programa, ya hallan Users cargados.
             //Hay que chequar patente?
             Vehicle vehicle1 = new Vehicle("Fiat", "500", "Blanco", 2015, "ABC123", 4, false, true);
-            LocalDate bDayMica = LocalDate.of(2000, 1, 2);
-            LocalDate bDayMaite = LocalDate.of(2000, 6, 30);
-            Person person1 = new Person("Micaela", "Banfi", "Informatica", "1234567890", false, true, "Femenino", bDayMica);
-            Person person2=new Person("Maite","Herran","Infor","11112222",false,false,"" + "Femenino", bDayMaite);
+            //LocalDate bDayMica = LocalDate.of(2000, 1, 2);
+            //LocalDate bDayMaite = LocalDate.of(2000, 6, 30);
+            Person person1 = new Person("Micaela", "Banfi", "Informatica", "1234567890", false, true, "Femenino");
+            Person person2=new Person("Maite","Herran","Infor","11112222",false,false,"" + "Femenino");
             Credential credential1 = new Credential("mica", "1234");
             Credential credential2=new Credential("maimai","maite1234");
             //Le agrego vehicle1 a person1
