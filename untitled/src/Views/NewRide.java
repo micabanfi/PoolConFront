@@ -7,7 +7,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class NewRide {
+public class NewRide extends Controller {
+
+    public NewRide(ClientStage stage){
+        super(stage);
+    }
+
     public void mainPage(ActionEvent event) {
         try{
             Parent root2 = FXMLLoader.load(getClass().getResource("MainPage.fxml"));

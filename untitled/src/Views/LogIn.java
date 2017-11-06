@@ -14,16 +14,18 @@ import root.State.State;
 import root.User.Credential;
 import root.User.Person;
 
-public class LogIn {
-
-    //public State estado = State.getInstance();
-
+public class LogIn extends Controller{
 
     @FXML
     private TextField LogInUserNameTx;
 
     @FXML
     private TextField LogInPassTx;
+
+    public LogIn(ClientStage stage){
+        super(stage);
+    }
+
 /*
     public void btLogIn(ActionEvent event) {
         String userNameTx, passwordTx;
@@ -58,16 +60,7 @@ public class LogIn {
     */
 
     public void btRegister(ActionEvent event) {
-        try {
-            Parent root2 = FXMLLoader.load(getClass().getResource("Register.fxml"));
-            Stage stage = (Stage) (((Node) event.getSource()).getScene().getWindow());
-            stage.setTitle("Register");
-            stage.setScene(new Scene(root2, 1000, 600));
-            stage.show();
-
-        } catch (Exception e) {
-            System.out.println("Cant load window Register");
-        }
+        stage.Register();
     }
 }
 

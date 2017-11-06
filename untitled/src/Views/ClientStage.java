@@ -5,43 +5,67 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import root.Exceptions.InvalidCredentials;
+import root.Exceptions.InvalidFields;
+import root.User.Credential;
 import root.User.User;
 import root.State.State;
 
+import javax.security.auth.login.LoginContext;
 import java.io.IOException;
 
 public class ClientStage extends Stage {
     private User user;
     private State state;
 
-    public ClientStage(State state){
+    public ClientStage(State state, String title){
         super();
         this.state = state;
-        this.setTitle("Pool");
-        setMainView();
+        this.setTitle(title);
+        LogIn();
         this.show();
     }
 
-    public void setMainView() {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("MainPage.fxml"));
-        Controller mainView = new MainPage(this);
-        loader.setController(mainView);
-        try {
-            this.setScene(new Scene(loader.load(), 500, 500));
-        } catch (IOException e) {
-            //No encontro el FXML
-        }
-        //this.show();
+    public void register(User user) throws InvalidFields{
+        state.register(user);
+        this.user = user;
     }
 
-   /* public void setOtherView() {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("sample.fxml"));
-        Controller otherView = new OtherView(this);
-        loader.setController(otherView);
+    public void login(Credential cred) throws InvalidCredentials{
+        state.login(cred);
+        this.user = user;
+    }
+
+
+
+    private void setView(String fxml, Controller controller){
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
+        loader.setController(controller);
         try {
-            this.setScene(new Scene(loader.load(), 200, 200));
+            this.setScene(new Scene(loader.load(), StageDimensions.WIDTH.size(), StageDimensions.HEIGHT.size()));
         } catch (IOException e) {
-            //No encontro el FXML
+            System.out.println("Error al cargar el fxml: " + fxml);
         }
-    }*/
+    }
+
+    public void LogIn(){
+        setView("LogIn.fxml", new LogIn(this));
+    }
+
+    public void MainPage() {
+        setView("MainPage.fxml", new MainPage(this));
+    }
+
+    public void MyProfile() {
+        setView("MyProfile.fxml", new MyProfile(this));
+    }
+
+    public void NewRide(){
+        setView("NewRide.fxml", new NewRide(this));
+    }
+
+    public void Register(){
+        setView("Register.fxml", new Register(this));
+    }
+
 }

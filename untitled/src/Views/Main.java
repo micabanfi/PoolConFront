@@ -16,18 +16,16 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        newPool(state, "Ventana1");
-        newPool(state, "Ventana2");
+        multipleNewPool(state, "Pool", 2);
+    }
+
+    private void multipleNewPool(State state, String title, int quantity){
+        for(int i =0; i<quantity; i++)
+            newPool(state, title + (i+1));
     }
 
     public void newPool(State state, String title){
-        ClientStage stage = new ClientStage(state);
-        //try {
-          //  Thread.sleep(5000);
-        //}catch (Exception e){
-
-//        }
-        //stage.setOtherView();
+        ClientStage stage = new ClientStage(state, title);
     }
 
     public static void main(String[] args) {

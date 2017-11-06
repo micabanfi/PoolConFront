@@ -9,7 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class MyProfile {
+public class MyProfile extends Controller {
 
     @FXML private TextField MyProfileNametx;
     @FXML private TextField MyProfileSurnametx;
@@ -19,16 +19,11 @@ public class MyProfile {
     @FXML private TextField MyProfileUsernametx;
     @FXML private TextField MyProfilePasswordtx;
 
+    public MyProfile(ClientStage stage){
+        super(stage);
+    }
 
     public void mainPage(ActionEvent event) {
-        try{
-            Parent root2 = FXMLLoader.load(getClass().getResource("MainPage.fxml"));
-            Stage stage=(Stage)(((Node) event.getSource()).getScene().getWindow());
-            stage.setTitle("MainPage");
-            stage.setScene(new Scene(root2,1000,600));
-            stage.show();
-        } catch (Exception e) {
-            System.out.println("Cant load mainPage");
-        }
+        stage.MainPage();
     }
 }

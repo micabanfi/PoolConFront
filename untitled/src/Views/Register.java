@@ -17,7 +17,7 @@ import root.User.User;
 
 import java.time.LocalDate;
 
-public class Register {
+public class Register extends Controller {
 
 
     @FXML
@@ -42,8 +42,10 @@ public class Register {
     @FXML
     private ChoiceBox RgEatch;
 
-    //public State estado = State.getInstance();
-/*
+    public Register(ClientStage stage){
+        super(stage);
+    }
+
     public void newUser() {
         boolean emptyFields= checkRequestedFields();
         if (!emptyFields) {
@@ -71,27 +73,19 @@ public class Register {
             User usuario1 = new User(creddential1, persona1);
 
             try {
-               // estado.register(usuario1);
-                //currentUser=new User(credential1,persona1);
-                //Parent root2 = FXMLLoader.load(getClass().getResource("MainPage.fxml"));
-                Stage stage = new Stage();
-                stage.setTitle("MainPage");
-                //stage.setScene(new Scene(root2, 1000, 600));
-                stage.show();
-
-           // } catch (InvalidFields e) {
+                stage.register(usuario1);
+           } catch (InvalidFields e) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error");
                 alert.setHeaderText("Usuario ya existente");
                 alert.setContentText(null);
                 alert.showAndWait();
-            //} catch (Exception e) {
+            } catch (Exception e) {
                 System.out.println("Cant load mainPage");
-            //}
-
+            }
+            stage.MainPage();
         }
     }
-    */
 
     public boolean checkRequestedFields(){
         if(RgNametx.getText().isEmpty() || RgSurnametx.getText().isEmpty() ||

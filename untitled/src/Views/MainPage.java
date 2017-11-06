@@ -35,31 +35,12 @@ public class MainPage extends Controller{
         super(stage);
     }
 
-    //QUE CADA VIEW SE CARGUE DESDE ClientStage. Stage.MainView(); por ejemplo
     public void myProfile(ActionEvent event) {
-        try {
-            Parent root2 = FXMLLoader.load(getClass().getResource("MyProfile.fxml"));
-            Stage stage = (Stage) (((Node) event.getSource()).getScene().getWindow());
-            stage.setTitle("Mi Perfil");
-            stage.setScene(new Scene(root2, 1000, 600));
-            stage.show();
-
-        } catch (Exception e) {
-            out.println("Cant load window myProfile");
-        }
+        stage.MyProfile();
     }
 
     public void newRide(ActionEvent event) {
-        try {
-            Parent root3 = FXMLLoader.load(getClass().getResource("NewRide.fxml"));
-            Stage stage = (Stage) (((Node) event.getSource()).getScene().getWindow());
-            stage.setTitle("Nuevo Viaje");
-            stage.setScene(new Scene(root3, 1000, 600));
-            stage.show();
-
-        } catch (Exception e) {
-            out.println("Cant load window newRide");
-        }
+        stage.NewRide();
     }
 
 }
