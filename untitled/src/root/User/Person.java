@@ -9,17 +9,17 @@ public class Person {
     private String surname;
     private String phone;
     private String gender;
-    private LocalDate birthDate;
+   // private LocalDate birthDate;
     private Preferences preferences;
     private ArrayList<Vehicle> vehicles;//lo tenemos repetido en person y en user..... sacarlo de user??
     	
-    public Person(String name, String surname, String career, String phone,boolean smoke,boolean food,String gender, LocalDate birthDate){
+    public Person(String name, String surname, String career, String phone,boolean smoke,boolean food,String gender){
         this.name=name;
         this.surname=surname;
         this.phone=phone;
         this.preferences = new Preferences(career, smoke, food);
         this.gender=gender;
-        this.birthDate=birthDate;
+        //this.birthDate=birthDate;
     }
 
     public void addVehicle(Vehicle vehicle){
@@ -42,9 +42,10 @@ public class Person {
         return gender;
     }
 
-    public LocalDate getBirthDate() {
+    /*public LocalDate getBirthDate() {
         return birthDate;
-    }
+    }*/
+
     public Preferences getPreferences() {
         return preferences;
     }
@@ -52,7 +53,7 @@ public class Person {
     @Override
     public String toString() {
         String s="";
-        s="Nombre: "+ name+"\nApellido: "+surname+"\nTelefono: "+phone+"\nFecha de Nacimiento: "+birthDate+"\nSexo:"+gender+"\n"+preferences.toString();
+        s="Nombre: "+ name+"\nApellido: "+surname+"\nTelefono: "+phone+"\nFecha de Nacimiento: "+"\nSexo:"+gender+"\n"+preferences.toString();
         return s;
     }
 
@@ -70,8 +71,6 @@ public class Person {
         if (!(this.phone.equals(aux.phone)))
             return false;
         if (!(this.gender.equals(aux.gender)))
-            return false;
-        if (!(this.birthDate.equals(aux.birthDate)))
             return false;
         return this.preferences.equals(aux.preferences);
     }

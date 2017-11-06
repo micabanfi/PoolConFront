@@ -41,8 +41,8 @@ public class Register {
         String name="---", surname="---", career="---", phone="---", username1="---", password1="---",genre="---";
         //eat y smoke se inicializan en false por si no ponen nada.
         Boolean eat=false,smoke=false;
-        LocalDate bDate=null;
-        while(name=="---" || surname=="---"|| career=="---" || phone=="---"|| username1=="---"|| password1=="---"||genre=="---") {
+        //LocalDate bDate=null;
+        while(name==null || surname==null|| career==null|| phone==null|| username1==null|| password1==null||genre==null) {
             name = RgNametx.getText();
             surname = RgSurnametx.getText();
             career = RgCareertx.getText();
@@ -50,7 +50,7 @@ public class Register {
             username1 = RgUserNametx.getText();
             password1 = RgPasswordtx.getText();
             genre=RgGenrech.getValue().toString();
-            bDate = RgBirthDate.getValue();
+            //bDate = RgBirthDate.getValue();
 
             String rta=new String(RgEatch.getValue().toString());
             if(rta.compareTo("Si")==0)
@@ -63,7 +63,7 @@ public class Register {
         }
 
         Credential creddential1 = new Credential(username1, password1);
-        Person persona1 = new Person(name, surname, career, phone, smoke, eat, genre, bDate);
+        Person persona1 = new Person(name, surname, career, phone, smoke, eat, genre);
         User usuario1 = new User(creddential1, persona1);
         try{
             estado.register(usuario1);
