@@ -16,7 +16,7 @@ import root.User.Person;
 
 public class LogIn {
 
-    public State estado = State.getInstance();
+    //public State estado = State.getInstance();
 
 
     @FXML
@@ -24,7 +24,7 @@ public class LogIn {
 
     @FXML
     private TextField LogInPassTx;
-
+/*
     public void btLogIn(ActionEvent event) {
         String userNameTx, passwordTx;
         userNameTx = LogInUserNameTx.getText();
@@ -37,7 +37,7 @@ public class LogIn {
 
         try {
             estado.login(credential);
-            Person aux = estado.getUser(credential).getPerson();
+            //Person aux = estado.authorize(credential).getPerson();
             //currentUser=new User(credential,aux);
 
             Parent root2 = FXMLLoader.load(getClass().getResource("MainPage.fxml"));
@@ -55,6 +55,7 @@ public class LogIn {
             System.out.println("Cant load window btLogIn");
         }
     }
+    */
 
     public void btRegister(ActionEvent event) {
         try {

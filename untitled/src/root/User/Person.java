@@ -8,11 +8,10 @@ public class Person {
     private String name;
     private String surname;
     private String phone;
-    private String gender;
+    private String gender;//enum
    // private LocalDate birthDate;
     private Preferences preferences;
-    private ArrayList<Vehicle> vehicles;//lo tenemos repetido en person y en user..... sacarlo de user??
-    	
+
     public Person(String name, String surname, String career, String phone,boolean smoke,boolean food,String gender){
         this.name=name;
         this.surname=surname;
@@ -22,9 +21,6 @@ public class Person {
         //this.birthDate=birthDate;
     }
 
-    public void addVehicle(Vehicle vehicle){
-        this.vehicles.add(vehicle);
-    }
 
     public String getName () {
         return name;

@@ -7,8 +7,7 @@ public class Vehicle {
     private int year;
     private String plate;
     private int seats;
-    private boolean smoke;
-    private boolean food;
+
     //  private Permissions permission;
     public Vehicle(String brand,String model,String color,int year,String plate,int seat,boolean smoke,boolean food ){
         this.brand=brand;
@@ -17,8 +16,6 @@ public class Vehicle {
         this.year=year;
         this.plate=plate;
         this.seats=seats;
-        this.smoke=smoke;
-        this.food=food;
 //		this.permission = new Permissions(smoke, food, drink);
     }
 

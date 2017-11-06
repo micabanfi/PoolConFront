@@ -22,20 +22,14 @@ import java.util.List;
 
 public class State {
 
-    private static final State mainState = new State();
-
-    public static State getInstance() {
-        return mainState;
-    }
 
     private List<User> users;
     private List<ActiveRideAdmin> currentRides;
     private List<ExpiredRideAdmin> expiredRides;
 
-    //Malisimo. Estoy muuuy de acuerdo. Tenemos que modificarles el front asi no hacemos esta forrada.
-    private User userLogged;
 
-    private State() {//Porque habias sacado el costructor?? Por lo que dijo franco de que cree una unica instancia de State. Creo que vos habias dicho de hacer esto tmb y yo te dije que era mala palabra jaja
+
+    public State() {//Porque habias sacado el costructor?? Por lo que dijo franco de que cree una unica instancia de State. Creo que vos habias dicho de hacer esto tmb y yo te dije que era mala palabra jaja
         users = new ArrayList<>();
         currentRides = new LinkedList<>();
         expiredRides = new ArrayList<>();
@@ -108,7 +102,7 @@ public class State {
         return authorize(cred);
     }
 
-    private User authorize(Credential cred) throws InvalidCredentials{
+    public User authorize(Credential cred) throws InvalidCredentials{
         for (User user : users){
             if (user.equalCredentials(cred)) {
                 return user;

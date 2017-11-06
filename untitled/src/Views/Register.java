@@ -42,11 +42,10 @@ public class Register {
     @FXML
     private ChoiceBox RgEatch;
 
-    public State estado = State.getInstance();
-
+    //public State estado = State.getInstance();
+/*
     public void newUser() {
-        boolean emptyFields;
-        emptyFields = checkRequestedFields();
+        boolean emptyFields= checkRequestedFields();
         if (!emptyFields) {
             String name, surname, career, phone, username1, password1, genre;
             Boolean eat = false, smoke = false;
@@ -72,26 +71,27 @@ public class Register {
             User usuario1 = new User(creddential1, persona1);
 
             try {
-                estado.register(usuario1);
+               // estado.register(usuario1);
                 //currentUser=new User(credential1,persona1);
-                Parent root2 = FXMLLoader.load(getClass().getResource("MainPage.fxml"));
+                //Parent root2 = FXMLLoader.load(getClass().getResource("MainPage.fxml"));
                 Stage stage = new Stage();
                 stage.setTitle("MainPage");
-                stage.setScene(new Scene(root2, 1000, 600));
+                //stage.setScene(new Scene(root2, 1000, 600));
                 stage.show();
 
-            } catch (InvalidFields e) {
+           // } catch (InvalidFields e) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error");
                 alert.setHeaderText("Usuario ya existente");
                 alert.setContentText(null);
                 alert.showAndWait();
-            } catch (Exception e) {
+            //} catch (Exception e) {
                 System.out.println("Cant load mainPage");
-            }
+            //}
 
         }
     }
+    */
 
     public boolean checkRequestedFields(){
         if(RgNametx.getText().isEmpty() || RgSurnametx.getText().isEmpty() ||
