@@ -37,8 +37,8 @@ public class ClientStage extends Stage {
     }
 
     public void login(Credential cred) throws InvalidCredentials{
-        state.login(cred);
-        this.user = user;
+        User aux=state.login(cred);
+        this.user = aux;
     }
 
 
@@ -51,6 +51,7 @@ public class ClientStage extends Stage {
         } catch (IOException e) {
             System.out.println("Error al cargar el fxml: " + fxml);
         }
+        controller.init();
     }
 
     public void LogIn(){

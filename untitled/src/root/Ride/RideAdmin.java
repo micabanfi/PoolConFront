@@ -21,6 +21,7 @@ public abstract class RideAdmin {
 
     public RideAdmin(Ride ride){
         this.ride = ride;
+        passengers = new ArrayList<>();
     }
 
     public RideAdmin(Ride ride, List<Person> passengers){

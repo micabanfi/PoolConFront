@@ -32,4 +32,13 @@ public class Credential {
     public String toString(){
         return "UserName="+userName+"\nPass:"+password+"\n"+"\n";
     }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
 }
+

@@ -65,7 +65,20 @@ public class Ride implements Comparable<Ride>{
 
     @Override
     public int compareTo(Ride ride){
+        if(ride==null)
+        return 0;
         return ride.getDate().compareTo(date);
+
+    }
+
+    @Override
+    public String toString() {
+        return "Ride{" +
+                "route=" + route.toString() +
+                ", vehicle=" + vehicle.toString() +
+                ", driver=" + driver.toString()  +
+                ", date=" + date.toString() +
+                '}';
     }
 
 

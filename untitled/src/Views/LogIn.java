@@ -54,5 +54,7 @@ public class LogIn extends Controller{
     public void btRegister(ActionEvent event) {
         stage.Register();
     }
+
+    public void init(){}
 }
 

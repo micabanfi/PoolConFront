@@ -9,6 +9,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import javax.annotation.Resources;
+import javax.print.DocFlavor;
+
 public class MyProfile extends Controller {
 
     @FXML private TextField MyProfileNametx;
@@ -20,13 +23,23 @@ public class MyProfile extends Controller {
     @FXML private TextField MyProfilePasswordtx;
 
     public MyProfile(ClientStage stage){
+
         super(stage);
+
+    }
+
+    public void init(){
+        setProfileInfo();
     }
 
     public void setProfileInfo(){
-        System.out.println("Nombre:"+stage.getUser().getPerson().getName());
-
         MyProfileNametx.setText(stage.getUser().getPerson().getName());
+        MyProfileSurnametx.setText(stage.getUser().getPerson().getSurname());
+        MyProfileCareertx.setText(stage.getUser().getPerson().getPreferences().getCareer());
+        MyProfilePhonetx.setText(stage.getUser().getPerson().getPhone());
+        MyProfileGenretx.setText(stage.getUser().getPerson().getGender());
+        MyProfileUsernametx.setText(stage.getUser().getCredential().getUserName());
+        MyProfilePasswordtx.setText(stage.getUser().getCredential().getPassword());
 
     }
 
