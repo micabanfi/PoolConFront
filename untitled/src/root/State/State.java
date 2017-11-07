@@ -33,7 +33,11 @@ public class State {
         users = new ArrayList<>();
         currentRides = new LinkedList<>();
         expiredRides = new ArrayList<>();
-        //initState();
+        try {
+            initState();
+        } catch (Exception e) {
+            System.out.println("Problema initState");
+        }
     }
 
     private ActiveRideAdmin getActiveRideAdminOfRide(Ride ride) throws RideDoesNotExist{
@@ -54,7 +58,7 @@ public class State {
         throw new RideDoesNotExist();
     }
 
-    public void initState()   throws InvalidFields {
+    public void initState()  throws InvalidFields {
             //Creo Users para que cuando inicialize el programa, ya hallan Users cargados.
             //Hay que chequar patente?
             Vehicle vehicle1 = new Vehicle("Fiat", "500", "Blanco", 2015, "ABC123", 4, false, true);
@@ -74,11 +78,11 @@ public class State {
 
             //Agregamos los users al objeto estado que maneja el carPooling
             try {
+
                 register(user1);
                 register(user2);
                 AddRideToList(ride1);
                 //Imprimo los usuarios que cree
-                System.out.println(toString());
             } catch (InvalidFields e) {
                 //Este no deberia ir en possibleErrors porque lohacemos nosotros,no deberiamos ser tan tontos ;)
                 System.out.println("Usuario ya existente");

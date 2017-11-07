@@ -23,6 +23,13 @@ public class MyProfile extends Controller {
         super(stage);
     }
 
+    public void setProfileInfo(){
+        System.out.println("Nombre:"+stage.getUser().getPerson().getName());
+
+        MyProfileNametx.setText(stage.getUser().getPerson().getName());
+
+    }
+
     public void mainPage(ActionEvent event) {
         stage.MainPage();
     }

@@ -26,6 +26,11 @@ public class ClientStage extends Stage {
         this.show();
     }
 
+    //para probar
+    public User getUser(){
+        return user;
+    }
+
     public void register(User user) throws InvalidFields{
         state.register(user);
         this.user = user;

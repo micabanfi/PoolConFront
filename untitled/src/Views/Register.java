@@ -74,6 +74,10 @@ public class Register extends Controller {
 
             try {
                 stage.register(usuario1);
+                User aux=stage.getUser();
+
+                System.out.println("entro:\n"+aux.toString());
+
            } catch (InvalidFields e) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error");

@@ -1,7 +1,7 @@
 package Views;
 
 public enum StageDimensions {
-    WIDTH(1000), HEIGHT(500);
+    WIDTH(1000), HEIGHT(600);
 
     private int size;
 

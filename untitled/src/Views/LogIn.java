@@ -26,7 +26,7 @@ public class LogIn extends Controller{
         super(stage);
     }
 
-/*
+
     public void btLogIn(ActionEvent event) {
         String userNameTx, passwordTx;
         userNameTx = LogInUserNameTx.getText();
@@ -38,15 +38,8 @@ public class LogIn extends Controller{
         //si alguno esta vacio(null)me tira la excepcion,ver como que eso no pase
 
         try {
-            estado.login(credential);
-            //Person aux = estado.authorize(credential).getPerson();
-            //currentUser=new User(credential,aux);
-
-            Parent root2 = FXMLLoader.load(getClass().getResource("MainPage.fxml"));
-            Stage stage = (Stage) (((Node) event.getSource()).getScene().getWindow());
-            stage.setTitle("MainPage");
-            stage.setScene(new Scene(root2, 1000, 600));
-            stage.show();
+            stage.login(credential);
+           stage.MainPage();
         } catch (InvalidCredentials e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
@@ -57,7 +50,6 @@ public class LogIn extends Controller{
             System.out.println("Cant load window btLogIn");
         }
     }
-    */
 
     public void btRegister(ActionEvent event) {
         stage.Register();
