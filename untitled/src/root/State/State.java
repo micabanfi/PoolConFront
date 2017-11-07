@@ -81,6 +81,7 @@ public class State {
 
                 register(user1);
                 register(user2);
+                System.out.println("add to ride");
                 AddRideToList(ride1);
                 //Imprimo los usuarios que cree
             } catch (InvalidFields e) {
@@ -88,6 +89,8 @@ public class State {
                 System.out.println("Usuario ya existente");
             } catch (ExistingRideException e) {
                 System.out.println("No se pudo crear el ride");//este tampoco en error
+            } catch(Exception e){
+                System.out.println(e.getMessage());
             }
 
     }
@@ -156,11 +159,21 @@ public class State {
 
     public void AddRideToList(Ride ride) throws ExistingRideException{
         int i;
-        for(i = 0; ride.compareTo(currentRides.get(i).getRide()) >= 0; i++){
+        System.out.println(currentRides.isEmpty());
+        System.out.println(1);
+
+       // currentRides.sort();
+
+        for(i = 0; !currentRides.isEmpty() && ride.compareTo(currentRides.get(i).getRide()) >= 0; i++){
+            System.out.println(2);
             if(currentRides.get(i).getRide().equals(ride))
+                System.out.println(3);
                 throw new ExistingRideException();
+
         }
+        System.out.println("4b");
         ActiveRideAdmin aux = new ActiveRideAdmin(ride);
+        System.out.println(4);
         currentRides.add(i, aux);
     }
 

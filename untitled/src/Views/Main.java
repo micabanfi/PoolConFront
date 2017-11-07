@@ -16,7 +16,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        multipleNewPool(state, "Pool", 2);
+        multipleNewPool(state, "Pool", 1);
     }
 
     private void multipleNewPool(State state, String title, int quantity){

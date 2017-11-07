@@ -36,11 +36,14 @@ public class MainPage extends Controller{
     }
 
     public void myProfile(ActionEvent event) {
+
         stage.MyProfile();
     }
 
     public void newRide(ActionEvent event) {
         stage.NewRide();
     }
+
+    public void init(){}
 
 }

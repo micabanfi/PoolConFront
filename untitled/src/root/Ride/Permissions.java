@@ -10,4 +10,6 @@ public class Permissions {
         this.eat = eat;
         this.drink = drink;
     }
+
+
 }

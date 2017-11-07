@@ -99,5 +99,6 @@
             <Font size="20.0" />
          </font>
       </TextField>
+      <Button fx:id="showInfo" layoutX="635.0" layoutY="301.0" mnemonicParsing="false" onAction="#setProfileInfo" text="Button" />
    </children>
 </AnchorPane>

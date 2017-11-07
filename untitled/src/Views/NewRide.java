@@ -24,4 +24,6 @@ public class NewRide extends Controller {
             System.out.println("Cant load mainPage");
         }
     }
+
+    public void init(){}
 }

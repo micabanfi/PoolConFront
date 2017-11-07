@@ -41,4 +41,16 @@ public class Preferences {
         Preferences aux = (Preferences) obj;
         return smoke == aux.smoke && food == aux.food && career.equals(aux.career);
     }
+
+    public String getCareer() {
+        return career;
+    }
+
+    public boolean ifFood() {
+        return food;
+    }
+
+    public boolean isSmoke() {
+        return smoke;
+    }
 }

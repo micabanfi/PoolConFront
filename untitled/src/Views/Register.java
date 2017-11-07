@@ -108,4 +108,6 @@ public class Register extends Controller {
         }
         return false;
     }
+
+    public void init(){}
 }
