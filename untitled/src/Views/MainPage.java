@@ -15,6 +15,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import root.Exceptions.DeniedDriverException;
 import root.Ride.ActiveRideAdmin;
 import root.Ride.Ride;
 import root.Ride.Route;
@@ -46,7 +47,18 @@ public class MainPage extends Controller{
     }
 
     public void newRide(ActionEvent event) {
-        stage.NewRide();
+    	if(stage.getUser().getDriver()) {
+    		stage.NewRide();
+    	}
+    	
+        else {
+        	
+        	 Alert alert = new Alert(Alert.AlertType.ERROR);
+             alert.setTitle("Error");
+             alert.setHeaderText("No cumple con las condiciones para ser Conductor");
+             alert.setContentText(null);
+             alert.showAndWait();
+        }
     }
 
     public ObservableList<Ride> getRides(){

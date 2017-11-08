@@ -131,5 +131,6 @@
          </font>
       </Button>
       <Button fx:id="btMainPage" layoutX="808.0" layoutY="514.0" mnemonicParsing="false" onAction="#btMainPage" prefHeight="44.0" prefWidth="121.0" text="Menú Principal" />
+      <ChoiceBox fx:id="vehiclesCb" layoutX="584.0" layoutY="301.0" prefWidth="150.0" />
    </children>
 </AnchorPane>

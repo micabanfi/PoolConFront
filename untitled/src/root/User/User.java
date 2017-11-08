@@ -1,5 +1,6 @@
 package root.User;
 
+import root.Exceptions.NoVehicleException;
 import root.Ride.Ride;
 
 import java.util.ArrayList;
@@ -10,20 +11,19 @@ public class User extends Person{
     private ArrayList<Ride> expiredRides;
     private ArrayList<Ride> activeRides;
     private Rating rating;
-
-
+    private boolean driver;
+   
     public User(Credential credential, String name, String surname, String career, String phone,boolean smoke,boolean food,Gender gender){
         super(name, surname, career, phone, smoke, food, gender);
         this.credential=credential;
         this.rating = new Rating();
+        this.driver= false;
     }
     
-    //este metodo es temporario hasta solucionar como vamos a seleccionar el vehiculo.
-    public Vehicle getDefaultVehicle() {
-    	Vehicle vehicle1 = new Vehicle("Amarok", "2016", "Gris", 2016, "ABC126", 4);
-    	return vehicle1;
+    public boolean getDriver() {
+    	return driver;
     }
-
+    
 
     @Override
     public String toString() {
@@ -98,5 +98,21 @@ public class User extends Person{
 
     }
     */
-
+    
+    
+    public ArrayList<String> getVehicleNames(){
+    	
+    	ArrayList<String> vehicleNames = new ArrayList<String>();
+    	for(int i =0; i < vehicles.size() ; i++) {
+    		vehicleNames.add(vehicles.get(i).toString());
+    		System.out.println(vehicleNames.get(i));
+    	}	    	
+    return vehicleNames;
+    }
+    	
+    
+    public ArrayList<Vehicle> getVehicles(){
+    	return vehicles;
+    }
+    
 }

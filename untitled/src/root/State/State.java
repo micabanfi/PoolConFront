@@ -74,6 +74,7 @@ public class State {
             User user1 = new User(credential1, "Micaela", "Banfi", "Informatica", "1234567890", false, true, Gender.OTHER);
             User user2=new User(credential2,"Maite","Herran","Infor","11112222",false,false, Gender.FEMALE);
             User user3= new User(new Credential("a","a"),"a","a","a","a", true, true, Gender.MALE);
+           //ESTA LINEA ME GENERA ALTO ERROR user1.addVehicle(vehicle1);
             //Creo rides
             LocalDateTime date=LocalDateTime.of(2017,12,20,14,30);
             Ride ride1=new Ride(new Route("Victoria","Itba","Libertador"),vehicle1,user1,new Permissions(false,true,true), date);

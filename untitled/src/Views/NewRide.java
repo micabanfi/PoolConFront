@@ -3,8 +3,12 @@
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Month;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,6 +21,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import root.Exceptions.ExistingRideException;
+import root.Exceptions.NoVehicleException;
 import root.Ride.Permissions;
 import root.Ride.Ride;
 import root.Ride.Route;
@@ -41,6 +46,10 @@ public class NewRide extends Controller {
 	    private ChoiceBox<String> eatCb;
 	    @FXML
 	    private ChoiceBox<String> smokeCb;
+	    @FXML
+	    private ChoiceBox<String> vehiclesCb;
+	    private ArrayList<String> listVehicles = new ArrayList<>();
+	    private ObservableList<String> observableListVehicles;
 
     public NewRide(ClientStage stage){
         super(stage);
@@ -52,7 +61,7 @@ public class NewRide extends Controller {
     public void btCreateRide(ActionEvent event) {
     	boolean emptyFields = checkRequestedFields();
     	if(!emptyFields) {
-    		String from, to, route, eatAux, smokeAux,hour,minutes;
+    		String from, to, route, eatAux, smokeAux,hour,minutes, vehicleString;
     		boolean eat, smoke;
     		LocalDate date=dateDp.getValue();
     		int year=date.getYear();
@@ -63,10 +72,11 @@ public class NewRide extends Controller {
     		route = routeTx.getText();
     		hour = hourCb.getValue();
     		minutes=minutesCb.getValue();
+    		vehicleString = vehiclesCb.getValue();
     		int hourInt=Integer.parseInt(hour);
     		int minutesInt = Integer.parseInt(minutes);
     		LocalDateTime dateOf=LocalDateTime.of(year,month,day,hourInt,minutesInt);
-
+    		
 			String rta = eatCb.getValue();
 			eat = rta.compareTo("Si") == 0;
 			rta = smokeCb.getValue();
@@ -75,9 +85,9 @@ public class NewRide extends Controller {
     		Route route1 = new Route(from, to, route);
     		Permissions permissions = new Permissions(smoke, eat, eat);
     		 	
-    		stage.getUser();
+    		Vehicle vehicle = findUserVehicle(vehicleString);
 			//por ahora ponemos un vehiculo default.
-    		Ride ride = new Ride(route1, stage.getUser().getDefaultVehicle(), stage.getUser(), permissions, dateOf);
+    		Ride ride = new Ride(route1, vehicle, stage.getUser(), permissions, dateOf);
     		
     		try {
 				stage.getState().AddRideToList(ride);
@@ -94,8 +104,20 @@ public class NewRide extends Controller {
     	
     }
     
-    //PREGUNTAR PQ ME TIRA NPE cuando no se llena un choice box y se hace minutesCb.getSelect...isempty
-    public boolean checkRequestedFields(){
+    private Vehicle findUserVehicle(String vehicleString) {
+    	Vehicle vehicleChoice = null;
+    	boolean notfound =true;
+    	for(int i=0; i<stage.getUser().getVehicles().size() && notfound ;i++) {
+    		if(vehicleString.compareTo(stage.getUser().getVehicles().get(i).toString()) == 0) {
+    			vehicleChoice = stage.getUser().getVehicles().get(i);
+    			notfound= false;
+    		}
+    	}
+    return vehicleChoice;
+    }
+    
+   
+    private boolean checkRequestedFields(){
         if( fromTx.getText().isEmpty() || toTx.getText().isEmpty() || routeTx.getText().isEmpty() ||
         		hourCb.getSelectionModel().isEmpty() || minutesCb.getSelectionModel().isEmpty() ||
         		smokeCb.getSelectionModel().isEmpty() ||eatCb.getSelectionModel().isEmpty() || dateDp.getValue() == null){
@@ -108,6 +130,11 @@ public class NewRide extends Controller {
         return false;
     }
 
-    public void init(){
+    //IMPROTANTE: NO FUNCIONA PORQUE NO ESTA FUNCIONANDO ADD NEW VEHICLE ENTONCES NO HAY VEHICLES.
+    public void init() {
+    		listVehicles = stage.getUser().getVehicleNames();
+        	observableListVehicles = FXCollections.observableArrayList(listVehicles);
+        	vehiclesCb.setItems(observableListVehicles);
+    	
     }
 }
