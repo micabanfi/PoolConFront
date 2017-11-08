@@ -55,16 +55,14 @@ public class NewRide extends Controller {
     		from = fromTx.getText();
     		to= toTx.getText();
     		route = routeTx.getText();
-    		eatAux = eatCb.getSelectionModel().getSelectedItem().toString();
-    		smokeAux = smokeCb.getSelectionModel().getSelectedItem().toString();
-    		hour = hourCb.getSelectionModel().getSelectedItem().toString();
-    		minutes = minutesCb.getSelectionModel().getSelectedItem().toString();
-    		 if (eatAux.compareTo("Si") == 0)
-                 eat = true;
-             else eat = false;
-             if (smokeAux.compareTo("Si") == 0)
-                 smoke = true;
-             else smoke = false;
+    		hour = hourCb.getValue();
+    		minutes = minutesCb.getValue();
+
+			String rta = eatCb.getValue();
+			eat = rta.compareTo("Si") == 0;
+			rta = smokeCb.getValue();
+			smoke = rta.compareTo("Si") == 0;
+
     		Route route1 = new Route(from, to, route);
     		Permissions permissions = new Permissions(smoke, eat, eat);
     		
@@ -80,9 +78,9 @@ public class NewRide extends Controller {
     
     //PREGUNTAR PQ ME TIRA NPE cuando no se llena un choice box y se hace minutesCb.getSelect...isempty
     public boolean checkRequestedFields(){
-        if( fromTx.getText().isEmpty() || toTx.getText().isEmpty() || routeTx.getText().isEmpty() /*|| 
+        if( fromTx.getText().isEmpty() || toTx.getText().isEmpty() || routeTx.getText().isEmpty() ||
         		hourCb.getSelectionModel().isEmpty() || minutesCb.getSelectionModel().isEmpty() ||
-        		smokeCb.getSelectionModel().isEmpty() ||eatCb.getSelectionModel().isEmpty() || dateDp.getValue() == null*/){
+        		smokeCb.getSelectionModel().isEmpty() ||eatCb.getSelectionModel().isEmpty() || dateDp.getValue() == null){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             String content = "Por Favor llene todos los campos";
             alert.setContentText(content);

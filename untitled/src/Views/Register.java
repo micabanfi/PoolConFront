@@ -44,7 +44,7 @@ public class Register extends Controller {
         if (!emptyFields) {
             String name, surname, career, phone, username1, password1, genreaux;
             Gender genre;
-            Boolean eat = false, smoke = false;
+            Boolean eat, smoke;
             name = RgNametx.getText();
             surname = RgSurnametx.getText();
             career = RgCareertx.getText();
@@ -63,7 +63,7 @@ public class Register extends Controller {
                     genre = Gender.OTHER;
             }
 
-            String rta = new String(RgEatch.getValue().toString());
+            String rta = RgEatch.getValue().toString();
             eat = rta.compareTo("Si") == 0;
             rta = RgSmokech.getValue().toString();
             smoke = rta.compareTo("Si") == 0;
