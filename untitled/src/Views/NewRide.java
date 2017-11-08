@@ -1,4 +1,4 @@
-package Views;
+ package Views;
 
 import java.time.LocalDate;
 import java.util.Date;
@@ -14,9 +14,11 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import root.Exceptions.ExistingRideException;
 import root.Ride.Permissions;
 import root.Ride.Ride;
 import root.Ride.Route;
+import root.User.User;
 import root.User.Vehicle;
 
 public class NewRide extends Controller {
@@ -65,12 +67,21 @@ public class NewRide extends Controller {
 
     		Route route1 = new Route(from, to, route);
     		Permissions permissions = new Permissions(smoke, eat, eat);
+    		 	
+    		stage.getUser();
+			//por ahora ponemos un vehiculo default.
+    		Ride ride = new Ride(route1, stage.getUser().getDefaultVehicle(), stage.getUser(), permissions, date);
     		
-    		/*VEHICLE DE LA PERSONA Y PERSONA sera modificado cuando Pedro cambie user y person.
-    		Ride ride = new Ride(route1, VEHICLE DE LA PERSONA, PERSONA, permissions, date);
+    		try {
+				stage.getState().AddRideToList(ride);
+			} catch (ExistingRideException e) {
+				 Alert alert = new Alert(Alert.AlertType.ERROR);
+		            alert.setTitle("Error");
+		            alert.setHeaderText("El viaje no pudo ser creado");
+		            alert.setContentText(null);
+		            alert.showAndWait();
+			}
     		
-    		stage.getState().AddRideToList(ride);
-    		*/
     		stage.MainPage();
     	}
     	
@@ -90,5 +101,6 @@ public class NewRide extends Controller {
         return false;
     }
 
-    public void init(){}
+    public void init(){
+    }
 }

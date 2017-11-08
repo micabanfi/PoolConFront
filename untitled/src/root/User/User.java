@@ -17,6 +17,12 @@ public class User extends Person{
         this.credential=credential;
         this.rating = new Rating();
     }
+    
+    //este metodo es temporario hasta solucionar como vamos a seleccionar el vehiculo.
+    public Vehicle getDefaultVehicle() {
+    	Vehicle vehicle1 = new Vehicle("Amarok", "2016", "Gris", 2016, "ABC126", 4, true, true);
+    	return vehicle1;
+    }
 
 
     @Override
