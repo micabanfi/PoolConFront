@@ -11,5 +11,8 @@ public class Permissions {
         this.drink = drink;
     }
 
-
+    @Override
+    public String toString() {
+        return "Smoke: "+smoke+" Comer: "+eat;
+    }
 }

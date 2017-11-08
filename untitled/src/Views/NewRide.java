@@ -1,6 +1,8 @@
  package Views;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.Month;
 import java.util.Date;
 
 import javafx.event.ActionEvent;
@@ -50,15 +52,20 @@ public class NewRide extends Controller {
     public void btCreateRide(ActionEvent event) {
     	boolean emptyFields = checkRequestedFields();
     	if(!emptyFields) {
-    		String from, to, route, eatAux, smokeAux, hour, minutes;
+    		String from, to, route, eatAux, smokeAux,hour,minutes;
     		boolean eat, smoke;
-    		LocalDate date;
-    		date = dateDp.getValue();
+    		LocalDate date=dateDp.getValue();
+    		int year=date.getYear();
+    		int month=date.getMonthValue();
+    		int day=date.getDayOfYear();
     		from = fromTx.getText();
     		to= toTx.getText();
     		route = routeTx.getText();
     		hour = hourCb.getValue();
-    		minutes = minutesCb.getValue();
+    		minutes=minutesCb.getValue();
+    		int hourInt=Integer.parseInt(hour);
+    		int minutesInt = Integer.parseInt(minutes);
+    		LocalDateTime dateOf=LocalDateTime.of(year,month,day,hourInt,minutesInt);
 
 			String rta = eatCb.getValue();
 			eat = rta.compareTo("Si") == 0;
@@ -70,7 +77,7 @@ public class NewRide extends Controller {
     		 	
     		stage.getUser();
 			//por ahora ponemos un vehiculo default.
-    		Ride ride = new Ride(route1, stage.getUser().getDefaultVehicle(), stage.getUser(), permissions, date);
+    		Ride ride = new Ride(route1, stage.getUser().getDefaultVehicle(), stage.getUser(), permissions, dateOf);
     		
     		try {
 				stage.getState().AddRideToList(ride);

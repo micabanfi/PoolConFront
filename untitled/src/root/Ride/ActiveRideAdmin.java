@@ -15,6 +15,10 @@ public class ActiveRideAdmin extends RideAdmin {
         requests = new ArrayList<>();
     }
 
+    public Ride getRide(){
+        return ride;
+    }
+
     public void addPassenger(User passenger)throws SeatsTaken {
         if(ride.getVehicle().getSeats() > passengers.size()){
             passengers.add(passenger);

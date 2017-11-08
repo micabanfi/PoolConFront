@@ -11,9 +11,35 @@ public class Route {
         this.through=through;
     }
 
+
+
+    public String getFrom() {
+        return from;
+    }
+
+    public String getThrough() {
+        return through;
+    }
+
+    public String getTo() {
+        return to;
+    }
+
+    public void setFrom(String from) {
+        this.from = from;
+    }
+
+    public void setTo(String to){
+        this.to=to;
+    }
+
+    public void setThrough(String through) {
+        this.through = through;
+    }
+
     @Override
     public String toString(){
-        return "From:"+from+" To:"+to+" Through:"+through;
+        return "Desde:"+from+" Hasta:"+to+" Ruta:"+through;
     }
 
 }

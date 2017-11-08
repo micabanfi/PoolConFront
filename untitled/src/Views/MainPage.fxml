@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
@@ -11,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #afeeee;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #afeeee;" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Button fx:id="MyProfile" layoutX="739.0" layoutY="107.0" mnemonicParsing="false" onAction="#myProfile" prefHeight="70.0" prefWidth="256.0" text="Mi perfil">
          <font>
@@ -27,22 +23,14 @@
          <font>
             <Font size="30.0" />
          </font></Label>
-      <TableView editable="false" layoutX="33.0" layoutY="107.0" prefHeight="479.0" prefWidth="680.0">
+      <TableView fx:id="ridesTable" editable="false" layoutX="33.0" layoutY="107.0" prefHeight="479.0" prefWidth="680.0">
          <columns>
-            <TableColumn editable="false" prefWidth="75.0" sortable="false" text="Desde" />
-            <TableColumn editable="false" prefWidth="75.0" sortable="false" text="Hasta" />
-            <TableColumn editable="false" prefWidth="75.0" sortable="false" text="Ruta" />
-            <TableColumn editable="false" prefWidth="75.0" sortable="false" text="Dia" />
-            <TableColumn editable="false" prefWidth="75.0" sortable="false" text="Hora" />
-            <TableColumn editable="false" prefWidth="75.0" sortable="false" text="Conductor" />
-            <TableColumn editable="false" prefWidth="75.0" sortable="false" text="Compatibilidad" />
+            <TableColumn fx:id="ruta" editable="false" prefWidth="98.0" sortable="false" text="Ruta" />
+            <TableColumn fx:id="dia" editable="false" minWidth="0.0" prefWidth="127.0" sortable="false" text="Fecha" />
+            <TableColumn fx:id="conductor" editable="false" prefWidth="48.0" sortable="false" text="Conductor" />
+            <TableColumn editable="false" prefWidth="126.0" sortable="false" text="Compatibilidad" />
 
-            <TableColumn editable="false" prefWidth="75.0" sortable="false" text="Se permite...">
-               <columns>
-                  <TableColumn editable="false" prefWidth="75.0" sortable="false" text="Fumar?" />
-                  <TableColumn editable="false" prefWidth="75.0" sortable="false" text="Comer?" />
-               </columns>
-            </TableColumn>
+            <TableColumn fx:id="permissions" editable="false" prefWidth="205.0" sortable="false" text="Se permite..." />
          </columns>
       </TableView>
       <Button fx:id="NewRide1" layoutX="745.0" layoutY="432.0" mnemonicParsing="false" onAction="#newRide" prefHeight="70.0" prefWidth="236.0" text="Eliminar Viaje">

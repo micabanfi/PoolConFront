@@ -1,5 +1,7 @@
 package Views;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,25 +13,28 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import root.Ride.ActiveRideAdmin;
 import root.Ride.Ride;
+import root.Ride.Route;
 
-import java.awt.*;
 
 import static java.lang.System.out;
 
 public class MainPage extends Controller{
 
-    @FXML private TableView<Ride> tableRides;
-    @FXML private TableColumn desde;
-    @FXML private TableColumn hasta;
+    @FXML private TableView<Ride> ridesTable;
     @FXML private TableColumn ruta;
+    @FXML private TableColumn dia;
+    @FXML private TableColumn conductor;
+    @FXML private TableColumn permissions;
+
     //@FXML private TableColumn dia;
     @FXML private TableColumn fumar;
     @FXML private TableColumn comer;
-    ObservableList<Ride> viajes;
 
-    private int ridePositionTable;
+
 
     public MainPage(ClientStage stage){
         super(stage);
@@ -44,6 +49,31 @@ public class MainPage extends Controller{
         stage.NewRide();
     }
 
-    public void init(){}
+    public ObservableList<Ride> getRides(){
+        ObservableList<Ride> rides=FXCollections.observableArrayList();
+        //System.out.println(stage.getState().getCurrentRides().get(0).getRide());
+        System.out.println(stage.getState().getCurrentRides().get(0).getRide());
+
+        //for(int i=0;i<stage.getState().getCurrentRides().size();i++)
+            rides.add(stage.getState().getCurrentRides().get(0).getRide());
+        return rides;
+
+    }
+
+    public void init(){
+        //conductor.setCellValueFactory(new PropertyValueFactory<>("driver"));
+
+        ruta.setCellValueFactory(new PropertyValueFactory<>("route"));
+        dia.setCellValueFactory(new PropertyValueFactory<>("date"));
+        permissions.setCellValueFactory(new PropertyValueFactory<>("permissions"));
+        conductor.setCellValueFactory(new PropertyValueFactory<>("driver"));
+
+
+
+
+        //fumar.setCellValueFactory(new PropertyValueFactory<>("permissions"));
+        ridesTable.setItems(getRides());
+
+    }
 
 }

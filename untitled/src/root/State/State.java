@@ -15,6 +15,7 @@ import root.Ride.ExpiredRideAdmin;
 import root.User.Gender;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Date;
@@ -63,6 +64,7 @@ public class State {
             //Creo Users para que cuando inicialize el programa, ya hallan Users cargados.
             //Hay que chequar patente?
             Vehicle vehicle1 = new Vehicle("Fiat", "500", "Blanco", 2015, "ABC123", 4, false, true);
+            Vehicle vehicle2=new Vehicle("Ford","K","Celeste",2010,"ARX420",3,false,false);
             //LocalDate bDayMica = LocalDate.of(2000, 1, 2);
             //LocalDate bDayMaite = LocalDate.of(2000, 6, 30);
             Credential credential1 = new Credential("mica", "1234");
@@ -73,17 +75,19 @@ public class State {
             User user2=new User(credential2,"Maite","Herran","Infor","11112222",false,false, Gender.FEMALE);
             User user3= new User(new Credential("a","a"),"a","a","a","a", true, true, Gender.MALE);
             //Creo rides
-            LocalDate date = LocalDate.of(2017, 12, 20);
+            LocalDateTime date=LocalDateTime.of(2017,12,20,14,30);
             Ride ride1=new Ride(new Route("Victoria","Itba","Libertador"),vehicle1,user1,new Permissions(false,true,true), date);
-
+            LocalDateTime date2=LocalDateTime.of(2017,8,3,9,15);
+            Ride ride2=new Ride(new Route("Mi Casa","Tu casa","Paranamerica"),vehicle2,user2,new Permissions(false,true,true),date2);
             //Agregamos los users al objeto estado que maneja el carPooling
             try {
 
                 register(user1);
                 register(user2);
                 register(user3);
-                System.out.println("add to ride");
                 AddRideToList(ride1);
+                AddRideToList(ride2);
+                System.out.println("Size rides:"+currentRides.size());
                 //Imprimo los usuarios que cree
             } catch (InvalidFields e) {
                 //Este no deberia ir en possibleErrors porque lohacemos nosotros,no deberiamos ser tan tontos ;)
@@ -147,11 +151,12 @@ public class State {
 
     public void AddRideToList(Ride ride) throws ExistingRideException{
         int i;
-        for(i = 0; !currentRides.isEmpty() && ride.compareTo(currentRides.get(i).getRide()) >= 0; i++){
+        for(i = 0; !currentRides.isEmpty() && (ride.compareTo(currentRides.get(i).getRide()) >= 0); i++){
             if(currentRides.get(i).getRide().equals(ride))
                 throw new ExistingRideException();
 
         }
+        System.out.println("I de rides "+i);
         ActiveRideAdmin aux = new ActiveRideAdmin(ride);
         currentRides.add(i, aux);
     }
@@ -159,7 +164,7 @@ public class State {
     // Arreglar lo de Date en todo el programa
     public void refreshRides(){
         boolean aux = true;
-        LocalDate currentDate = LocalDate.now();
+        LocalDateTime currentDate = LocalDateTime.now();
         for (int i = 0; aux ; i++) {
             RideAdmin ride = currentRides.get(i);
             if (ride.getRide().getDate().compareTo(currentDate) < 0){
