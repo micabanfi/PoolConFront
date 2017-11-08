@@ -39,7 +39,7 @@ public class Route {
 
     @Override
     public String toString(){
-        return "Desde:"+from+" Hasta:"+to+" Ruta:"+through;
+        return "Desde:"+from+"\nHasta:"+to+"\nRuta:"+through;
     }
 
 }

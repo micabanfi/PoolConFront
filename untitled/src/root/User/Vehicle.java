@@ -9,14 +9,13 @@ public class Vehicle {
     private int seats;
 
     //  private Permissions permission;
-    public Vehicle(String brand,String model,String color,int year,String plate,int seat,boolean smoke,boolean food ){
+    public Vehicle(String brand,String model,String color,int year,String plate,int seat ){
         this.brand=brand;
         this.model=model;
         this.color=color;
         this.year=year;
         this.plate=plate;
         this.seats=seats;
-//		this.permission = new Permissions(smoke, food, drink);
     }
 
     @Override

@@ -63,8 +63,8 @@ public class State {
     public void initState()  throws InvalidFields {
             //Creo Users para que cuando inicialize el programa, ya hallan Users cargados.
             //Hay que chequar patente?
-            Vehicle vehicle1 = new Vehicle("Fiat", "500", "Blanco", 2015, "ABC123", 4, false, true);
-            Vehicle vehicle2=new Vehicle("Ford","K","Celeste",2010,"ARX420",3,false,false);
+            Vehicle vehicle1 = new Vehicle("Fiat", "500", "Blanco", 2015, "ABC123", 4);
+            Vehicle vehicle2=new Vehicle("Ford","K","Celeste",2010,"ARX420",3);
             //LocalDate bDayMica = LocalDate.of(2000, 1, 2);
             //LocalDate bDayMaite = LocalDate.of(2000, 6, 30);
             Credential credential1 = new Credential("mica", "1234");

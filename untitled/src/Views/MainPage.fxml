@@ -25,12 +25,12 @@
          </font></Label>
       <TableView fx:id="ridesTable" editable="false" layoutX="33.0" layoutY="107.0" prefHeight="479.0" prefWidth="680.0">
          <columns>
-            <TableColumn fx:id="ruta" editable="false" prefWidth="98.0" sortable="false" text="Ruta" />
-            <TableColumn fx:id="dia" editable="false" minWidth="0.0" prefWidth="127.0" sortable="false" text="Fecha" />
-            <TableColumn fx:id="conductor" editable="false" prefWidth="48.0" sortable="false" text="Conductor" />
-            <TableColumn editable="false" prefWidth="126.0" sortable="false" text="Compatibilidad" />
+            <TableColumn fx:id="ruta" editable="false" prefWidth="131.0" sortable="false" text="Ruta" />
+            <TableColumn fx:id="dia" editable="false" minWidth="0.0" prefWidth="135.0" sortable="false" text="Fecha" />
+            <TableColumn fx:id="conductor" editable="false" prefWidth="122.0" sortable="false" text="Conductor" />
+            <TableColumn editable="false" prefWidth="119.0" sortable="false" text="Compatibilidad" />
 
-            <TableColumn fx:id="permissions" editable="false" prefWidth="205.0" sortable="false" text="Se permite..." />
+            <TableColumn fx:id="permissions" editable="false" prefWidth="172.0" sortable="false" text="Se permite..." />
          </columns>
       </TableView>
       <Button fx:id="NewRide1" layoutX="745.0" layoutY="432.0" mnemonicParsing="false" onAction="#newRide" prefHeight="70.0" prefWidth="236.0" text="Eliminar Viaje">

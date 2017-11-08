@@ -13,6 +13,6 @@ public class Permissions {
 
     @Override
     public String toString() {
-        return "Smoke: "+smoke+" Comer: "+eat;
+        return "Smoke: "+smoke+"\nComer: "+eat;
     }
 }
