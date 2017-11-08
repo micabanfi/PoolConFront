@@ -3,23 +3,24 @@ package root.Ride;
 import root.Exceptions.AlreadyRated;
 import root.Exceptions.NotInRide;
 import root.User.Person;
+import root.User.User;
 
 import java.util.List;
 import java.util.Map;
 
 public class ExpiredRideAdmin extends RideAdmin{
 
-    private Map<Person, Boolean> ratings;
+    private Map<User, Boolean> ratings;
 
-    public ExpiredRideAdmin(Ride ride, List<Person> passengers){
+    public ExpiredRideAdmin(Ride ride, List<User> passengers){
         super(ride, passengers);
     }
 
-    public Map<Person, Boolean> getRatings(){
+    public Map<User, Boolean> getRatings(){
         return ratings;
     }
 
-    public void rate(Person person, Boolean goodRate) throws AlreadyRated, NotInRide, NullPointerException{
+    public void rate(User person, Boolean goodRate) throws AlreadyRated, NotInRide, NullPointerException{
         if(goodRate == null) throw new NullPointerException();
         if(ratings.containsKey(person)){
             if(ratings.get(person) == null){

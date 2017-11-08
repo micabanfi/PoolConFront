@@ -2,19 +2,19 @@ package root.Ride;
 
 import root.User.Person;
 import root.User.Vehicle;
+import root.User.User;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
+
 
 public class Ride implements Comparable<Ride>{
     private Route route;
     private Vehicle vehicle;
-    private Person driver;
+    private User driver;
     private Permissions permissions;
     private Date date;
 
-    public Ride(Route route, Vehicle vehicle, Person driver, Permissions permissions, Date date){
+    public Ride(Route route, Vehicle vehicle, User driver, Permissions permissions, Date date){
         this.route=route;
         this.vehicle=vehicle;
         this.driver=driver;
@@ -26,7 +26,7 @@ public class Ride implements Comparable<Ride>{
         return route;
     }
 
-    public Person getDriver(){
+    public User getDriver(){
         return driver;
     }
 

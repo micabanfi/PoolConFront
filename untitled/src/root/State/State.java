@@ -12,6 +12,7 @@ import root.User.User;
 import root.User.Vehicle;
 import root.Ride.ActiveRideAdmin;
 import root.Ride.ExpiredRideAdmin;
+import root.User.Gender;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -64,23 +65,22 @@ public class State {
             Vehicle vehicle1 = new Vehicle("Fiat", "500", "Blanco", 2015, "ABC123", 4, false, true);
             //LocalDate bDayMica = LocalDate.of(2000, 1, 2);
             //LocalDate bDayMaite = LocalDate.of(2000, 6, 30);
-            Person person1 = new Person("Micaela", "Banfi", "Informatica", "1234567890", false, true, "Femenino");
-            Person person2=new Person("Maite","Herran","Infor","11112222",false,false,"" + "Femenino");
             Credential credential1 = new Credential("mica", "1234");
             Credential credential2=new Credential("maimai","maite1234");
             //Le agrego vehicle1 a person1
             //person1.addVehicle(vehicle1);
-            User user1 = new User(credential1, person1);
-            User user2=new User(credential2,person2);
-
+            User user1 = new User(credential1, "Micaela", "Banfi", "Informatica", "1234567890", false, true, Gender.OTHER);
+            User user2=new User(credential2,"Maite","Herran","Infor","11112222",false,false, Gender.FEMALE);
+            User user3= new User(new Credential("a","a"),"a","a","a","a", true, true, Gender.MALE);
             //Creo rides
-            Ride ride1=new Ride(new Route("Victoria","Itba","Libertador"),vehicle1,person1,new Permissions(false,true,true),new Date(2017,10,11));
+            Ride ride1=new Ride(new Route("Victoria","Itba","Libertador"),vehicle1,user1,new Permissions(false,true,true),new Date(2017,10,11));
 
             //Agregamos los users al objeto estado que maneja el carPooling
             try {
 
                 register(user1);
                 register(user2);
+                register(user3);
                 System.out.println("add to ride");
                 AddRideToList(ride1);
                 //Imprimo los usuarios que cree
@@ -129,10 +129,10 @@ public class State {
     public void sendRideRequest(Credential cred, Ride ride) throws InvalidCredentials, RideDoesNotExist, AlreadyRequested, AlreadyInRide{
         User user = authorize(cred);
         ActiveRideAdmin rideAdmin = getActiveRideAdminOfRide(ride);
-        rideAdmin.addRequest(user.getPerson());
+        rideAdmin.addRequest(user);
     }
 
-    public void acceptRideRequest(Credential cred, Ride ride, Person driver, Person request) throws InvalidCredentials, RideDoesNotExist, NoPermission, NotRequested{
+    public void acceptRideRequest(Credential cred, Ride ride, User driver, User request) throws InvalidCredentials, RideDoesNotExist, NoPermission, NotRequested{
         User user = authorize(cred);//y eso??
         ActiveRideAdmin rideAdmin = getActiveRideAdminOfRide(ride);
         rideAdmin.acceptRequest(driver, request);
@@ -141,39 +141,17 @@ public class State {
     public void rateRide(Credential cred, Ride ride, boolean goodRate) throws InvalidCredentials, AlreadyRated, RideDoesNotExist, NotInRide{
         User user = authorize(cred);
         ExpiredRideAdmin rideAdmin = getExpiredRideAdminOfRide(ride);
-        rideAdmin.rate(user.getPerson(), goodRate);
-
-        /* Arregle lo que deje arriba
-        User user = authorize(cred);
-        ExpiredRideAdmin era;
-        for (ExpiredRideAdmin expRide : expiredRides) {
-            if (expRide.getRide().equals(ride)){
-                era = expRide;
-                era.rate(user.getPerson(), goodRate);
-                return;
-                }
-            }
-        throw new RideDoesNotExist();
-        */
+        rideAdmin.rate(user, goodRate);
     }
 
     public void AddRideToList(Ride ride) throws ExistingRideException{
         int i;
-        System.out.println(currentRides.isEmpty());
-        System.out.println(1);
-
-       // currentRides.sort();
-
         for(i = 0; !currentRides.isEmpty() && ride.compareTo(currentRides.get(i).getRide()) >= 0; i++){
-            System.out.println(2);
             if(currentRides.get(i).getRide().equals(ride))
-                System.out.println(3);
                 throw new ExistingRideException();
 
         }
-        System.out.println("4b");
         ActiveRideAdmin aux = new ActiveRideAdmin(ride);
-        System.out.println(4);
         currentRides.add(i, aux);
     }
 

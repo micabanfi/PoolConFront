@@ -1,30 +1,21 @@
 package root.Ride;
 
-import root.Exceptions.AlreadyRated;
-import root.User.Person;
-import root.Exceptions.SeatsTaken;
-import root.Exceptions.NotInRide;
-import root.Exceptions.NotRequested;
-import root.Exceptions.NoPermission;
-import root.Exceptions.AlreadyRequested;
-import root.Exceptions.AlreadyInRide;
+import root.User.User;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 
 public abstract class RideAdmin {
     protected Ride ride;
-    protected List<Person> passengers;
+    protected List<User> passengers;
 
-    public RideAdmin(Ride ride){
+    protected RideAdmin(Ride ride){
         this.ride = ride;
         passengers = new ArrayList<>();
     }
 
-    public RideAdmin(Ride ride, List<Person> passengers){
+    protected RideAdmin(Ride ride, List<User> passengers){
         this(ride);
         this.passengers = passengers;
     }
@@ -33,7 +24,7 @@ public abstract class RideAdmin {
         return ride;
     }
 
-    public List<Person> getPassengers(){
+    public List<User> getPassengers(){
         return passengers;
     }
 

@@ -8,11 +8,11 @@ public class Person {
     private String name;
     private String surname;
     private String phone;
-    private String gender;//enum
+    private Gender gender;//enum
    // private LocalDate birthDate;
     private Preferences preferences;
 
-    public Person(String name, String surname, String career, String phone,boolean smoke,boolean food,String gender){
+    public Person(String name, String surname, String career, String phone,boolean smoke,boolean food,Gender gender){
         this.name=name;
         this.surname=surname;
         this.phone=phone;
@@ -20,6 +20,7 @@ public class Person {
         this.gender=gender;
         //this.birthDate=birthDate;
     }
+
 
 
     public String getName () {
@@ -34,7 +35,7 @@ public class Person {
         return phone;
     }
 
-    public String getGender() {
+    public Gender getGender() {
         return gender;
     }
 

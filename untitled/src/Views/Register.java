@@ -1,21 +1,14 @@
 package Views;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 import root.Exceptions.InvalidFields;
-import root.State.State;
 import root.User.Credential;
-import root.User.Person;
 import root.User.User;
+import root.User.Gender;
 
-import java.time.LocalDate;
 
 public class Register extends Controller {
 
@@ -49,7 +42,8 @@ public class Register extends Controller {
     public void newUser() {
         boolean emptyFields= checkRequestedFields();
         if (!emptyFields) {
-            String name, surname, career, phone, username1, password1, genre;
+            String name, surname, career, phone, username1, password1, genreaux;
+            Gender genre;
             Boolean eat = false, smoke = false;
             name = RgNametx.getText();
             surname = RgSurnametx.getText();
@@ -57,25 +51,30 @@ public class Register extends Controller {
             phone = RgPhonetx.getText();
             username1 = RgUserNametx.getText();
             password1 = RgPasswordtx.getText();
-            genre = RgGenrech.getValue().toString();
+            genreaux = RgGenrech.getValue().toString();
+            switch (genreaux){
+                case "Masculino":
+                    genre = Gender.MALE;
+                    break;
+                case "Femenino":
+                    genre = Gender.FEMALE;
+                    break;
+                default:
+                    genre = Gender.OTHER;
+            }
 
             String rta = new String(RgEatch.getValue().toString());
-            if (rta.compareTo("Si") == 0)
-                eat = true;
-            else eat = false;
+            eat = rta.compareTo("Si") == 0;
             rta = RgSmokech.getValue().toString();
-            if (rta.compareTo("Si") == 0)
-                smoke = true;
-            else smoke = false;
+            smoke = rta.compareTo("Si") == 0;
 
             Credential creddential1 = new Credential(username1, password1);
-            Person persona1 = new Person(name, surname, career, phone, smoke, eat, genre);
-            User usuario1 = new User(creddential1, persona1);
+            User usuario1 = new User(creddential1, name, surname, career, phone, smoke, eat, genre);
 
             try {
                 stage.register(usuario1);
                 User aux=stage.getUser();
-
+                stage.MainPage();
                 System.out.println("entro:\n"+aux.toString());
 
            } catch (InvalidFields e) {
@@ -87,7 +86,7 @@ public class Register extends Controller {
             } catch (Exception e) {
                 System.out.println("Cant load mainPage");
             }
-            stage.MainPage();
+
         }
     }
 

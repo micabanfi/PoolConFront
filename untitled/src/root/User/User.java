@@ -1,38 +1,42 @@
 package root.User;
 
-import root.Client.Client;
 import root.Ride.Ride;
 
 import java.util.ArrayList;
 
-public class User {
+public class User extends Person{
     private Credential credential;
-    private Person person;
     private ArrayList<Vehicle> vehicles;
     private ArrayList<Ride> expiredRides;
     private ArrayList<Ride> activeRides;
     private Rating rating;
 
-    public User(Credential credential, Person person){
+
+    public User(Credential credential, String name, String surname, String career, String phone,boolean smoke,boolean food,Gender gender){
+        super(name, surname, career, phone, smoke, food, gender);
         this.credential=credential;
-        this.person=person;
         this.rating = new Rating();
     }
 
+
     @Override
     public String toString() {
-        return person.toString()+credential.toString();
+        return "User{" + super.toString() +
+                "credential=" + credential +
+                ", rating=" + rating +
+                '}';
     }
-
+    /*
     public void setUser(User user){
         this.credential=user.getCredential();
         this.person=user.getPerson();
         //this.vehicles=user.getVehicles;
-    }
+    }*/
 
     public Rating getRating() {
         return rating;
     }
+
     public ArrayList<Ride> getActiveRides(){
         return activeRides;
     }
@@ -41,16 +45,12 @@ public class User {
         return expiredRides;
     }
 
-    public Person getPerson(){
-        return person;
-    }
-
     public Credential getCredential(){
         return credential;
     }
 
     public User getUser(){
-        return new User(this.credential,this.person);
+        return new User(this.credential, this.getName(), this.getSurname(), this.getPreferences().getCareer(), this.getPhone(), this.getPreferences().isSmoke(), this.getPreferences().ifFood(), this.getGender());
     }
 
 
