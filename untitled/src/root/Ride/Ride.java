@@ -4,6 +4,7 @@ import root.User.Person;
 import root.User.Vehicle;
 import root.User.User;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 
@@ -12,9 +13,9 @@ public class Ride implements Comparable<Ride>{
     private Vehicle vehicle;
     private User driver;
     private Permissions permissions;
-    private Date date;
+    private LocalDate date;
 
-    public Ride(Route route, Vehicle vehicle, User driver, Permissions permissions, Date date){
+    public Ride(Route route, Vehicle vehicle, User driver, Permissions permissions, LocalDate date){
         this.route=route;
         this.vehicle=vehicle;
         this.driver=driver;
@@ -38,7 +39,7 @@ public class Ride implements Comparable<Ride>{
         return vehicle;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 

@@ -27,7 +27,7 @@
                </font>
             </Text>
             <TextField fx:id="LogInUserNameTx" layoutX="13.0" layoutY="181.0" prefHeight="50.0" prefWidth="321.0" promptText="Usuario" />
-            <PasswordField fx:id="LogInPassTx" layoutX="13.0" layoutY="334.0" prefHeight="50.0" prefWidth="321.0" promptText="Contrasenia" />
+            <PasswordField fx:id="LogInPassTx" layoutX="13.0" layoutY="334.0" prefHeight="50.0" prefWidth="321.0" promptText="Contraseña" />
             <Button fx:id="btLogIn" layoutX="76.0" layoutY="420.0" mnemonicParsing="false" onAction="#btLogIn" prefHeight="57.0" prefWidth="200.0" text="Ingresar">
                <font>
                   <Font size="24.0" />

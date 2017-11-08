@@ -26,10 +26,6 @@ public class ClientStage extends Stage {
         this.show();
     }
 
-    //para probar
-    public User getUser(){
-        return user;
-    }
 
     public void register(User user) throws InvalidFields{
         state.register(user);
@@ -72,6 +68,14 @@ public class ClientStage extends Stage {
 
     public void Register(){
         setView("Register.fxml", new Register(this));
+    }
+    
+    public State getState() {
+    	return state;
+    }
+    
+    public User getUser() {
+    	return user;
     }
 
 }

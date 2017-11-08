@@ -73,7 +73,8 @@ public class State {
             User user2=new User(credential2,"Maite","Herran","Infor","11112222",false,false, Gender.FEMALE);
             User user3= new User(new Credential("a","a"),"a","a","a","a", true, true, Gender.MALE);
             //Creo rides
-            Ride ride1=new Ride(new Route("Victoria","Itba","Libertador"),vehicle1,user1,new Permissions(false,true,true),new Date(2017,10,11));
+            LocalDate date = LocalDate.of(2017, 12, 20);
+            Ride ride1=new Ride(new Route("Victoria","Itba","Libertador"),vehicle1,user1,new Permissions(false,true,true), date);
 
             //Agregamos los users al objeto estado que maneja el carPooling
             try {
@@ -158,7 +159,7 @@ public class State {
     // Arreglar lo de Date en todo el programa
     public void refreshRides(){
         boolean aux = true;
-        Date currentDate = new Date();
+        LocalDate currentDate = LocalDate.now();
         for (int i = 0; aux ; i++) {
             RideAdmin ride = currentRides.get(i);
             if (ride.getRide().getDate().compareTo(currentDate) < 0){

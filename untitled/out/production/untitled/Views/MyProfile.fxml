@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.image.*?>
-<?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #afeeee;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.Main2">
+<AnchorPane prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #afeeee;" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <AnchorPane layoutX="51.0" layoutY="421.0" prefHeight="98.0" prefWidth="374.0" style="-fx-background-color: #48d1cc;">
          <children>
@@ -101,5 +99,6 @@
             <Font size="20.0" />
          </font>
       </TextField>
+      <Button fx:id="showInfo" layoutX="635.0" layoutY="301.0" mnemonicParsing="false" onAction="#setProfileInfo" text="Button" />
    </children>
 </AnchorPane>
