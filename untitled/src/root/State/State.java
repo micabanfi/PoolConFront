@@ -152,7 +152,7 @@ public class State {
 
     public void AddRideToList(Ride ride) throws ExistingRideException{
         int i;
-        for(i = 0; !currentRides.isEmpty() && (ride.compareTo(currentRides.get(i).getRide()) >= 0); i++){
+        for(i = 0;  i<currentRides.size() && (ride.compareTo(currentRides.get(i).getRide()) <= 0); i++){
             if(currentRides.get(i).getRide().equals(ride))
                 throw new ExistingRideException();
 
@@ -160,6 +160,12 @@ public class State {
         System.out.println("I de rides "+i);
         ActiveRideAdmin aux = new ActiveRideAdmin(ride);
         currentRides.add(i, aux);
+    }
+
+    public void deleteRide(Ride ride){
+        ActiveRideAdmin aux=new ActiveRideAdmin(ride);
+        currentRides.remove(aux);
+
     }
 
     // Arreglar lo de Date en todo el programa

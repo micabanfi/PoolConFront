@@ -31,9 +31,7 @@ public class MainPage extends Controller{
     @FXML private TableColumn conductor;
     @FXML private TableColumn permissions;
 
-    //@FXML private TableColumn dia;
-    @FXML private TableColumn fumar;
-    @FXML private TableColumn comer;
+    private int positionRideTable;
 
 
 
@@ -64,27 +62,24 @@ public class MainPage extends Controller{
     public ObservableList<Ride> getRides(){
         ObservableList<Ride> rides=FXCollections.observableArrayList();
         //System.out.println(stage.getState().getCurrentRides().get(0).getRide());
-        System.out.println(stage.getState().getCurrentRides().get(0).getRide());
+        //System.out.println(stage.getState().getCurrentRides().get(1).getRide());
 
-        //for(int i=0;i<stage.getState().getCurrentRides().size();i++)
-            rides.add(stage.getState().getCurrentRides().get(0).getRide());
+        for(int i=0;i<stage.getState().getCurrentRides().size();i++)
+            rides.add(stage.getState().getCurrentRides().get(i).getRide());
         return rides;
 
     }
 
     public void init(){
-        //conductor.setCellValueFactory(new PropertyValueFactory<>("driver"));
-
         ruta.setCellValueFactory(new PropertyValueFactory<>("route"));
         dia.setCellValueFactory(new PropertyValueFactory<>("date"));
         permissions.setCellValueFactory(new PropertyValueFactory<>("permissions"));
         conductor.setCellValueFactory(new PropertyValueFactory<>("driver"));
-
-
-
-
-        //fumar.setCellValueFactory(new PropertyValueFactory<>("permissions"));
         ridesTable.setItems(getRides());
+
+    }
+
+    public void remove(Ride ride){
 
     }
 

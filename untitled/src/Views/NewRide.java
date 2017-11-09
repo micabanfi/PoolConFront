@@ -66,7 +66,7 @@ public class NewRide extends Controller {
     		LocalDate date=dateDp.getValue();
     		int year=date.getYear();
     		int month=date.getMonthValue();
-    		int day=date.getDayOfYear();
+    		int day=date.getDayOfMonth();
     		from = fromTx.getText();
     		to= toTx.getText();
     		route = routeTx.getText();
@@ -75,8 +75,10 @@ public class NewRide extends Controller {
     		vehicleString = vehiclesCb.getValue();
     		int hourInt=Integer.parseInt(hour);
     		int minutesInt = Integer.parseInt(minutes);
-    		LocalDateTime dateOf=LocalDateTime.of(year,month,day,hourInt,minutesInt);
-    		
+    		//System.out.println("anio"+year+"mes"+month+"dia"+day+"hora"+hourInt+"min"+minutesInt);
+    		//LocalDateTime dateOf=LocalDateTime.of(17,8,12,14,30);
+			LocalDateTime dateOf=LocalDateTime.of(year,month,day,hourInt,minutesInt);
+
 			String rta = eatCb.getValue();
 			eat = rta.compareTo("Si") == 0;
 			rta = smokeCb.getValue();
