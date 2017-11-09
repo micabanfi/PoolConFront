@@ -78,9 +78,9 @@ public class State {
             user1.addVehicle(vehicle2);
             user2.addVehicle(vehicle1);
             //Creo rides
-            LocalDateTime date=LocalDateTime.of(2017,12,20,14,30);
+            LocalDateTime date=LocalDateTime.of(2018,12,20,14,30);
             Ride ride1=new Ride(new Route("Victoria","Itba","Libertador"),vehicle1,user1,new Permissions(false,true,true), date);
-            LocalDateTime date2=LocalDateTime.of(2017,8,3,9,15);
+            LocalDateTime date2=LocalDateTime.of(2018,8,3,9,15);
             Ride ride2=new Ride(new Route("Mi Casa","Tu casa","Paranamerica"),vehicle2,user2,new Permissions(false,true,true),date2);
             //Agregamos los users al objeto estado que maneja el carPooling
             try {

@@ -126,6 +126,13 @@ public class NewRide extends Controller {
             alert.showAndWait();
             return true;
         }
+        else if( dateDp.getValue().isBefore(LocalDate.now())) {
+        	 Alert alert = new Alert(Alert.AlertType.ERROR);
+             String content = "La fecha seleccionada es incorrecta";
+             alert.setContentText(content);
+             alert.showAndWait();
+        	return true;
+        }
         return false;
     }
 
