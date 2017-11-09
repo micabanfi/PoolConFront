@@ -17,13 +17,16 @@ public class User extends Person{
         super(name, surname, career, phone, smoke, food, gender);
         this.credential=credential;
         this.rating = new Rating();
-        this.driver= false;
+        this.driver= true;
     }
     
     public boolean getDriver() {
     	return driver;
     }
-    
+
+    public void setCredential(Credential credential) {
+        this.credential = credential;
+    }
 
     @Override
     public String toString() {
@@ -32,12 +35,7 @@ public class User extends Person{
                 ", rating=" + rating +
                 '}';
     }
-    /*
-    public void setUser(User user){
-        this.credential=user.getCredential();
-        this.person=user.getPerson();
-        //this.vehicles=user.getVehicles;
-    }*/
+
 
     public Rating getRating() {
         return rating;

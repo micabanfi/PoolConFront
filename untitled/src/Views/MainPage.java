@@ -61,8 +61,6 @@ public class MainPage extends Controller{
 
     public ObservableList<Ride> getRides(){
         ObservableList<Ride> rides=FXCollections.observableArrayList();
-        //System.out.println(stage.getState().getCurrentRides().get(0).getRide());
-        //System.out.println(stage.getState().getCurrentRides().get(1).getRide());
 
         for(int i=0;i<stage.getState().getCurrentRides().size();i++)
             rides.add(stage.getState().getCurrentRides().get(i).getRide());
@@ -89,7 +87,8 @@ public class MainPage extends Controller{
 
         allRides.removeAll(rideSelected);
         stage.getState().deleteRide(removeRide);
-
     }
+
+
 
 }

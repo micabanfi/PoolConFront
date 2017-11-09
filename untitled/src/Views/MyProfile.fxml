@@ -88,7 +88,7 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Button fx:id="editProfile" layoutX="813.0" layoutY="40.0" mnemonicParsing="false" text="Editar Perfil">
+      <Button fx:id="editProfile" layoutX="813.0" layoutY="40.0" mnemonicParsing="false" onAction="#editMyProfile" text="Editar Perfil">
          <font>
             <Font size="20.0" />
          </font>
@@ -103,5 +103,10 @@
             <Font size="20.0" />
          </font>
       </TextField>
+      <Button fx:id="saveChanges" layoutX="688.0" layoutY="535.0" mnemonicParsing="false" onAction="#saveChanges" text="Guardar Cambios">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

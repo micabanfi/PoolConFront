@@ -39,6 +39,26 @@ public class Person {
         return gender;
     }
 
+    public void setGender(Gender gender) {
+        this.gender = gender;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public void setPreferences(Preferences preferences) {
+        this.preferences = preferences;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
     /*public LocalDate getBirthDate() {
         return birthDate;
     }*/

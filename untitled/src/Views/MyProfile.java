@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import root.User.Credential;
 import root.User.Gender;
 
 import javax.annotation.Resources;
@@ -57,5 +58,27 @@ public class MyProfile extends Controller {
 
     public void mainPage(ActionEvent event) {
         stage.MainPage();
+    }
+
+    public void editMyProfile(){
+
+        MyProfileNametx.setEditable(true);
+        MyProfileSurnametx.setEditable(true);
+        MyProfileCareertx.setEditable(true);
+        MyProfilePhonetx.setEditable(true);
+        MyProfileGenretx.setEditable(true);
+        MyProfileUsernametx.setEditable(true);
+        MyProfilePasswordtx.setEditable(true);
+
+    }
+
+    public void saveChanges(){
+        stage.getUser().setName(MyProfileNametx.getText());
+        stage.getUser().setSurname(MyProfileSurnametx.getText());
+        //stage.getUser().setPreferences().
+        stage.getUser().setPhone(MyProfilePhonetx.getText());
+        stage.getUser().setCredential(new Credential(MyProfileUsernametx.getText(),MyProfilePasswordtx.getText()));
+
+
     }
 }

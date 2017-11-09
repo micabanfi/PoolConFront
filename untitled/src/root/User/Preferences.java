@@ -53,4 +53,8 @@ public class Preferences {
     public boolean isSmoke() {
         return smoke;
     }
+
+    public void setCareer(String career) {
+        this.career = career;
+    }
 }
