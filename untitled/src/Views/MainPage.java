@@ -84,9 +84,17 @@ public class MainPage extends Controller{
 
         Ride removeRide=ridesTable.getSelectionModel().getSelectedItem();
         //ActiveRideAdmin aux = new ActiveRideAdmin(removeRide);
-
-        allRides.removeAll(rideSelected);
-        stage.getState().deleteRide(removeRide);
+        if(stage.getUser().equalCredentials(removeRide.getDriver().getCredential())) {
+        	allRides.removeAll(rideSelected);
+        	stage.getState().deleteRide(removeRide);
+        }
+        else {
+        	Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Solamente el conductor puede eliminar el viaje");
+            alert.setContentText(null);
+            alert.showAndWait();
+        }
     }
 
 
