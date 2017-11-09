@@ -33,7 +33,7 @@
             <TableColumn fx:id="permissions" editable="false" prefWidth="172.0" sortable="false" text="Se permite..." />
          </columns>
       </TableView>
-      <Button fx:id="NewRide1" layoutX="745.0" layoutY="432.0" mnemonicParsing="false" onAction="#newRide" prefHeight="70.0" prefWidth="236.0" text="Eliminar Viaje">
+      <Button fx:id="removeBt" layoutX="745.0" layoutY="432.0" mnemonicParsing="false" onAction="#removeRide" prefHeight="70.0" prefWidth="236.0" text="Eliminar Viaje">
          <font>
             <Font size="20.0" />
          </font>
@@ -43,7 +43,7 @@
             <Font size="20.0" />
          </font>
       </Button>
-      <Button fx:id="MyProfile1" layoutX="748.0" layoutY="278.0" mnemonicParsing="false" onAction="#myProfile" prefHeight="70.0" prefWidth="236.0" text="Actualizar">
+      <Button fx:id="refresh" layoutX="748.0" layoutY="278.0" mnemonicParsing="false" onAction="#init" prefHeight="70.0" prefWidth="236.0" text="Actualizar">
          <font>
             <Font size="20.0" />
          </font>

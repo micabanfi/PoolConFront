@@ -83,14 +83,11 @@ public class NewRide extends Controller {
 			eat = rta.compareTo("Si") == 0;
 			rta = smokeCb.getValue();
 			smoke = rta.compareTo("Si") == 0;
-
     		Route route1 = new Route(from, to, route);
-    		Permissions permissions = new Permissions(smoke, eat, eat);
-    		 	
+    		Permissions permissions = new Permissions(smoke, eat, eat); 	
     		Vehicle vehicle = findUserVehicle(vehicleString);
-			//por ahora ponemos un vehiculo default.
     		Ride ride = new Ride(route1, vehicle, stage.getUser(), permissions, dateOf);
-    		
+    		System.out.println(ride);
     		try {
 				stage.getState().AddRideToList(ride);
 			} catch (ExistingRideException e) {

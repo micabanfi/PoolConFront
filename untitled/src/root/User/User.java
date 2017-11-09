@@ -15,6 +15,9 @@ public class User extends Person{
    
     public User(Credential credential, String name, String surname, String career, String phone,boolean smoke,boolean food,Gender gender){
         super(name, surname, career, phone, smoke, food, gender);
+        this.vehicles = new ArrayList<Vehicle>();
+        this.expiredRides = new ArrayList<Ride>();
+        this.activeRides = new ArrayList<Ride>();
         this.credential=credential;
         this.rating = new Rating();
         this.driver= true;
@@ -73,10 +76,14 @@ public class User extends Person{
 
     public void addVehicle(Vehicle vehicle){
         vehicles.add(vehicle);
+        this.driver = true;
     }
 
     public void removeVehicle(Vehicle vehicle){
         vehicles.remove(vehicle);
+        if(vehicles.isEmpty()) {
+        	this.driver = false;
+        }
     }
 
     public boolean equalCredentials(Credential credential){
