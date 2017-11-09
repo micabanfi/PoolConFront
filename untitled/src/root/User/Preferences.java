@@ -57,4 +57,6 @@ public class Preferences {
     public void setCareer(String career) {
         this.career = career;
     }
+
+
 }

@@ -6,10 +6,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import root.User.Credential;
 import root.User.Gender;
+import root.User.Preferences;
 
 import javax.annotation.Resources;
 import javax.print.DocFlavor;
@@ -23,6 +25,7 @@ public class MyProfile extends Controller {
     @FXML private TextField MyProfileGenretx;
     @FXML private TextField MyProfileUsernametx;
     @FXML private TextField MyProfilePasswordtx;
+
 
     public MyProfile(ClientStage stage){
 
@@ -53,7 +56,6 @@ public class MyProfile extends Controller {
         MyProfileGenretx.setText(genderaux);
         MyProfileUsernametx.setText(stage.getUser().getCredential().getUserName());
         MyProfilePasswordtx.setText(stage.getUser().getCredential().getPassword());
-
     }
 
     public void mainPage(ActionEvent event) {
@@ -69,16 +71,13 @@ public class MyProfile extends Controller {
         MyProfileGenretx.setEditable(true);
         MyProfileUsernametx.setEditable(true);
         MyProfilePasswordtx.setEditable(true);
-
     }
 
     public void saveChanges(){
         stage.getUser().setName(MyProfileNametx.getText());
         stage.getUser().setSurname(MyProfileSurnametx.getText());
-        //stage.getUser().setPreferences().
+        stage.getUser().setPreferences(new Preferences(MyProfileCareertx.getText(),stage.getUser().getPreferences().isSmoke(),stage.getUser().getPreferences().ifFood()));
         stage.getUser().setPhone(MyProfilePhonetx.getText());
         stage.getUser().setCredential(new Credential(MyProfileUsernametx.getText(),MyProfilePasswordtx.getText()));
-
-
     }
 }
