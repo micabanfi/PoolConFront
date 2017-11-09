@@ -162,9 +162,13 @@ public class State {
         currentRides.add(i, aux);
     }
 
+    //hacerla con ActiveRideAdin y descomentar en mainPage deleteRide para passarle un ActiveRide y no un RIde
     public void deleteRide(Ride ride){
-        ActiveRideAdmin aux=new ActiveRideAdmin(ride);
-        currentRides.remove(aux);
+        for(ActiveRideAdmin ride1:currentRides){
+            if(ride.equals(ride1.getRide())){
+                currentRides.remove(ride1);
+            }
+        }
 
     }
 

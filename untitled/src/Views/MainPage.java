@@ -79,7 +79,16 @@ public class MainPage extends Controller{
 
     }
 
-    public void remove(Ride ride){
+    public void removeRide(){
+        ObservableList<Ride> rideSelected,allRides;
+        allRides=ridesTable.getItems();
+        rideSelected=ridesTable.getSelectionModel().getSelectedItems();
+
+        Ride removeRide=ridesTable.getSelectionModel().getSelectedItem();
+        //ActiveRideAdmin aux = new ActiveRideAdmin(removeRide);
+
+        allRides.removeAll(rideSelected);
+        stage.getState().deleteRide(removeRide);
 
     }
 
