@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #afeeee;" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #afeeee;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <AnchorPane layoutX="51.0" layoutY="421.0" prefHeight="98.0" prefWidth="374.0" style="-fx-background-color: #48d1cc;">
          <children>
@@ -117,7 +117,7 @@
             <TableColumn fx:id="fecha" editable="false" minWidth="0.0" prefWidth="231.0" sortable="false" text="Fecha" />
          </columns>
       </TableView>
-      <Button fx:id="mainPage1" layoutX="454.0" layoutY="533.0" mnemonicParsing="false" onAction="#mainPage" text="Cancelar Viaje">
+      <Button fx:id="btRemovePassenger" layoutX="454.0" layoutY="533.0" mnemonicParsing="false" onAction="#btRemovePassenger" text="Darse de baja">
          <font>
             <Font size="20.0" />
          </font>

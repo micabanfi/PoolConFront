@@ -41,6 +41,18 @@ public class State {
             System.out.println("Problema initState");
         }
     }
+    
+    public void removePassenger(User pass, Ride ride) throws NotInRide{
+    	try {
+			ActiveRideAdmin rideAdmin= getActiveRideAdminOfRide(ride);
+			rideAdmin.removePassenger(pass);
+    	} catch (RideDoesNotExist e) {
+			e.printStackTrace();
+		}
+   
+    }
+    
+ 
 
     private ActiveRideAdmin getActiveRideAdminOfRide(Ride ride) throws RideDoesNotExist{
         for( ActiveRideAdmin rideAdmin: currentRides){

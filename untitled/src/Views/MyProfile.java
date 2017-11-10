@@ -12,6 +12,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import root.Exceptions.NoPermission;
+import root.Exceptions.NotInRide;
 import root.Ride.Ride;
 import root.User.Credential;
 import root.User.Gender;
@@ -112,23 +113,23 @@ public class MyProfile extends Controller {
     }
 
 
-    public void cancelRide() {
+    public void btRemovePassenger() {
         ObservableList<Ride> rideSelected, allRides;
         allRides = ridesTable.getItems();
         rideSelected = ridesTable.getSelectionModel().getSelectedItems();
-
         Ride removeRide = ridesTable.getSelectionModel().getSelectedItem();
-        //ActiveRideAdmin aux = new ActiveRideAdmin(removeRide);
+        
+        
         try {
-        	stage.getState().deleteRide(removeRide,stage.getUser());
-        	allRides.removeAll(rideSelected);
-        } catch(NoPermission e) {
-        	Alert alert = new Alert(Alert.AlertType.ERROR);
+			stage.getState().removePassenger(stage.getUser(), removeRide);
+		} catch (NotInRide e1) {
+			Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
-            alert.setHeaderText("Solamente el conductor puede eliminar el viaje");
+            alert.setHeaderText("Usted no es pasajero de este viaje");
             alert.setContentText(null);
             alert.showAndWait();
-        }
+		}
+        
     }
 
 

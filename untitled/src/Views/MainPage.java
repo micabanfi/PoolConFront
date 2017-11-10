@@ -97,14 +97,23 @@ public class MainPage extends Controller{
         }
     }
 
+    //HAY QUE ARREGLAR JOIN RIDE PQ NO ESTA GUARDANDO AL PASAJERO COMO Q ESTA EN EL RIDE
+    //PORQUE NADIE LO ACEPTO. 
     public void joinRide() throws SeatsTaken {
         ObservableList<Ride> rideSelected,allRides;
         allRides=ridesTable.getItems();
         rideSelected=ridesTable.getSelectionModel().getSelectedItems();
 
         Ride ride=ridesTable.getSelectionModel().getSelectedItem();
+        /*ESTO ESTA MALLL pq ya hay un active ride admin
+          hacer stage.getstate.addrequest y que en state en la funcion add request
+       se llame al active ride admin correspondiente que YA esta creado
+       lo intente hacer pero seguia sin funcionar y borre todo. despues vuelvo a intentar
+       lo dejo escrito por si alguien se mete ahora
+       OTRA OPCION es hacer un get active ride admin desde state pero no se si esta bueno. 
+       */
         ActiveRideAdmin aux=new ActiveRideAdmin(ride);
-
+       
        try {
            aux.addRequest(stage.getUser());
 
