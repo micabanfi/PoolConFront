@@ -52,16 +52,17 @@ public class Register extends Controller {
             username1 = RgUserNametx.getText();
             password1 = RgPasswordtx.getText();
             genreaux = RgGenrech.getValue().toString();
-            switch (genreaux){
-                case "Masculino":
-                    genre = Gender.MALE;
-                    break;
-                case "Femenino":
-                    genre = Gender.FEMALE;
-                    break;
-                default:
-                    genre = Gender.OTHER;
+          
+            if(genreaux.equals(Gender.MALE.getGenderSpanish())) {
+            	genre=Gender.MALE;
             }
+            else if(genreaux.equals(Gender.FEMALE.getGenderSpanish())) {
+            	genre=Gender.FEMALE;
+            }
+            else {
+            	genre=Gender.OTHER;
+            }
+            
 
             String rta = RgEatch.getValue().toString();
             eat = rta.compareTo("Si") == 0;
@@ -89,7 +90,7 @@ public class Register extends Controller {
 
         }
     }
-
+    
     public boolean checkRequestedFields(){
         if(RgNametx.getText().isEmpty() || RgSurnametx.getText().isEmpty() ||
                 RgPhonetx.getText().isEmpty() ||

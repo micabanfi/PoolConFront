@@ -115,7 +115,7 @@ public class NewRide extends Controller {
     return vehicleChoice;
     }
     
-   
+   //PREGUNTAR: COMO hariamos esto con excepciones
     private boolean checkRequestedFields(){
         if( fromTx.getText().isEmpty() || toTx.getText().isEmpty() || routeTx.getText().isEmpty() ||
         		hourCb.getSelectionModel().isEmpty() || minutesCb.getSelectionModel().isEmpty() ||
@@ -136,7 +136,6 @@ public class NewRide extends Controller {
         return false;
     }
 
-    //IMPROTANTE: NO FUNCIONA PORQUE NO ESTA FUNCIONANDO ADD NEW VEHICLE ENTONCES NO HAY VEHICLES.
     public void init() {
     		listVehicles = stage.getUser().getVehicleNames();
         	observableListVehicles = FXCollections.observableArrayList(listVehicles);

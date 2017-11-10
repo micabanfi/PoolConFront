@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import root.Exceptions.NoPermission;
 import root.Ride.Ride;
 import root.User.Credential;
 import root.User.Gender;
@@ -118,11 +119,11 @@ public class MyProfile extends Controller {
 
         Ride removeRide = ridesTable.getSelectionModel().getSelectedItem();
         //ActiveRideAdmin aux = new ActiveRideAdmin(removeRide);
-        if (stage.getUser().equalCredentials(removeRide.getDriver().getCredential())) {
-            allRides.removeAll(rideSelected);
-            stage.getState().deleteRide(removeRide);
-        } else {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
+        try {
+        	stage.getState().deleteRide(removeRide,stage.getUser());
+        	allRides.removeAll(rideSelected);
+        } catch(NoPermission e) {
+        	Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText("Solamente el conductor puede eliminar el viaje");
             alert.setContentText(null);

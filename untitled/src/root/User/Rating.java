@@ -19,4 +19,10 @@ public class Rating {
     public double calculatePercentage(){
         return positive/(positive+negative)*100;
     }
+    
+ /*   @Override
+    public String toString() {
+    	return "Rating= "+Double.toString(this.calculatePercentage())+"%"; 
+    }
+*/
 }

@@ -18,6 +18,7 @@ import javafx.stage.Stage;
 import root.Exceptions.AlreadyInRide;
 import root.Exceptions.AlreadyRequested;
 import root.Exceptions.DeniedDriverException;
+import root.Exceptions.NoPermission;
 import root.Exceptions.SeatsTaken;
 import root.Ride.ActiveRideAdmin;
 import root.Ride.Ride;
@@ -34,9 +35,6 @@ public class MainPage extends Controller{
     @FXML private TableColumn conductor;
     @FXML private TableColumn permissions;
     @FXML private TableColumn asientos;
-
-
-
 
     public MainPage(ClientStage stage){
         super(stage);
@@ -87,12 +85,11 @@ public class MainPage extends Controller{
         rideSelected=ridesTable.getSelectionModel().getSelectedItems();
 
         Ride removeRide=ridesTable.getSelectionModel().getSelectedItem();
-        //ActiveRideAdmin aux = new ActiveRideAdmin(removeRide);
-        if(stage.getUser().equalCredentials(removeRide.getDriver().getCredential())) {
+        
+        try {
+        	stage.getState().deleteRide(removeRide,stage.getUser());
         	allRides.removeAll(rideSelected);
-        	stage.getState().deleteRide(removeRide);
-        }
-        else {
+        } catch(NoPermission e) {
         	Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText("Solamente el conductor puede eliminar el viaje");

@@ -30,7 +30,7 @@ public class Credential {
 
     @Override
     public String toString(){
-        return "UserName="+userName+"\nPass:"+password+"\n"+"\n";
+        return "Nombre de Usuario="+userName;
     }
 
     public String getPassword() {

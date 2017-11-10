@@ -167,10 +167,15 @@ public class State {
     }
 
     //hacerla con ActiveRideAdin y descomentar en mainPage deleteRide para passarle un ActiveRide y no un RIde
-    public void deleteRide(Ride ride){
+    public void deleteRide(Ride ride, User driver) throws NoPermission{
         for(ActiveRideAdmin ride1:currentRides){
             if(ride.equals(ride1.getRide())){
+            	if(ride.getDriver().equals(driver)) {
                 currentRides.remove(ride1);
+            	}
+            	else {
+            		throw new NoPermission();
+            	}
             }
         }
 

@@ -70,7 +70,7 @@ public class Person {
     @Override
     public String toString() {
         String s="";
-        s="Nombre: "+ name+"\nApellido: "+surname+"\nTelefono: "+phone+"\nSexo:"+gender+"\n"+preferences.toString();
+        s="Nombre: "+ name+"\nApellido: "+surname+"\nTelefono: "+phone+"\nSexo:"+gender.getGenderSpanish()+"\n"+preferences.toString();
         return s;
     }
 
