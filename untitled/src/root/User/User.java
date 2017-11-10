@@ -27,6 +27,7 @@ public class User extends Person{
     	return driver;
     }
 
+
     public void setCredential(Credential credential) {
         this.credential = credential;
     }

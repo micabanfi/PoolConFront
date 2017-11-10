@@ -90,7 +90,9 @@ public class State {
                 register(user3);
                 AddRideToList(ride1);
                 AddRideToList(ride2);
-                System.out.println("Size rides:"+currentRides.size());
+                user1.addRide(ride1);
+
+                System.out.println(user1.getActiveRides().get(0).toString());
                 //Imprimo los usuarios que cree
             } catch (InvalidFields e) {
                 //Este no deberia ir en possibleErrors porque lohacemos nosotros,no deberiamos ser tan tontos ;)
@@ -205,6 +207,7 @@ public class State {
        }
        throw new NotExistingUserException();
    }
+
 
     //QUE QUILOMBO DE COMENTARIOS, VOY A BORRAR TODS
 

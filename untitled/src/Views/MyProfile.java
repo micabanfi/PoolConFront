@@ -1,5 +1,7 @@
 package Views;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -7,8 +9,12 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import root.Ride.Ride;
 import root.User.Credential;
 import root.User.Gender;
 import root.User.Preferences;
@@ -26,6 +32,10 @@ public class MyProfile extends Controller {
     @FXML private TextField MyProfileUsernametx;
     @FXML private TextField MyProfilePasswordtx;
 
+    @FXML private TableView<Ride> ridesTable;
+    @FXML private TableColumn ruta;
+    @FXML private TableColumn fecha;
+
 
     public MyProfile(ClientStage stage){
 
@@ -35,6 +45,10 @@ public class MyProfile extends Controller {
 
     public void init(){
         setProfileInfo();
+        ruta.setCellValueFactory(new PropertyValueFactory<>("route"));
+        fecha.setCellValueFactory(new PropertyValueFactory<>("date"));
+        ridesTable.setItems(getRides());
+
     }
 
     public void setProfileInfo(){
@@ -61,6 +75,7 @@ public class MyProfile extends Controller {
     public void mainPage(ActionEvent event) {
         stage.MainPage();
     }
+    public void acceptRequest(ActionEvent event){stage.AcceptRequest();}
 
     public void editMyProfile(){
 
@@ -80,4 +95,28 @@ public class MyProfile extends Controller {
         stage.getUser().setPhone(MyProfilePhonetx.getText());
         stage.getUser().setCredential(new Credential(MyProfileUsernametx.getText(),MyProfilePasswordtx.getText()));
     }
+
+    public void btAcceptRequest(ActionEvent event){
+        stage.AcceptRequest();
+    }
+
+
+
+
+    public void cancelRide(){
+
+    }
+
+
+    public ObservableList<Ride> getRides(){
+        ObservableList<Ride> rides= FXCollections.observableArrayList();
+
+        for(int i=0;i<stage.getUser().getActiveRides().size();i++)
+            rides.add(stage.getUser().getActiveRides().get(i).getRide());
+        return rides;
+    }
+
+
+
+
 }

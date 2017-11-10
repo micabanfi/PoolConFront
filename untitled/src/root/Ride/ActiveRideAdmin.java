@@ -18,10 +18,18 @@ public class ActiveRideAdmin extends RideAdmin {
     public Ride getRide(){
         return ride;
     }
+    public ArrayList<User> getRequests() {
+        return requests;
+    }
 
     public void addPassenger(User passenger)throws SeatsTaken {
+        System.out.println("Asientos:"+ride.getVehicle().getSeats()+" pasajeros size:"+passengers.size());
         if(ride.getVehicle().getSeats() > passengers.size()){
             passengers.add(passenger);
+            ride.getVehicle().setSeats((ride.getVehicle().getSeats())-1);
+            System.out.println("Asientos:"+ride.getVehicle().getSeats());
+            System.out.println("pasajeros size despues:"+passengers.size());
+            //System.out.println(passengers.toString());
         }else{
             throw new SeatsTaken();
         }
@@ -36,6 +44,8 @@ public class ActiveRideAdmin extends RideAdmin {
     }
 
     public void addRequest(User person) throws AlreadyRequested, AlreadyInRide {
+        System.out.println("Asientos:"+ride.getVehicle().getSeats()+" pasajeros size:"+passengers.size());
+
         if(requests.contains(person)){
             throw new AlreadyRequested();
         }
@@ -43,6 +53,7 @@ public class ActiveRideAdmin extends RideAdmin {
             throw new AlreadyInRide();
         }
         requests.add(person);
+        System.out.println(requests.get(0).toString());
     }
 
     private void validateRequest(User driver, Person request) throws NoPermission, NotRequested{
@@ -65,7 +76,5 @@ public class ActiveRideAdmin extends RideAdmin {
         requests.remove(request);
     }
 
-    public ArrayList<User> getRequests() {
-        return requests;
-    }
+
 }

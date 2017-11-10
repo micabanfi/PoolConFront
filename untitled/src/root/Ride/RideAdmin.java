@@ -2,6 +2,7 @@ package root.Ride;
 
 import root.User.User;
 
+import javax.jws.soap.SOAPBinding;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,7 +30,8 @@ public abstract class RideAdmin {
     }
 
     public String toString(){
-        return "Viaje\nRuta"+ride.getRoute()+"\nChofer"+ride.getDriver();
+        return "Viaje\nRuta"+ride.getRoute()+"\nChofer"+ride.getDriver()+"seats:"+ride.getVehicle().getSeats();
+
     }
 
 }

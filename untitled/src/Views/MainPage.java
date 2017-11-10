@@ -15,7 +15,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import root.Exceptions.AlreadyInRide;
+import root.Exceptions.AlreadyRequested;
 import root.Exceptions.DeniedDriverException;
+import root.Exceptions.SeatsTaken;
 import root.Ride.ActiveRideAdmin;
 import root.Ride.Ride;
 import root.Ride.Route;
@@ -30,8 +33,8 @@ public class MainPage extends Controller{
     @FXML private TableColumn dia;
     @FXML private TableColumn conductor;
     @FXML private TableColumn permissions;
+    @FXML private TableColumn asientos;
 
-    private int positionRideTable;
 
 
 
@@ -73,6 +76,7 @@ public class MainPage extends Controller{
         dia.setCellValueFactory(new PropertyValueFactory<>("date"));
         permissions.setCellValueFactory(new PropertyValueFactory<>("permissions"));
         conductor.setCellValueFactory(new PropertyValueFactory<>("driver"));
+        asientos.setCellValueFactory(new PropertyValueFactory<>("vehicle"));
         ridesTable.setItems(getRides());
 
     }
@@ -95,6 +99,34 @@ public class MainPage extends Controller{
             alert.setContentText(null);
             alert.showAndWait();
         }
+    }
+
+    public void joinRide() throws SeatsTaken {
+        ObservableList<Ride> rideSelected,allRides;
+        allRides=ridesTable.getItems();
+        rideSelected=ridesTable.getSelectionModel().getSelectedItems();
+
+        Ride ride=ridesTable.getSelectionModel().getSelectedItem();
+        ActiveRideAdmin aux=new ActiveRideAdmin(ride);
+
+       try {
+           aux.addRequest(stage.getUser());
+
+       } catch (AlreadyRequested alreadyRequested) {
+           Alert alert = new Alert(Alert.AlertType.ERROR);
+           alert.setTitle("Error");
+           alert.setHeaderText("Ya pidio estar en este viaje");
+           alert.setContentText(null);
+           alert.showAndWait();
+       } catch (AlreadyInRide alreadyInRide) {
+           Alert alert = new Alert(Alert.AlertType.ERROR);
+           alert.setTitle("Error");
+           alert.setHeaderText("Ya se encuentra anotado en este viaje");
+           alert.setContentText(null);
+           alert.showAndWait();
+       }
+
+
     }
 
 

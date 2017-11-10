@@ -8,8 +8,7 @@ public class Vehicle {
     private String plate;
     private int seats;
 
-    //  private Permissions permission;
-    public Vehicle(String brand,String model,String color,int year,String plate,int seat ){
+    public Vehicle(String brand,String model,String color,int year,String plate,int seats ){
         this.brand=brand;
         this.model=model;
         this.color=color;
@@ -20,10 +19,16 @@ public class Vehicle {
 
     @Override
     public String toString(){
-        return "Vehicle:"+'\n'+"Brand:"+brand+"Model:"+model+" Color:"+color+" Plate:"+plate;
+        //return "Vehicle:"+'\n'+"Brand:"+brand+"Model:"+model+" Color:"+color+" Plate:"+plate+"Seats:"+seats;
+        System.out.println(seats);
+        return Integer.toString(seats);
     }
 
     public int getSeats(){
         return seats;
+    }
+
+    public void setSeats(int seats) {
+        this.seats = seats;
     }
 }

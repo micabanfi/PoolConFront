@@ -69,6 +69,8 @@ public class ClientStage extends Stage {
     public void Register(){
         setView("Register.fxml", new Register(this));
     }
+
+    public void AcceptRequest(){ setView("AcceptRequest.fxml",new AcceptRequest(this));}
     
     public State getState() {
     	return state;

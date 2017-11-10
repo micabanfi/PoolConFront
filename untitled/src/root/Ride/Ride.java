@@ -33,6 +33,10 @@ public class Ride implements Comparable<Ride>{
         return driver;
     }
 
+    public Ride getRide(){
+        return this;
+    }
+
     public Permissions getPermissions(){
         return permissions;
     }
