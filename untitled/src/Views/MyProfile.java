@@ -95,7 +95,6 @@ public class MyProfile extends Controller {
         MyProfileSurnametx.setEditable(true);
         MyProfileCareertx.setEditable(true);
         MyProfilePhonetx.setEditable(true);
-        MyProfileGenretx.setEditable(true);
         MyProfileUsernametx.setEditable(true);
         MyProfilePasswordtx.setEditable(true);
     }

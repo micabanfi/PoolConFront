@@ -52,9 +52,8 @@ public class State {
    
     }
     
- 
 
-    private ActiveRideAdmin getActiveRideAdminOfRide(Ride ride) throws RideDoesNotExist{
+    public ActiveRideAdmin getActiveRideAdminOfRide(Ride ride) throws RideDoesNotExist{
         for( ActiveRideAdmin rideAdmin: currentRides){
             if(ride.equals(rideAdmin.getRide())){
                 return rideAdmin;
@@ -71,6 +70,7 @@ public class State {
         }
         throw new RideDoesNotExist();
     }
+
 
     public void initState()  throws InvalidFields {
             //Creo Users para que cuando inicialize el programa, ya hallan Users cargados.

@@ -15,8 +15,9 @@ import root.User.Credential;
 import root.User.Gender;
 import root.User.Person;
 import root.User.User;
-
+import javafx.event.ActionEvent;
 import javax.jws.soap.SOAPBinding;
+
 
 public class AcceptRequest extends Controller {
 
@@ -30,13 +31,14 @@ public class AcceptRequest extends Controller {
         super(stage);
     }
 
+    public void mainPage(ActionEvent event){stage.MainPage(); }
 
     public ObservableList<User> getUser(){
         ObservableList<User> users= FXCollections.observableArrayList();
-
+       //stage.getState().getActiveRideAdminOfRide().getRequests();
         Credential credential1 = new Credential("mica", "1234");
         User user1 = new User(credential1, "Micaela", "Banfi", "Informatica", "1234567890", false, true, Gender.OTHER);
-
+        //stage.getState().get
         //for(int i=0;i<stage.getState().getRequest();i++)
         users.add(user1);
         return users;

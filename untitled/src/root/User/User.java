@@ -5,14 +5,15 @@ import root.Exceptions.NoVehicleException;
 import root.Ride.Ride;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class User extends Person{
     private Credential credential;
-    private ArrayList<Vehicle> vehicles;
+    private ArrayList<Vehicle> vehicles;//cambiar a LIST
     private ArrayList<Ride> expiredRides;
     private ArrayList<Ride> activeRides;
     private Rating rating;
-    private boolean driver;
+    private boolean driver;//sacaar esto  hacer fn que devuelva si vehiculos es empty
    
     public User(Credential credential, String name, String surname, String career, String phone,boolean smoke,boolean food,Gender gender){
         super(name, surname, career, phone, smoke, food, gender);

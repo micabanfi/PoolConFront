@@ -27,7 +27,7 @@ public class Vehicle {
     
     public String getVehicleInfo() {
     	return "Vehicle:"+'\n'+"Brand:"+brand+"Model:"+model+" Color:"+color+" Plate:"+plate+"Seats:"+seats;
-    }
+    }//pasar to string al front
     
     
 

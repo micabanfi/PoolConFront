@@ -45,9 +45,11 @@ public class MainPage extends Controller{
         stage.MyProfile();
     }
 
+
+
     public void newRide(ActionEvent event) {
     	try {
-    		stage.getUser().isDriver();
+    		stage.getUser().isDriver();//modificar deberia sr=er boleano y no excepcion.hacer un if
     		stage.NewRide();
     	}
         catch (DeniedDriverException e) {
