@@ -8,10 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import root.Ride.Ride;
@@ -24,26 +21,36 @@ import javax.print.DocFlavor;
 
 public class MyProfile extends Controller {
 
-    @FXML private TextField MyProfileNametx;
-    @FXML private TextField MyProfileSurnametx;
-    @FXML private TextField MyProfileCareertx;
-    @FXML private TextField MyProfilePhonetx;
-    @FXML private TextField MyProfileGenretx;
-    @FXML private TextField MyProfileUsernametx;
-    @FXML private TextField MyProfilePasswordtx;
+    @FXML
+    private TextField MyProfileNametx;
+    @FXML
+    private TextField MyProfileSurnametx;
+    @FXML
+    private TextField MyProfileCareertx;
+    @FXML
+    private TextField MyProfilePhonetx;
+    @FXML
+    private TextField MyProfileGenretx;
+    @FXML
+    private TextField MyProfileUsernametx;
+    @FXML
+    private TextField MyProfilePasswordtx;
 
-    @FXML private TableView<Ride> ridesTable;
-    @FXML private TableColumn ruta;
-    @FXML private TableColumn fecha;
+    @FXML
+    private TableView<Ride> ridesTable;
+    @FXML
+    private TableColumn ruta;
+    @FXML
+    private TableColumn fecha;
 
 
-    public MyProfile(ClientStage stage){
+    public MyProfile(ClientStage stage) {
 
         super(stage);
 
     }
 
-    public void init(){
+    public void init() {
         setProfileInfo();
         ruta.setCellValueFactory(new PropertyValueFactory<>("route"));
         fecha.setCellValueFactory(new PropertyValueFactory<>("date"));
@@ -51,13 +58,13 @@ public class MyProfile extends Controller {
 
     }
 
-    public void setProfileInfo(){
+    public void setProfileInfo() {
         MyProfileNametx.setText(stage.getUser().getName());
         MyProfileSurnametx.setText(stage.getUser().getSurname());
         MyProfileCareertx.setText(stage.getUser().getPreferences().getCareer());
         MyProfilePhonetx.setText(stage.getUser().getPhone());
         String genderaux;
-        switch(stage.getUser().getGender()){
+        switch (stage.getUser().getGender()) {
             case MALE:
                 genderaux = "Masculino";
                 break;
@@ -75,9 +82,12 @@ public class MyProfile extends Controller {
     public void mainPage(ActionEvent event) {
         stage.MainPage();
     }
-    public void acceptRequest(ActionEvent event){stage.AcceptRequest();}
 
-    public void editMyProfile(){
+    public void acceptRequest(ActionEvent event) {
+        stage.AcceptRequest();
+    }
+
+    public void editMyProfile() {
 
         MyProfileNametx.setEditable(true);
         MyProfileSurnametx.setEditable(true);
@@ -88,35 +98,49 @@ public class MyProfile extends Controller {
         MyProfilePasswordtx.setEditable(true);
     }
 
-    public void saveChanges(){
+    public void saveChanges() {
         stage.getUser().setName(MyProfileNametx.getText());
         stage.getUser().setSurname(MyProfileSurnametx.getText());
-        stage.getUser().setPreferences(new Preferences(MyProfileCareertx.getText(),stage.getUser().getPreferences().isSmoke(),stage.getUser().getPreferences().ifFood()));
+        stage.getUser().setPreferences(new Preferences(MyProfileCareertx.getText(), stage.getUser().getPreferences().isSmoke(), stage.getUser().getPreferences().ifFood()));
         stage.getUser().setPhone(MyProfilePhonetx.getText());
-        stage.getUser().setCredential(new Credential(MyProfileUsernametx.getText(),MyProfilePasswordtx.getText()));
+        stage.getUser().setCredential(new Credential(MyProfileUsernametx.getText(), MyProfilePasswordtx.getText()));
     }
 
-    public void btAcceptRequest(ActionEvent event){
+    public void btAcceptRequest(ActionEvent event) {
         stage.AcceptRequest();
     }
 
 
+    public void cancelRide() {
+        ObservableList<Ride> rideSelected, allRides;
+        allRides = ridesTable.getItems();
+        rideSelected = ridesTable.getSelectionModel().getSelectedItems();
 
-
-    public void cancelRide(){
-
+        Ride removeRide = ridesTable.getSelectionModel().getSelectedItem();
+        //ActiveRideAdmin aux = new ActiveRideAdmin(removeRide);
+        if (stage.getUser().equalCredentials(removeRide.getDriver().getCredential())) {
+            allRides.removeAll(rideSelected);
+            stage.getState().deleteRide(removeRide);
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Solamente el conductor puede eliminar el viaje");
+            alert.setContentText(null);
+            alert.showAndWait();
+        }
     }
 
 
-    public ObservableList<Ride> getRides(){
-        ObservableList<Ride> rides= FXCollections.observableArrayList();
+    public ObservableList<Ride> getRides() {
+        ObservableList<Ride> rides = FXCollections.observableArrayList();
 
-        for(int i=0;i<stage.getUser().getActiveRides().size();i++)
+        for (int i = 0; i < stage.getUser().getActiveRides().size(); i++)
             rides.add(stage.getUser().getActiveRides().get(i).getRide());
         return rides;
     }
 
-
-
-
 }
+
+
+
+
