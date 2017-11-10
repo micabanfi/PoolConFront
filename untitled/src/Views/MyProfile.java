@@ -135,8 +135,9 @@ public class MyProfile extends Controller {
     public ObservableList<Ride> getRides() {
         ObservableList<Ride> rides = FXCollections.observableArrayList();
 
-        for (int i = 0; i < stage.getUser().getActiveRides().size(); i++)
-            rides.add(stage.getUser().getActiveRides().get(i).getRide());
+        for (int i = 0; i < stage.getUser().getActiveRides().size(); i++) {
+        	rides.add(stage.getUser().getActiveRides().get(i).getRide());
+        }
         return rides;
     }
 

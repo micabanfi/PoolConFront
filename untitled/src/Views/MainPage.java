@@ -46,12 +46,11 @@ public class MainPage extends Controller{
     }
 
     public void newRide(ActionEvent event) {
-    	if(stage.getUser().getDriver()) {
+    	try {
+    		stage.getUser().isDriver();
     		stage.NewRide();
     	}
-    	
-        else {
-        	
+        catch (DeniedDriverException e) {
         	 Alert alert = new Alert(Alert.AlertType.ERROR);
              alert.setTitle("Error");
              alert.setHeaderText("No cumple con las condiciones para ser Conductor");
@@ -125,7 +124,4 @@ public class MainPage extends Controller{
 
 
     }
-
-
-
 }

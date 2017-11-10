@@ -54,6 +54,7 @@ public class ActiveRideAdmin extends RideAdmin {
         }
         requests.add(person);
         System.out.println(requests.get(0).toString());
+        person.addRide(ride);
     }
 
     private void validateRequest(User driver, Person request) throws NoPermission, NotRequested{

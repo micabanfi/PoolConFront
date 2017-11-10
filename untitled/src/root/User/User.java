@@ -1,5 +1,6 @@
 package root.User;
 
+import root.Exceptions.DeniedDriverException;
 import root.Exceptions.NoVehicleException;
 import root.Ride.Ride;
 
@@ -23,8 +24,10 @@ public class User extends Person{
         this.driver= true;
     }
     
-    public boolean getDriver() {
-    	return driver;
+    public void isDriver() throws DeniedDriverException{
+    	if(!driver){
+    		throw new DeniedDriverException();
+    	}
     }
 
 
@@ -107,8 +110,7 @@ public class User extends Person{
     	
     	ArrayList<String> vehicleNames = new ArrayList<String>();
     	for(int i =0; i < vehicles.size() ; i++) {
-    		vehicleNames.add(vehicles.get(i).toString());
-    		System.out.println(vehicleNames.get(i));
+    		vehicleNames.add(vehicles.get(i).getVehicleInfo());
     	}	    	
     return vehicleNames;
     }

@@ -16,13 +16,20 @@ public class Vehicle {
         this.plate=plate;
         this.seats=seats;
     }
-
+    
+//sabemos q el tostring este es feo, pero si no lo hacemos asi, no nos funciona el front bien.
     @Override
     public String toString(){
-        //return "Vehicle:"+'\n'+"Brand:"+brand+"Model:"+model+" Color:"+color+" Plate:"+plate+"Seats:"+seats;
+    	//return "Vehicle:"+'\n'+"Brand:"+brand+"Model:"+model+" Color:"+color+" Plate:"+plate+"Seats:"+seats;
         System.out.println(seats);
-        return Integer.toString(seats);
+        return Integer.toString(seats);    
     }
+    
+    public String getVehicleInfo() {
+    	return "Vehicle:"+'\n'+"Brand:"+brand+"Model:"+model+" Color:"+color+" Plate:"+plate+"Seats:"+seats;
+    }
+    
+    
 
     public int getSeats(){
         return seats;
@@ -31,4 +38,5 @@ public class Vehicle {
     public void setSeats(int seats) {
         this.seats = seats;
     }
+	
 }
