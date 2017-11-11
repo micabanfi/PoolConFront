@@ -1,15 +1,16 @@
 package root.User;
 
+
 public enum Gender {
-    MALE("Masculino"), FEMALE("Femenino"), OTHER("Otro");
-	private String genderSpanish;
-	
+	MALE("Masculino"), FEMALE("Femenino"), OTHER("Otro");
+	private String gender;
+
 	private Gender(String gender) {
-		this.genderSpanish = gender;
+		this.gender = gender;
 	}
-	public String getGenderSpanish() {
-		return genderSpanish;
+
+	public String getGender() {
+		return gender;
 	}
 }
-
 

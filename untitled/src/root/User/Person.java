@@ -1,15 +1,22 @@
 package root.User;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Person {
+public class Person implements Serializable{
+
+    private static final long serialVersionUID = 1L;
+
     private String name;
     private String surname;
     private String phone;
     private Gender gender;//enum
-   // private LocalDate birthDate;
+    // private LocalDate birthDate;
     private Preferences preferences;
 
     public Person(String name, String surname, String career, String phone,boolean smoke,boolean food,Gender gender){
@@ -21,6 +28,23 @@ public class Person {
         //this.birthDate=birthDate;
     }
 
+    public void writeObject(ObjectOutputStream out) throws IOException {
+        out.defaultWriteObject();
+        out.writeUTF(name);
+        out.writeUTF(surname);
+        out.writeUTF(phone);
+        out.writeObject(preferences);
+        out.writeObject(gender);
+    }
+
+    public void readObject(ObjectInputStream ois) throws IOException, ClassNotFoundException{
+        ois.defaultReadObject();
+        name = ois.readUTF();
+        surname = ois.readUTF();
+        phone = ois.readUTF();
+        preferences = (Preferences) ois.readObject();
+        gender = (Gender) ois.readObject();
+    }
 
 
     public String getName () {
@@ -70,7 +94,7 @@ public class Person {
     @Override
     public String toString() {
         String s="";
-        s="Nombre: "+ name+"\nApellido: "+surname+"\nTelefono: "+phone+"\nSexo:"+gender.getGenderSpanish()+"\n"+preferences.toString();
+        s="Nombre: "+ name+"\nApellido: "+surname+"\nTelefono: "+phone+"\nSexo:"+gender.getGender()+"\n"+preferences.toString();
         return s;
     }
 
@@ -90,5 +114,16 @@ public class Person {
         if (!(this.gender.equals(aux.gender)))
             return false;
         return this.preferences.equals(aux.preferences);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31*result + name.hashCode();
+        result = 31*result + surname.hashCode();
+        result = 31*result + phone.hashCode();
+        result = 31*result + gender.hashCode();
+        result = 31*result + preferences.hashCode();
+        return result;
     }
 }

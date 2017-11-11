@@ -31,4 +31,18 @@ public class Main extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+
+        /* metodos para llamar la serializacion/ guardar/loadear datos
+
+    private void loadData(File file) throws IOException, ClassNotFoundException {
+        ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(file));
+        state = (State) objectInputStream.readObject();
+        objectInputStream.close();
+    }
+
+    private void saveData(File file) throws IOException {
+        ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(file));
+        objectOutputStream.writeObject(state);
+        objectOutputStream.close();
+    }*/
 }

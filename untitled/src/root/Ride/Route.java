@@ -1,6 +1,14 @@
 package root.Ride;
 
-public class Route {
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+
+public class Route implements Serializable{
+
+    private static final long serialVersionUID = 1L;
+
     private String from;
     private String to;
     private String through;
@@ -11,6 +19,19 @@ public class Route {
         this.through=through;
     }
 
+    public void writeObject(ObjectOutputStream out) throws IOException {
+        out.defaultWriteObject();
+        out.writeUTF(from);
+        out.writeUTF(to);
+        out.writeUTF(through);
+    }
+
+    public void readObject(ObjectInputStream ois) throws IOException, ClassNotFoundException{
+        ois.defaultReadObject();
+        from = ois.readUTF();
+        to = ois.readUTF();
+        through = ois.readUTF();
+    }
 
 
     public String getFrom() {

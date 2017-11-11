@@ -14,6 +14,10 @@ import root.Ride.ActiveRideAdmin;
 import root.Ride.ExpiredRideAdmin;
 import root.User.Gender;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -22,7 +26,9 @@ import java.util.Date;
 import java.util.List;
 
 
-public class State {
+public class State implements Serializable{
+
+    private static final long serialVersionUID = 1L;
 
     private List<User> users;
 
@@ -41,48 +47,62 @@ public class State {
         }
     }
 
+    public void writeObject(ObjectOutputStream out) throws IOException{
+        out.defaultWriteObject();
+        out.writeObject(users);
+        out.writeObject(currentRides);
+        out.writeObject(expiredRides);
+    }
+
+    public void readObject(ObjectInputStream ois) throws IOException, ClassNotFoundException{
+        ois.defaultReadObject();
+        users = (List<User>) ois.readObject();
+        currentRides = (List<ActiveRideAdmin>) ois.readObject();
+        expiredRides = (List<ExpiredRideAdmin>) ois.readObject();
+    }
+
     public void initState() throws InvalidFields {
-            //Creo Users para que cuando inicialize el programa, ya hallan Users cargados.
-            //Hay que chequar patente?
-            Vehicle vehicle1 = new Vehicle("Fiat", "500", "Blanco", 2015, "ABC123", 4);
-            Vehicle vehicle2=new Vehicle("Ford","K","Celeste",2010,"ARX420",3);
-            //LocalDate bDayMica = LocalDate.of(2000, 1, 2);
-            //LocalDate bDayMaite = LocalDate.of(2000, 6, 30);
-            Credential credential1 = new Credential("mica", "1234");
-            Credential credential2=new Credential("maimai","maite1234");
-            //Le agrego vehicle1 a person1
-            //person1.addVehicle(vehicle1);
-            User user1 = new User(credential1, "Micaela", "Banfi", "Informatica", "1234567890", false, true, Gender.OTHER);
-            User user2=new User(credential2,"Maite","Herran","Infor","11112222",false,false, Gender.FEMALE);
-            User user3= new User(new Credential("a","a"),"a","a","a","a", true, true, Gender.MALE);
-            user1.addVehicle(vehicle1);
-            user1.addVehicle(vehicle2);
-            user2.addVehicle(vehicle1);
-            //Creo rides
-            LocalDateTime date=LocalDateTime.of(2018,12,20,14,30);
-            Ride ride1=new Ride(new Route("Victoria","Itba","Libertador"),vehicle1,user1,new Permissions(false,true,true), date);
-            LocalDateTime date2=LocalDateTime.of(2018,8,3,9,15);
-            Ride ride2=new Ride(new Route("Mi Casa","Tu casa","Paranamerica"),vehicle2,user2,new Permissions(false,true,true),date2);
-            //Agregamos los users al objeto estado que maneja el carPooling
-            try {
+        //Creo Users para que cuando inicialize el programa, ya hallan Users cargados.
+        //Hay que chequar patente?
+        Vehicle vehicle1 = new Vehicle("Fiat", "500", "Blanco", 2015, "ABC123", 4);
+        Vehicle vehicle2=new Vehicle("Ford","K","Celeste",2010,"ARX420",3);
+        //LocalDate bDayMica = LocalDate.of(2000, 1, 2);
+        //LocalDate bDayMaite = LocalDate.of(2000, 6, 30);
+        Credential credential1 = new Credential("mica", "1234");
+        Credential credential2=new Credential("maimai","maite1234");
+        //Le agrego vehicle1 a person1
+        //person1.addVehicle(vehicle1);
+        User user1 = new User(credential1, "Micaela", "Banfi", "Informatica", "1234567890", false, true, Gender.OTHER);
+        User user2=new User(credential2,"Maite","Herran","Infor","11112222",false,false, Gender.FEMALE);
+        User user3= new User(new Credential("a","a"),"a","a","a","a", true, true, Gender.MALE);
+        user1.addVehicle(vehicle1);
+        user1.addVehicle(vehicle2);
+        user2.addVehicle(vehicle1);
+        //Creo rides
+        LocalDateTime date=LocalDateTime.of(2018,12,20,14,30);
+        Ride ride1=new Ride(new Route("Victoria","Itba","Libertador"),vehicle1,user1,new Permissions(false,true), date);
+        LocalDateTime date2=LocalDateTime.of(2018,8,3,9,15);
+        Ride ride2=new Ride(new Route("Mi Casa","Tu casa","Paranamerica"),vehicle2,user2,new Permissions(false,true),date2);
+        //Agregamos los users al objeto estado que maneja el carPooling
+        try {
 
-                register(user1);
-                register(user2);
-                register(user3);
-                addRideToList(ride1);
-                addRideToList(ride2);
-                user1.addRide(ride1);
+            register(user1);
+            register(user2);
+            register(user3);
+            AddRideToList(ride1);
+            AddRideToList(ride2);
+            user1.addRide(ride1);
 
-                System.out.println(user1.getActiveRides().get(0).toString());
-                //Imprimo los usuarios que cree
-            } catch (InvalidFields e) {
-                //Este no deberia ir en possibleErrors porque lohacemos nosotros,no deberiamos ser tan tontos ;)
-                System.out.println("Usuario ya existente");
-            } catch (ExistingRideException e) {
-                System.out.println("No se pudo crear el ride");//este tampoco en error
-            } catch(Exception e){
-                System.out.println(e.getMessage());
-            }
+            System.out.println(user1.getActiveRides().get(0).toString());
+            //Imprimo los usuarios que cree
+        } catch (InvalidFields e) {
+            //Este no deberia ir en possibleErrors porque lohacemos nosotros,no deberiamos ser tan tontos ;)
+            System.out.println("Usuario ya existente");
+        } catch (ExistingRideException e) {
+            System.out.println("No se pudo crear el ride");//este tampoco en error
+        } catch(Exception e){
+            System.out.println(e.getMessage());
+        }
 
     }
 

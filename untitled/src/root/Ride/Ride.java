@@ -1,21 +1,24 @@
 package root.Ride;
 
-import root.User.Person;
 import root.User.Vehicle;
 import root.User.User;
 
-import java.time.LocalDate;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 
-public class Ride implements Comparable<Ride>{
+public class Ride implements Comparable<Ride>, Serializable{
+
+    private static final long serialVersionUID = 1L;
+
     private Route route;
     private Vehicle vehicle;
     private User driver;
     private Permissions permissions;
     private LocalDateTime date;
-
 
     public Ride(Route route, Vehicle vehicle, User driver, Permissions permissions, LocalDateTime date){
         this.route=route;
@@ -24,6 +27,25 @@ public class Ride implements Comparable<Ride>{
         this.permissions = permissions;
         this.date=date;
     }
+
+    public void writeObject(ObjectOutputStream out) throws IOException {
+        out.defaultWriteObject();
+        out.writeObject(route);
+        out.writeObject(vehicle);
+        out.writeObject(driver);
+        out.writeObject(permissions);
+        out.writeObject(date);
+    }
+
+    public void readObject(ObjectInputStream ois) throws IOException, ClassNotFoundException {
+        ois.defaultReadObject();
+        route = (Route) ois.readObject();
+        vehicle = (Vehicle) ois.readObject();
+        driver = (User) ois.readObject();
+        permissions = (Permissions) ois.readObject();
+        date = (LocalDateTime) ois.readObject();
+    }
+
 
     public Route getRoute(){
         return route;
@@ -73,7 +95,7 @@ public class Ride implements Comparable<Ride>{
     @Override
     public int compareTo(Ride ride){
         if(ride==null)
-        return 0;
+            return 0;
         return ride.getDate().compareTo(date);
 
     }
@@ -90,4 +112,3 @@ public class Ride implements Comparable<Ride>{
 
 
 }
-
