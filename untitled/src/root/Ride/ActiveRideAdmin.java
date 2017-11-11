@@ -94,7 +94,7 @@ public class ActiveRideAdmin extends RideAdmin implements Serializable{
         requests.remove(request);
     }
 
-    public int compatibility(Preferences preferences){
+    public double compatibility(Preferences preferences){
         double passengerRating=0;
         for(User user: passengers){
             passengerRating += user.getRating().calculatePercentage();
@@ -103,7 +103,7 @@ public class ActiveRideAdmin extends RideAdmin implements Serializable{
         double driverRating = ride.getDriver().getRating().calculatePercentage();
         double preferencesRating= ride.getPermissions().compatibility(preferences);
 
-        return (int)(passengerRating*0.3 + driverRating*0.3 + preferencesRating*0.5);
+        return (passengerRating*0.3 + driverRating*0.3 + preferencesRating*0.5);
     }
 
 }
