@@ -15,27 +15,19 @@ public class ActiveRideAdmin extends RideAdmin {
         requests = new ArrayList<>();
     }
 
+    private int freeSeats(){
+        return getRide().getVehicle().getSeats() - passengers.size();
+    }
+
     public Ride getRide(){
         return ride;
     }
+
     public ArrayList<User> getRequests() {
         return requests;
     }
 
-    public void addPassenger(User passenger)throws SeatsTaken {
-        System.out.println("Asientos:"+ride.getVehicle().getSeats()+" pasajeros size:"+passengers.size());
-        if(ride.getVehicle().getSeats() > passengers.size()){
-            passengers.add(passenger);
-            ride.getVehicle().setSeats((ride.getVehicle().getSeats())-1);
-            System.out.println("Asientos:"+ride.getVehicle().getSeats());
-            System.out.println("pasajeros size despues:"+passengers.size());
-            //System.out.println(passengers.toString());
-        }else{
-            throw new SeatsTaken();
-        }
-    }
-
-    public void removePassenger(Person passenger) throws NotInRide {
+    public void leaveRide(User passenger) throws NotInRide {
         if(passengers.contains(passenger)){
             passengers.remove(passenger);
         }else{
@@ -43,17 +35,17 @@ public class ActiveRideAdmin extends RideAdmin {
         }
     }
 
-    public void addRequest(User person) throws AlreadyRequested, AlreadyInRide {
-        System.out.println("Asientos:"+ride.getVehicle().getSeats()+" pasajeros size:"+passengers.size());
-
+    public void addRequest(User person) throws AlreadyRequested, AlreadyInRide, SeatsTaken {
         if(requests.contains(person)){
             throw new AlreadyRequested();
         }
         if(passengers.contains(person) || person.equals(ride.getDriver())){
             throw new AlreadyInRide();
         }
+        if(freeSeats()==0){
+            throw new SeatsTaken();
+        }
         requests.add(person);
-        System.out.println(requests.get(0).toString());
         person.addRide(ride);
     }
 
@@ -66,8 +58,11 @@ public class ActiveRideAdmin extends RideAdmin {
         }
     }
 
-    public void acceptRequest(User driver, User request) throws NoPermission, NotRequested{
+    public void acceptRequest(User driver, User request) throws NoPermission, NotRequested, SeatsTaken{
         validateRequest(driver, request);
+        if(freeSeats() == 0) {
+            throw new SeatsTaken();
+        }
         passengers.add(request);
         requests.remove(request);
     }
@@ -76,6 +71,5 @@ public class ActiveRideAdmin extends RideAdmin {
         validateRequest(driver, request);
         requests.remove(request);
     }
-
 
 }
