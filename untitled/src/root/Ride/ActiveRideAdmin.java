@@ -46,7 +46,6 @@ public class ActiveRideAdmin extends RideAdmin {
             throw new SeatsTaken();
         }
         requests.add(person);
-        person.addRide(ride);
     }
 
     private void validateRequest(User driver, Person request) throws NoPermission, NotRequested{
@@ -64,6 +63,7 @@ public class ActiveRideAdmin extends RideAdmin {
             throw new SeatsTaken();
         }
         passengers.add(request);
+        driver.addRide(this);
         requests.remove(request);
     }
 

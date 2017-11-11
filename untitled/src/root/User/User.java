@@ -15,7 +15,6 @@ public class User extends Person{
     private ArrayList<ExpiredRideAdmin> expiredRides;
     private ArrayList<ActiveRideAdmin> activeRides;
     private Rating rating;
-    private boolean driver;//sacaar esto  hacer fn que devuelva si vehiculos es empty
    
     public User(Credential credential, String name, String surname, String career, String phone,boolean smoke,boolean food,Gender gender){
         super(name, surname, career, phone, smoke, food, gender);
@@ -24,15 +23,7 @@ public class User extends Person{
         this.activeRides = new ArrayList<ActiveRideAdmin>();
         this.credential=credential;
         this.rating = new Rating();
-        this.driver= true;
     }
-    
-    public void isDriver() throws DeniedDriverException{
-    	if(!driver){
-    		throw new DeniedDriverException();
-    	}
-    }
-
 
     public void setCredential(Credential credential) {
         this.credential = credential;
@@ -75,14 +66,10 @@ public class User extends Person{
 
     public void addVehicle(Vehicle vehicle){
         vehicles.add(vehicle);
-        this.driver = true;
     }
 
     public void removeVehicle(Vehicle vehicle){
         vehicles.remove(vehicle);
-        if(vehicles.isEmpty()) {
-        	this.driver = false;
-        }
     }
 
     public boolean equalCredentials(Credential credential){
@@ -98,6 +85,7 @@ public class User extends Person{
         User aux = (User) obj;
         return aux.getCredential().equals(credential);
     }
+
     /*public double compatibility(User user) {
 
     }

@@ -11,12 +11,12 @@ public abstract class RideAdmin {
     protected Ride ride;
     protected List<User> passengers;
 
-    protected RideAdmin(Ride ride){
+    public RideAdmin(Ride ride){
         this.ride = ride;
         passengers = new ArrayList<>();
     }
 
-    protected RideAdmin(Ride ride, List<User> passengers){
+    public RideAdmin(Ride ride, List<User> passengers){
         this(ride);
         this.passengers = passengers;
     }
@@ -33,5 +33,4 @@ public abstract class RideAdmin {
         return "Viaje\nRuta"+ride.getRoute()+"\nChofer"+ride.getDriver()+"seats:"+ride.getVehicle().getSeats();
 
     }
-
 }

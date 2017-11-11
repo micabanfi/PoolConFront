@@ -24,12 +24,11 @@ import java.util.List;
 
 public class State {
 
-
     private List<User> users;
+
     private List<ActiveRideAdmin> currentRides;
+
     private List<ExpiredRideAdmin> expiredRides;
-
-
 
     public State() {//Porque habias sacado el costructor?? Por lo que dijo franco de que cree una unica instancia de State. Creo que vos habias dicho de hacer esto tmb y yo te dije que era mala palabra jaja
         users = new ArrayList<>();
@@ -41,38 +40,8 @@ public class State {
             System.out.println("Problema initState");
         }
     }
-    
-    public void removePassenger(User pass, Ride ride) throws NotInRide{
-    	try {
-			ActiveRideAdmin rideAdmin= getActiveRideAdminOfRide(ride);
-			rideAdmin.removePassenger(pass);
-    	} catch (RideDoesNotExist e) {
-			e.printStackTrace();
-		}
-   
-    }
-    
 
-    public ActiveRideAdmin getActiveRideAdminOfRide(Ride ride) throws RideDoesNotExist{
-        for( ActiveRideAdmin rideAdmin: currentRides){
-            if(ride.equals(rideAdmin.getRide())){
-                return rideAdmin;
-            }
-        }
-        throw new RideDoesNotExist();
-    }
-
-    private ExpiredRideAdmin getExpiredRideAdminOfRide(Ride ride) throws RideDoesNotExist{
-        for( ExpiredRideAdmin rideAdmin: expiredRides){
-            if(ride.equals(rideAdmin.getRide())){
-                return rideAdmin;
-            }
-        }
-        throw new RideDoesNotExist();
-    }
-
-
-    public void initState()  throws InvalidFields {
+    public void initState() throws InvalidFields {
             //Creo Users para que cuando inicialize el programa, ya hallan Users cargados.
             //Hay que chequar patente?
             Vehicle vehicle1 = new Vehicle("Fiat", "500", "Blanco", 2015, "ABC123", 4);
@@ -100,8 +69,8 @@ public class State {
                 register(user1);
                 register(user2);
                 register(user3);
-                AddRideToList(ride1);
-                AddRideToList(ride2);
+                addRideToList(ride1);
+                addRideToList(ride2);
                 user1.addRide(ride1);
 
                 System.out.println(user1.getActiveRides().get(0).toString());
@@ -117,23 +86,9 @@ public class State {
 
     }
 
-    //Authorize hace lo mismo. No lo borro para no cagar el front si lo estan usando. y porque queda fachero
-    @Deprecated
-    public User getUser(Credential credential) throws InvalidCredentials{
-            for (User user : users) {
-                if (credential.equals(user.getCredential()))
-                    return user;
-            }
-            throw new InvalidCredentials();
-    }
-
     public User login(Credential cred) throws InvalidCredentials{
-        return authorize(cred);
-    }
-
-    public User authorize(Credential cred) throws InvalidCredentials{
         for (User user : users){
-            if (user.equalCredentials(cred)) {
+            if (user.equalCredentials(cred)){
                 return user;
             }
         }
@@ -148,49 +103,18 @@ public class State {
         throw new InvalidFields("User already Exists");
     }
 
-    public void sendRideRequest(Credential cred, Ride ride) throws InvalidCredentials, RideDoesNotExist, AlreadyRequested, AlreadyInRide{
-        User user = authorize(cred);
-        ActiveRideAdmin rideAdmin = getActiveRideAdminOfRide(ride);
-        rideAdmin.addRequest(user);
-    }
-
-    public void acceptRideRequest(Credential cred, Ride ride, User driver, User request) throws InvalidCredentials, RideDoesNotExist, NoPermission, NotRequested{
-        User user = authorize(cred);//y eso??
-        ActiveRideAdmin rideAdmin = getActiveRideAdminOfRide(ride);
-        rideAdmin.acceptRequest(driver, request);
-    }
-
-    public void rateRide(Credential cred, Ride ride, boolean goodRate) throws InvalidCredentials, AlreadyRated, RideDoesNotExist, NotInRide{
-        User user = authorize(cred);
-        ExpiredRideAdmin rideAdmin = getExpiredRideAdminOfRide(ride);
-        rideAdmin.rate(user, goodRate);
-    }
-
-    public void AddRideToList(Ride ride) throws ExistingRideException{
-        int i;
-        for(i = 0;  i<currentRides.size() && (ride.compareTo(currentRides.get(i).getRide()) <= 0); i++){
-            if(currentRides.get(i).getRide().equals(ride))
-                throw new ExistingRideException();
-
+    public void addRideToList(ActiveRideAdmin ride) throws ExistingRideException{
+        if(currentRides.contains(ride)){
+            throw new ExistingRideException();
         }
-        System.out.println("I de rides "+i);
-        ActiveRideAdmin aux = new ActiveRideAdmin(ride);
-        currentRides.add(i, aux);
+        currentRides.add(ride);
     }
 
-    //hacerla con ActiveRideAdin y descomentar en mainPage deleteRide para passarle un ActiveRide y no un RIde
-    public void deleteRide(Ride ride, User driver) throws NoPermission{
-        for(ActiveRideAdmin ride1:currentRides){
-            if(ride.equals(ride1.getRide())){
-            	if(ride.getDriver().equals(driver)) {
-                currentRides.remove(ride1);
-            	}
-            	else {
-            		throw new NoPermission();
-            	}
+    public void deleteRide(ActiveRideAdmin ride){
+            for(User user: ride.getPassengers()){
+                user.getActiveRides().remove(ride);
             }
-        }
-
+            currentRides.remove(ride);
     }
 
     // Arreglar lo de Date en todo el programa
@@ -198,9 +122,14 @@ public class State {
         boolean aux = true;
         LocalDateTime currentDate = LocalDateTime.now();
         for (int i = 0; aux ; i++) {
-            RideAdmin ride = currentRides.get(i);
+            ActiveRideAdmin ride = currentRides.get(i);
             if (ride.getRide().getDate().compareTo(currentDate) < 0){
-                expiredRides.add(new ExpiredRideAdmin(ride.getRide(), currentRides.get(i).getRequests()));
+                ExpiredRideAdmin expired = new ExpiredRideAdmin(ride.getRide(), currentRides.get(i).getPassengers());
+                expiredRides.add(expired);
+                for(User user: ride.getPassengers()){
+                    user.getActiveRides().remove(currentRides.get(i));
+                    user.getExpiredRides().add(expired);
+                }
                 currentRides.remove(i);
             }
             else{
@@ -211,9 +140,6 @@ public class State {
 
     public List<ActiveRideAdmin> getCurrentRides() { return currentRides; }
 
-    public List<ExpiredRideAdmin> getExpiredRides() { return expiredRides; }
-
-    //Deberia recibir credentials para que sea consistente con los otros metodos y ademas verificar que tenga permiso para hacerlo.
     public User modifyUser(User user) throws NotExistingUserException{
        for(User us : users) {
            if (us.equals(user)) {
@@ -224,9 +150,6 @@ public class State {
        }
        throw new NotExistingUserException();
    }
-
-
-    //QUE QUILOMBO DE COMENTARIOS, VOY A BORRAR TODS
 
     /*
        public RideAdmin saveNewRide(Ride ride) throws InvalidFields{

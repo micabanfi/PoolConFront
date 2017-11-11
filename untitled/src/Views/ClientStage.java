@@ -37,8 +37,6 @@ public class ClientStage extends Stage {
         this.user = aux;
     }
 
-
-
     private void setView(String fxml, Controller controller){
         FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
         loader.setController(controller);
