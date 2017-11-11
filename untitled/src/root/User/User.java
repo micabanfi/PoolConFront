@@ -120,21 +120,7 @@ public class User extends Person implements Serializable{
         result = 31 * result + rating.hashCode();
         return result;
     }
-
-    /*public double compatibility(User user) {
-
-    }
-    */
     
-    
-    public List<String> getVehicleNames(){
-    	
-    	List<String> vehicleNames = new ArrayList<String>();
-    	for(int i =0; i < vehicles.size() ; i++) {
-    		vehicleNames.add(vehicles.get(i).getVehicleInfo());
-    	}	    	
-    return vehicleNames;
-    }
     	
     
     public List<Vehicle> getVehicles(){
