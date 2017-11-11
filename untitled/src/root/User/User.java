@@ -53,9 +53,11 @@ public class User extends Person implements Serializable{
         this.credential = credential;
     }
 
-    public Credential getCredential(){
-        return credential;
+    @Override
+    public String toString() {
+        return  super.toString() + credential.toString() + rating.toString();
     }
+
 
     public Rating getRating() {
         return rating;
@@ -69,6 +71,15 @@ public class User extends Person implements Serializable{
         return expiredRides;
     }
 
+    public Credential getCredential(){
+        return credential;
+    }
+
+    public User getUser(){
+        return new User(this.credential, this.getName(), this.getSurname(), this.getPreferences().getCareer(), this.getPhone(), this.getPreferences().isSmoke(), this.getPreferences().ifFood(), this.getGender());
+    }
+
+
     public void addRide(ActiveRideAdmin ride){
         activeRides.add(ride);
     }
@@ -77,13 +88,16 @@ public class User extends Person implements Serializable{
         activeRides.remove(ride);
     }
 
-    public List<Vehicle> getVehicles(){
-        return vehicles;
+    public void addVehicle(Vehicle vehicle){
+        vehicles.add(vehicle);
     }
 
-    @Override
-    public String toString() {
-        return  super.toString() + credential.toString() + rating.toString();
+    public void removeVehicle(Vehicle vehicle){
+        vehicles.remove(vehicle);
+    }
+
+    public boolean equalCredentials(Credential credential){
+        return credential.equals(this.credential);
     }
 
     @Override
@@ -107,6 +121,24 @@ public class User extends Person implements Serializable{
         return result;
     }
 
+    /*public double compatibility(User user) {
 
+    }
+    */
+    
+    
+    public List<String> getVehicleNames(){
+    	
+    	List<String> vehicleNames = new ArrayList<String>();
+    	for(int i =0; i < vehicles.size() ; i++) {
+    		vehicleNames.add(vehicles.get(i).getVehicleInfo());
+    	}	    	
+    return vehicleNames;
+    }
+    	
+    
+    public List<Vehicle> getVehicles(){
+    	return vehicles;
+    }
     
 }

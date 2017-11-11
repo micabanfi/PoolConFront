@@ -77,7 +77,7 @@ public class MyProfile extends Controller {
                 genderaux = "Prefiero no aclarar";
         }
         MyProfileGenretx.setText(genderaux);
-        MyProfileUsernametx.setText(stage.getUser().getCredential().getUserName());
+        MyProfileUsernametx.setText(stage.getUser().getCredential().getUsername());
         MyProfilePasswordtx.setText(stage.getUser().getCredential().getPassword());
     }
 

@@ -22,6 +22,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import root.Exceptions.ExistingRideException;
 import root.Exceptions.NoVehicleException;
+import root.Ride.ActiveRideAdmin;
 import root.Ride.Permissions;
 import root.Ride.Ride;
 import root.Ride.Route;
@@ -48,7 +49,7 @@ public class NewRide extends Controller {
 	    private ChoiceBox<String> smokeCb;
 	    @FXML
 	    private ChoiceBox<String> vehiclesCb;
-	    private ArrayList<String> listVehicles = new ArrayList<>();
+	    private List<String> listVehicles = new ArrayList<>();
 	    private ObservableList<String> observableListVehicles;
 
     public NewRide(ClientStage stage){
@@ -84,12 +85,13 @@ public class NewRide extends Controller {
 			rta = smokeCb.getValue();
 			smoke = rta.compareTo("Si") == 0;
     		Route route1 = new Route(from, to, route);
-    		Permissions permissions = new Permissions(smoke, eat, eat); 	
+    		Permissions permissions = new Permissions(smoke, eat);
     		Vehicle vehicle = findUserVehicle(vehicleString);
     		Ride ride = new Ride(route1, vehicle, stage.getUser(), permissions, dateOf);
+			ActiveRideAdmin activeRide = new ActiveRideAdmin(ride);
     		System.out.println(ride);
     		try {
-				stage.getState().AddRideToList(ride);
+				stage.getState().addRideToList(activeRide);
 			} catch (ExistingRideException e) {
 				 Alert alert = new Alert(Alert.AlertType.ERROR);
 		            alert.setTitle("Error");
@@ -137,9 +139,9 @@ public class NewRide extends Controller {
     }
 
     public void init() {
-    		listVehicles = stage.getUser().getVehicleNames();
-        	observableListVehicles = FXCollections.observableArrayList(listVehicles);
-        	vehiclesCb.setItems(observableListVehicles);
-    	
+    	for (Vehicle vehicle : stage.getUser().getVehicles())
+		listVehicles.add("Vehicle:"+'\n'+"Brand:"+vehicle.getBrand()+"Model:"+vehicle.getModel()+" Color:"+vehicle.getColor()+" Plate:"+vehicle.getPlate()+"Seats:"+vehicle.getSeats());
+		observableListVehicles = FXCollections.observableArrayList(listVehicles);
+		vehiclesCb.setItems(observableListVehicles);
     }
 }
