@@ -109,7 +109,7 @@
             <Font size="20.0" />
          </font>
       </TextField>
-      <Button fx:id="LogIn" layoutX="571.0" layoutY="403.0" mnemonicParsing="false" onAction="#newUser" prefHeight="48.0" prefWidth="267.0" text="Iniciar sesion">
+      <Button fx:id="LogIn" layoutX="571.0" layoutY="403.0" mnemonicParsing="false" onAction="#newUser" prefHeight="48.0" prefWidth="267.0" text="Iniciar sesion" defaultButton="true">
          <font>
             <Font size="20.0" />
          </font>

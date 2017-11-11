@@ -14,21 +14,16 @@ import root.Ride.ActiveRideAdmin;
 import root.Ride.ExpiredRideAdmin;
 import root.User.Gender;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
+import java.io.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 
 public class State implements Serializable{
 
     private static final long serialVersionUID = 1L;
+    private static final File file = new File("../PoolConFront/untitled/src/root/Data");
 
     private List<User> users;
 
@@ -61,7 +56,10 @@ public class State implements Serializable{
         expiredRides = (List<ExpiredRideAdmin>) ois.readObject();
     }
 
-    public void initState() throws InvalidFields {
+    public void initState() throws InvalidFields, IOException, ClassNotFoundException {
+
+        loadData(file);
+
         //Creo Users para que cuando inicialize el programa, ya hallan Users cargados.
         //Hay que chequar patente?
         Vehicle vehicle1 = new Vehicle("Fiat", "500", "Blanco", 2015, "ABC123", 4);
@@ -81,18 +79,30 @@ public class State implements Serializable{
         //Creo rides
         LocalDateTime date=LocalDateTime.of(2018,12,20,14,30);
         Ride ride1=new Ride(new Route("Victoria","Itba","Libertador"),vehicle1,user1,new Permissions(false,true), date);
+        ActiveRideAdmin rideAdmin1 = new ActiveRideAdmin(ride1);
         LocalDateTime date2=LocalDateTime.of(2018,8,3,9,15);
         Ride ride2=new Ride(new Route("Mi Casa","Tu casa","Paranamerica"),vehicle2,user2,new Permissions(false,true),date2);
+        LocalDateTime date3 = LocalDateTime.of(2017, 11,11,15,15);
+        Ride oldRide = new Ride(new Route ("Nordelta", "ITBA", "Panamericana"), vehicle1, user1, new Permissions(false, false), date3);
+
+
+        List<User> listOldRide = new ArrayList<>();
+        listOldRide.add(user2);
+        listOldRide.add(user3);
+        ExpiredRideAdmin oldRideExp = new ExpiredRideAdmin(oldRide, listOldRide);
+
+        ActiveRideAdmin rideAdmin2 = new ActiveRideAdmin(ride2);
         //Agregamos los users al objeto estado que maneja el carPooling
         try {
 
             register(user1);
             register(user2);
             register(user3);
-            AddRideToList(ride1);
-            AddRideToList(ride2);
-            user1.addRide(ride1);
-
+            addRideToList(rideAdmin1);
+            addRideToList(rideAdmin2);
+            user1.addRide(rideAdmin1);
+            user2.addRide(rideAdmin2);
+            user1.getExpiredRides().add(oldRideExp);
             System.out.println(user1.getActiveRides().get(0).toString());
             //Imprimo los usuarios que cree
         } catch (InvalidFields e) {
@@ -137,7 +147,6 @@ public class State implements Serializable{
             currentRides.remove(ride);
     }
 
-    // Arreglar lo de Date en todo el programa
     public void refreshRides(){
         boolean aux = true;
         LocalDateTime currentDate = LocalDateTime.now();
@@ -192,5 +201,23 @@ public class State implements Serializable{
             throw new InvalidFields("No Ride With The Same Characteristics.");
        }
     */
+
+    // metodos para llamar la serializacion/ guardar/loadear datos
+
+    public void loadData(File file) throws IOException, ClassNotFoundException {
+        ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(file));
+        users = (List<User>) objectInputStream.readObject();
+        currentRides = (List<ActiveRideAdmin>) objectInputStream.readObject();
+        expiredRides = (List<ExpiredRideAdmin>) objectInputStream.readObject();
+        objectInputStream.close();
+    }
+
+    public void saveData(File file) throws IOException {
+        ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(file));
+        objectOutputStream.writeObject(users);
+        objectOutputStream.writeObject(currentRides);
+        objectOutputStream.writeObject(expiredRides);
+        objectOutputStream.close();
+    }
 
 }

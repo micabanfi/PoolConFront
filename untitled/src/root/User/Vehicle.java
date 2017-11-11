@@ -52,11 +52,21 @@ public class Vehicle implements Serializable{
         return Integer.toString(seats);
     }
 
-    public String getVehicleInfo() {
-        return "Vehicle:"+'\n'+"Brand:"+brand+"Model:"+model+" Color:"+color+" Plate:"+plate+"Seats:"+seats;
-    }//pasar to string al front
+    public String getBrand() {
+        return brand;
+    }
 
+    public String getModel() {
+        return model;
+    }
 
+    public String getColor() {
+        return color;
+    }
+
+    public String getPlate() {
+        return plate;
+    }
 
     public int getSeats(){
         return seats;

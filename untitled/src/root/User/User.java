@@ -84,6 +84,10 @@ public class User extends Person implements Serializable{
         activeRides.add(ride);
     }
 
+    public void addRideToExpiredRides(ExpiredRideAdmin ride){
+        expiredRides.add(ride);
+    } //
+
     public void removeRide(Ride ride){
         activeRides.remove(ride);
     }
@@ -121,20 +125,6 @@ public class User extends Person implements Serializable{
         return result;
     }
 
-    /*public double compatibility(User user) {
-
-    }
-    */
-    
-    
-    public List<String> getVehicleNames(){
-    	
-    	List<String> vehicleNames = new ArrayList<String>();
-    	for(int i =0; i < vehicles.size() ; i++) {
-    		vehicleNames.add(vehicles.get(i).getVehicleInfo());
-    	}	    	
-    return vehicleNames;
-    }
     	
     
     public List<Vehicle> getVehicles(){
