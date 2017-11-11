@@ -2,6 +2,8 @@ package root.User;
 
 import root.Exceptions.DeniedDriverException;
 import root.Exceptions.NoVehicleException;
+import root.Ride.ActiveRideAdmin;
+import root.Ride.ExpiredRideAdmin;
 import root.Ride.Ride;
 
 import java.util.ArrayList;
@@ -10,16 +12,16 @@ import java.util.List;
 public class User extends Person{
     private Credential credential;
     private ArrayList<Vehicle> vehicles;//cambiar a LIST
-    private ArrayList<Ride> expiredRides;
-    private ArrayList<Ride> activeRides;
+    private ArrayList<ExpiredRideAdmin> expiredRides;
+    private ArrayList<ActiveRideAdmin> activeRides;
     private Rating rating;
     private boolean driver;//sacaar esto  hacer fn que devuelva si vehiculos es empty
    
     public User(Credential credential, String name, String surname, String career, String phone,boolean smoke,boolean food,Gender gender){
         super(name, surname, career, phone, smoke, food, gender);
         this.vehicles = new ArrayList<Vehicle>();
-        this.expiredRides = new ArrayList<Ride>();
-        this.activeRides = new ArrayList<Ride>();
+        this.expiredRides = new ArrayList<ExpiredRideAdmin>();
+        this.activeRides = new ArrayList<ActiveRideAdmin>();
         this.credential=credential;
         this.rating = new Rating();
         this.driver= true;
@@ -46,11 +48,11 @@ public class User extends Person{
         return rating;
     }
 
-    public ArrayList<Ride> getActiveRides(){
+    public ArrayList<ActiveRideAdmin> getActiveRides(){
         return activeRides;
     }
 
-    public ArrayList<Ride> getExpiredRides(){
+    public ArrayList<ExpiredRideAdmin> getExpiredRides(){
         return expiredRides;
     }
 
@@ -63,17 +65,12 @@ public class User extends Person{
     }
 
 
-    public void addRide(Ride ride){
+    public void addRide(ActiveRideAdmin ride){
         activeRides.add(ride);
     }
 
     public void removeRide(Ride ride){
         activeRides.remove(ride);
-    }
-
-    public void sendToHistory(Ride ride){
-        activeRides.remove(ride);
-        expiredRides.add(ride);
     }
 
     public void addVehicle(Vehicle vehicle){
