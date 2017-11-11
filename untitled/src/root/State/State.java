@@ -61,6 +61,7 @@ public class State implements Serializable{
         expiredRides = (List<ExpiredRideAdmin>) ois.readObject();
     }
 
+    //El invalidFields tiene que ser catcheado desde aca
     public void initState() throws InvalidFields {
         //Creo Users para que cuando inicialize el programa, ya hallan Users cargados.
         //Hay que chequar patente?
@@ -121,16 +122,20 @@ public class State implements Serializable{
             return user;
         }
         throw new InvalidFields("User already Exists");
+    } //Tirar una exception por cada error diferente?
+
+    public void removeUser(User user){
+        users.remove(user);
     }
 
-    public void addRideToList(ActiveRideAdmin ride) throws ExistingRideException{
+    public void addRide(ActiveRideAdmin ride) throws ExistingRideException{
         if(currentRides.contains(ride)){
             throw new ExistingRideException();
         }
         currentRides.add(ride);
     }
 
-    public void deleteRide(ActiveRideAdmin ride){
+    public void removeRide(ActiveRideAdmin ride){
             for(User user: ride.getPassengers()){
                 user.getActiveRides().remove(ride);
             }
@@ -138,7 +143,7 @@ public class State implements Serializable{
     }
 
     // Arreglar lo de Date en todo el programa
-    public void refreshRides(){
+    private void refreshRides(){
         boolean aux = true;
         LocalDateTime currentDate = LocalDateTime.now();
         for (int i = 0; aux ; i++) {
@@ -158,39 +163,9 @@ public class State implements Serializable{
         }
     }
 
-    public List<ActiveRideAdmin> getCurrentRides() { return currentRides; }
-
-    public User modifyUser(User user) throws NotExistingUserException{
-       for(User us : users) {
-           if (us.equals(user)) {
-               users.remove(us);
-               users.add(user);
-               return user;
-           }
-       }
-       throw new NotExistingUserException();
-   }
-
-    /*
-       public RideAdmin saveNewRide(Ride ride) throws InvalidFields{
-           if (AddToList(ride))
-               return ride;
-           throw new InvalidFields("Invalid Ride");
-       }
-    */
-
-        /* Si es que usamos este metodo, cambiarlo para que sea compatible a RideAdmin
-        public Ride modifyRide(Ride ride) throws InvalidFields{
-            for(int i = 0; i < users.size(); i++){
-                Ride aux = currentRides.get(i);
-                if (aux.getRide().equals(ride)){
-                    currentRides.remove(i);
-                    currentRides.add(ride);
-                    return ride;
-                }
-            }
-            throw new InvalidFields("No Ride With The Same Characteristics.");
-       }
-    */
+    public List<ActiveRideAdmin> getActiveRideAdmins() {
+        refreshRides();
+        return currentRides;
+    }
 
 }

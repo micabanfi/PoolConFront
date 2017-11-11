@@ -32,6 +32,7 @@ public class Main extends Application {
         launch(args);
     }
 
+
         /* metodos para llamar la serializacion/ guardar/loadear datos
 
     private void loadData(File file) throws IOException, ClassNotFoundException {

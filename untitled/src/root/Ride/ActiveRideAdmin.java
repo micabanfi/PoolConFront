@@ -2,6 +2,7 @@ package root.Ride;
 
 import root.Exceptions.*;
 import root.User.Person;
+import root.User.Preferences;
 import root.User.User;
 
 import java.io.IOException;
@@ -91,6 +92,18 @@ public class ActiveRideAdmin extends RideAdmin implements Serializable{
     public void declineRequest(User driver, User request)throws NoPermission, NotRequested{
         validateRequest(driver, request);
         requests.remove(request);
+    }
+
+    public int compatibility(Preferences preferences){
+        double passengerRating=0;
+        for(User user: passengers){
+            passengerRating += user.getRating().calculatePercentage();
+        }
+        passengerRating = passengerRating/passengers.size();
+        double driverRating = ride.getDriver().getRating().calculatePercentage();
+        double preferencesRating= ride.getPermissions().compatibility(preferences);
+
+        return (int)(passengerRating*0.3 + driverRating*0.3 + preferencesRating*0.5);
     }
 
 }

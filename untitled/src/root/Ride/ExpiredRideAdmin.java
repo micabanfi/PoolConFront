@@ -42,16 +42,15 @@ public class ExpiredRideAdmin extends RideAdmin implements Serializable{
         return ratings;
     }
 
-    public void rate(User person, Boolean goodRate) throws AlreadyRated, NotInRide, NullPointerException{
-        if(goodRate == null) throw new NullPointerException();
-        if(ratings.containsKey(person)){
-            if(ratings.get(person) == null){
-                ratings.put(person, goodRate);
-            }else{
-                throw new AlreadyRated();
+    public void rate(User person, Boolean goodRate) throws AlreadyRated{
+        if(ratings.get(person) == null){
+            ratings.put(person, goodRate);
+            for(User user:passengers){
+                if(!user.equals(person))
+                    user.getRating().modifyRating(goodRate);
             }
         }else{
-            throw new NotInRide();
+            throw new AlreadyRated();
         }
     }
 }

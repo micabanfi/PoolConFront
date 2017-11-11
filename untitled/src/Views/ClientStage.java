@@ -5,14 +5,15 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import root.Exceptions.InvalidCredentials;
-import root.Exceptions.InvalidFields;
+import root.Exceptions.*;
+import root.Ride.ActiveRideAdmin;
 import root.User.Credential;
 import root.User.User;
 import root.State.State;
 
 import javax.security.auth.login.LoginContext;
 import java.io.IOException;
+import java.util.List;
 
 public class ClientStage extends Stage {
     private User user;
@@ -26,15 +27,35 @@ public class ClientStage extends Stage {
         this.show();
     }
 
-
     public void register(User user) throws InvalidFields{
-        state.register(user);
-        this.user = user;
+        this.user = state.register(user);
     }
 
     public void login(Credential cred) throws InvalidCredentials{
-        User aux=state.login(cred);
-        this.user = aux;
+        this.user = state.login(cred);;
+    }
+
+    public void newRide(ActiveRideAdmin ride) throws ExistingRideException, NoVehicleException{
+        if(user.getVehicles().size() == 0)
+            throw new NoVehicleException();
+        state.addRide(ride);
+    }
+
+    public void removeRide(ActiveRideAdmin ride) throws NoPermission{
+        if(!ride.getRide().getDriver().equals(user))
+            throw new NoPermission();
+        state.removeRide(ride);
+    }
+
+    public void modifyUser(User user) throws InvalidFields{
+        register(user);
+        state.removeUser(this.user);
+        this.user = user;
+    }
+
+    //Volver a llamar para hacer refresh
+    public List<ActiveRideAdmin> getActiveRideAdmins(){
+        return state.getActiveRideAdmins();
     }
 
     private void setView(String fxml, Controller controller){
@@ -69,11 +90,13 @@ public class ClientStage extends Stage {
     }
 
     public void AcceptRequest(){ setView("AcceptRequest.fxml",new AcceptRequest(this));}
-    
+
+    //Usar los metodos de ClientStage en lugar
+    @Deprecated
     public State getState() {
     	return state;
     }
-    
+
     public User getUser() {
     	return user;
     }

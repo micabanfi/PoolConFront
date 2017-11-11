@@ -1,5 +1,7 @@
 package root.Ride;
 
+import root.User.Preferences;
+
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -27,6 +29,18 @@ public class Permissions implements Serializable{
     public Permissions(boolean smoke, boolean eat){
         this.smoke = smoke;
         this.eat = eat;
+    }
+
+    public int compatibility(Preferences preferences){
+        double aux = 0;
+        if(preferences.isSmoke()){
+            aux += 1;
+        };
+        if(preferences.isSmoke()){
+            aux += 1;
+        }
+        aux = aux/2;
+        return (int)aux;
     }
 
     @Override
