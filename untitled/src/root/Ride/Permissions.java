@@ -31,7 +31,7 @@ public class Permissions implements Serializable{
         this.eat = eat;
     }
 
-    public int compatibility(Preferences preferences){
+    public double compatibility(Preferences preferences){
         double aux = 0;
         if(preferences.isSmoke()){
             aux += 1;
@@ -40,7 +40,7 @@ public class Permissions implements Serializable{
             aux += 1;
         }
         aux = aux/2;
-        return (int)aux;
+        return aux;
     }
 
     @Override

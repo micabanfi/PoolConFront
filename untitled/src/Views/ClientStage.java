@@ -35,16 +35,18 @@ public class ClientStage extends Stage {
         this.user = state.login(cred);;
     }
 
-    public void newRide(ActiveRideAdmin ride) throws ExistingRideException, NoVehicleException{
-        if(user.getVehicles().size() == 0)
-            throw new NoVehicleException();
-        state.addRide(ride);
+    public void newRide(ActiveRideAdmin ride) throws ExistingRideException{
+        state.addRideToList(ride);
     }
 
     public void removeRide(ActiveRideAdmin ride) throws NoPermission{
         if(!ride.getRide().getDriver().equals(user))
             throw new NoPermission();
-        state.removeRide(ride);
+        state.deleteRide(ride);
+    }
+
+    public void leaveRide(ActiveRideAdmin ride){
+        ride.getPassengers().remove(user);
     }
 
     public void modifyUser(User user) throws InvalidFields{
@@ -55,7 +57,7 @@ public class ClientStage extends Stage {
 
     //Volver a llamar para hacer refresh
     public List<ActiveRideAdmin> getActiveRideAdmins(){
-        return state.getActiveRideAdmins();
+        return state.getCurrentRides();
     }
 
     private void setView(String fxml, Controller controller){
@@ -89,7 +91,9 @@ public class ClientStage extends Stage {
         setView("Register.fxml", new Register(this));
     }
 
-    public void AcceptRequest(){ setView("AcceptRequest.fxml",new AcceptRequest(this));}
+    public void AcceptRequest(ActiveRideAdmin rideAdmin){
+        setView("AcceptRequest.fxml",new AcceptRequest(this, rideAdmin));
+    }
 
     //Usar los metodos de ClientStage en lugar
     @Deprecated

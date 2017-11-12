@@ -137,6 +137,10 @@ public class State implements Serializable{
         throw new InvalidFields("User already Exists");
     }
 
+    public void removeUser(User user){
+        users.remove(user);
+    }
+
     public void addRideToList(ActiveRideAdmin ride) throws ExistingRideException{
         if(currentRides.contains(ride)){
             throw new ExistingRideException();

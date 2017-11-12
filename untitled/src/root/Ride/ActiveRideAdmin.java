@@ -49,12 +49,8 @@ public class ActiveRideAdmin extends RideAdmin implements Serializable{
         return requests;
     }
 
-    public void leaveRide(User passenger) throws NotInRide {
-        if(passengers.contains(passenger)){
+    public void leaveRide(User passenger){
             passengers.remove(passenger);
-        }else{
-            throw new NotInRide();
-        }
     }
 
     public void addRequest(User person) throws AlreadyRequested, AlreadyInRide, SeatsTaken {

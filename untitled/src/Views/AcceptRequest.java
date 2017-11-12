@@ -10,6 +10,7 @@ import root.Exceptions.InvalidCredentials;
 import root.Exceptions.NoPermission;
 import root.Exceptions.NotRequested;
 import root.Exceptions.RideDoesNotExist;
+import root.Ride.ActiveRideAdmin;
 import root.Ride.Ride;
 import root.User.Credential;
 import root.User.Gender;
@@ -27,11 +28,16 @@ public class AcceptRequest extends Controller {
     @FXML private TableColumn telefono;
     @FXML private TableColumn raiting;
 
-    public AcceptRequest(ClientStage stage){
+    private ActiveRideAdmin rideAdmin;
+
+    public AcceptRequest(ClientStage stage, ActiveRideAdmin rideAdmin){
         super(stage);
+        this.rideAdmin = rideAdmin;
     }
 
-    public void mainPage(ActionEvent event){stage.MainPage(); }
+    public void mainPage(ActionEvent event){
+        stage.MainPage();
+    }
 
     public ObservableList<User> getUser(){
         ObservableList<User> users= FXCollections.observableArrayList();
@@ -65,8 +71,7 @@ public class AcceptRequest extends Controller {
         User user1 = new User(credential1, "Micaela", "Banfi", "Informatica", "1234567890", false, true, Gender.OTHER);
 
         //allUsers.removeAll(acceptUser);
-
-        stage.getState().acceptRideRequest(user.getCredential(),stage.getState().getCurrentRides().get(0).getRide(),stage.getUser(),user1);
+        //stage.getState().acceptRideRequest(user.getCredential(),stage.getState().getCurrentRides().get(0).getRide(),stage.getUser(),user1);
 
     }
 }

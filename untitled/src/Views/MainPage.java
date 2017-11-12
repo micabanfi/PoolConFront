@@ -25,6 +25,8 @@ import root.Ride.Ride;
 import root.Ride.Route;
 
 
+import java.util.List;
+
 import static java.lang.System.out;
 
 public class MainPage extends Controller{
@@ -36,6 +38,8 @@ public class MainPage extends Controller{
     @FXML private TableColumn permissions;
     @FXML private TableColumn asientos;
 
+    private List<ActiveRideAdmin> rides;
+
     public MainPage(ClientStage stage){
         super(stage);
     }
@@ -45,20 +49,24 @@ public class MainPage extends Controller{
         stage.MyProfile();
     }
 
-
+    private ActiveRideAdmin getActiveRideAdmin(Ride ride){
+        for(ActiveRideAdmin rideAdmin:rides){
+            if(rideAdmin.getRide().equals(ride))
+                return rideAdmin;
+        }
+        return null;
+    }
 
     public void newRide(ActionEvent event) {
-    	try {
-    		stage.getUser().isDriver();//modificar deberia sr=er boleano y no excepcion.hacer un if
-    		stage.NewRide();
-    	}
-        catch (DeniedDriverException e) {
-        	 Alert alert = new Alert(Alert.AlertType.ERROR);
-             alert.setTitle("Error");
-             alert.setHeaderText("No cumple con las condiciones para ser Conductor");
-             alert.setContentText(null);
-             alert.showAndWait();
-        }
+    	    if(!stage.getUser().getVehicles().isEmpty()) {
+                stage.NewRide();
+            }else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("No cumple con las condiciones para ser Conductor");
+                alert.setContentText(null);
+                alert.showAndWait();
+            }
     }
 
     public ObservableList<Ride> getRides(){
@@ -88,7 +96,7 @@ public class MainPage extends Controller{
         Ride removeRide=ridesTable.getSelectionModel().getSelectedItem();
         
         try {
-        	stage.getState().deleteRide(removeRide,stage.getUser());
+            stage.removeRide(getActiveRideAdmin(removeRide));
         	allRides.removeAll(rideSelected);
         } catch(NoPermission e) {
         	Alert alert = new Alert(Alert.AlertType.ERROR);

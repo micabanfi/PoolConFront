@@ -13,6 +13,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import root.Exceptions.NoPermission;
 import root.Exceptions.NotInRide;
+import root.Ride.ActiveRideAdmin;
 import root.Ride.Ride;
 import root.User.Credential;
 import root.User.Gender;
@@ -20,6 +21,7 @@ import root.User.Preferences;
 
 import javax.annotation.Resources;
 import javax.print.DocFlavor;
+import java.util.List;
 
 public class MyProfile extends Controller {
 
@@ -45,6 +47,7 @@ public class MyProfile extends Controller {
     @FXML
     private TableColumn fecha;
 
+    private List<ActiveRideAdmin> rides;
 
     public MyProfile(ClientStage stage) {
 
@@ -58,6 +61,14 @@ public class MyProfile extends Controller {
         fecha.setCellValueFactory(new PropertyValueFactory<>("date"));
         ridesTable.setItems(getRides());
 
+    }
+
+    private ActiveRideAdmin getActiveRideAdmin(Ride ride){
+        for(ActiveRideAdmin rideAdmin:stage.getUser().getActiveRides()){
+            if(rideAdmin.getRide().equals(ride))
+                return rideAdmin;
+        }
+        return null;
     }
 
     public void setProfileInfo() {
@@ -85,9 +96,6 @@ public class MyProfile extends Controller {
         stage.MainPage();
     }
 
-    public void acceptRequest(ActionEvent event) {
-        stage.AcceptRequest();
-    }
 
     public void editMyProfile() {
 
@@ -108,7 +116,8 @@ public class MyProfile extends Controller {
     }
 
     public void btAcceptRequest(ActionEvent event) {
-        stage.AcceptRequest();
+        //Hay que pasar como parametro el ActiveRideAdmine del ride seleccionado.
+        //stage.AcceptRequest();
     }
 
 
@@ -117,18 +126,9 @@ public class MyProfile extends Controller {
         allRides = ridesTable.getItems();
         rideSelected = ridesTable.getSelectionModel().getSelectedItems();
         Ride removeRide = ridesTable.getSelectionModel().getSelectedItem();
-        
-        
-        try {
-			stage.getState().removePassenger(stage.getUser(), removeRide);
-		} catch (NotInRide e1) {
-			Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("Usted no es pasajero de este viaje");
-            alert.setContentText(null);
-            alert.showAndWait();
-		}
-        
+
+        stage.leaveRide(getActiveRideAdmin(removeRide));
+
     }
 
 

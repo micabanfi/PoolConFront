@@ -53,10 +53,10 @@ public class Register extends Controller {
             password1 = RgPasswordtx.getText();
             genreaux = RgGenrech.getValue().toString();
           
-            if(genreaux.equals(Gender.MALE.getGenderSpanish())) {
+            if(genreaux.equals(Gender.MALE.getGender())) {
             	genre=Gender.MALE;
             }
-            else if(genreaux.equals(Gender.FEMALE.getGenderSpanish())) {
+            else if(genreaux.equals(Gender.FEMALE.getGender())) {
             	genre=Gender.FEMALE;
             }
             else {
