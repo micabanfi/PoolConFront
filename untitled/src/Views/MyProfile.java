@@ -23,6 +23,7 @@ import javax.annotation.Resources;
 import javax.print.DocFlavor;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 public class MyProfile extends Controller {
@@ -131,8 +132,8 @@ public class MyProfile extends Controller {
         stage.AcceptRequest(rideAdmin);
     }
     
-    public void btLoadData() {
-    	stage.loadData(file);;
+    public void btLoadData(ActionEvent event) throws IOException, ClassNotFoundException{
+    	stage.loadData(file);
     }
 
 

@@ -62,40 +62,42 @@ public class State implements Serializable{
 
     public void initState() throws InvalidFields, IOException, ClassNotFoundException {
 
-        
-        //Creo Users para que cuando inicialize el programa, ya hallan Users cargados.
-        //Hay que chequar patente?
+        loadData(file);
+
         Vehicle vehicle1 = new Vehicle("Fiat", "500", "Blanco", 2015, "ABC123", 4);
         Vehicle vehicle2=new Vehicle("Ford","K","Celeste",2010,"ARX420",3);
-        //LocalDate bDayMica = LocalDate.of(2000, 1, 2);
-        //LocalDate bDayMaite = LocalDate.of(2000, 6, 30);
+
         Credential credential1 = new Credential("mica", "1234");
         Credential credential2=new Credential("maimai","maite1234");
-        //Le agrego vehicle1 a person1
-        //person1.addVehicle(vehicle1);
+
         User user1 = new User(credential1, "Micaela", "Banfi", "Informatica", "1234567890", false, true, Gender.OTHER);
         User user2=new User(credential2,"Maite","Herran","Infor","11112222",false,false, Gender.FEMALE);
         User user3= new User(new Credential("a","a"),"a","a","a","a", true, true, Gender.MALE);
+
         user1.addVehicle(vehicle1);
         user1.addVehicle(vehicle2);
         user2.addVehicle(vehicle1);
-        //Creo rides
+
         LocalDateTime date=LocalDateTime.of(2018,12,20,14,30);
         Ride ride1=new Ride(new Route("Victoria","Itba","Libertador"),vehicle1,user1,new Permissions(false,true), date);
         ActiveRideAdmin rideAdmin1 = new ActiveRideAdmin(ride1);
+
         LocalDateTime date2=LocalDateTime.of(2018,8,3,9,15);
         Ride ride2=new Ride(new Route("Mi Casa","Tu casa","Paranamerica"),vehicle2,user2,new Permissions(false,true),date2);
+
         LocalDateTime date3 = LocalDateTime.of(2017, 11,11,15,15);
         Ride oldRide = new Ride(new Route ("Nordelta", "ITBA", "Panamericana"), vehicle1, user1, new Permissions(false, false), date3);
-
 
         List<User> listOldRide = new ArrayList<>();
         listOldRide.add(user2);
         listOldRide.add(user3);
-        ExpiredRideAdmin oldRideExp = new ExpiredRideAdmin(oldRide, listOldRide);
 
+        ExpiredRideAdmin oldRideExp = new ExpiredRideAdmin(oldRide, listOldRide);
         ActiveRideAdmin rideAdmin2 = new ActiveRideAdmin(ride2);
-        //Agregamos los users al objeto estado que maneja el carPooling
+
+
+        System.out.println(1);
+
         try {
 
             register(user1);
@@ -108,7 +110,7 @@ public class State implements Serializable{
             user1.getExpiredRides().add(oldRideExp);
 
             System.out.println(user1.getActiveRides().get(0).toString());
-            //Imprimo los usuarios que cree
+
         } catch (InvalidFields e) {
             //Este no deberia ir en possibleErrors porque lohacemos nosotros,no deberiamos ser tan tontos ;)
             System.out.println("Usuario ya existente");
@@ -117,8 +119,10 @@ public class State implements Serializable{
         } catch(Exception e){
             System.out.println(e.getMessage());
         }
+        for (User auss : users)
+            System.out.println(auss.toString());
 
-        loadData(file);
+
     }
 
     public User login(Credential cred) throws InvalidCredentials{

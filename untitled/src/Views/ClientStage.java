@@ -13,15 +13,14 @@ import root.State.State;
 
 import javax.security.auth.login.LoginContext;
 
-import com.sun.java.util.jar.pack.Package.File;
-
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
 public class ClientStage extends Stage {
     private User user;
     private State state;
-	private Views.File file;
+	private File file;
 
     public ClientStage(State state, String title){
         super();
@@ -53,7 +52,7 @@ public class ClientStage extends Stage {
         ride.getPassengers().remove(user);
     }
 
-    public void loadData(File file) {
+    public void loadData(File file) throws IOException, ClassNotFoundException {
 		state.loadData(file);
     }
     
