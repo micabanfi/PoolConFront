@@ -62,7 +62,7 @@ public class State implements Serializable{
 
     public void initState() throws InvalidFields, IOException, ClassNotFoundException {
 
-        loadData(file);
+        
         //Creo Users para que cuando inicialize el programa, ya hallan Users cargados.
         //Hay que chequar patente?
         Vehicle vehicle1 = new Vehicle("Fiat", "500", "Blanco", 2015, "ABC123", 4);
@@ -118,6 +118,7 @@ public class State implements Serializable{
             System.out.println(e.getMessage());
         }
 
+        loadData(file);
     }
 
     public User login(Credential cred) throws InvalidCredentials{

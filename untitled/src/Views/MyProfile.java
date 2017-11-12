@@ -107,7 +107,7 @@ public class MyProfile extends Controller {
         MyProfilePasswordtx.setEditable(true);
     }
 
-    public void saveChanges() {
+    public void saveChanges(ActionEvent event) {
         stage.getUser().setName(MyProfileNametx.getText());
         stage.getUser().setSurname(MyProfileSurnametx.getText());
         stage.getUser().setPreferences(new Preferences(MyProfileCareertx.getText(), stage.getUser().getPreferences().isSmoke(), stage.getUser().getPreferences().ifFood()));
@@ -117,7 +117,12 @@ public class MyProfile extends Controller {
 
     public void btAcceptRequest(ActionEvent event) {
         //Hay que pasar como parametro el ActiveRideAdmine del ride seleccionado.
-        //stage.AcceptRequest();
+    	ObservableList<Ride> rideSelected,allRides;
+        allRides=ridesTable.getItems();
+        rideSelected=ridesTable.getSelectionModel().getSelectedItems();
+        Ride ride=ridesTable.getSelectionModel().getSelectedItem();
+        ActiveRideAdmin rideAdmin = this.getActiveRideAdmin(ride);
+        stage.AcceptRequest(rideAdmin);
     }
 
 

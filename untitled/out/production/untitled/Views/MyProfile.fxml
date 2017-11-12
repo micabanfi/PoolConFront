@@ -106,7 +106,7 @@
             <Font size="20.0" />
          </font>
       </Button>
-      <Button fx:id="acceptRequest" layoutX="737.0" layoutY="127.0" mnemonicParsing="false" onAction="#acceptRequest" text="Aceptar Solicitudes">
+      <Button fx:id="btAcceptRequest" layoutX="737.0" layoutY="127.0" mnemonicParsing="false" onAction="#btAcceptRequest" text="Aceptar Solicitudes">
          <font>
             <Font size="20.0" />
          </font>
