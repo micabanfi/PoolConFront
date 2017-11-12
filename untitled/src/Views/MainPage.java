@@ -29,6 +29,9 @@ import java.util.List;
 
 import static java.lang.System.out;
 
+import java.io.File;
+import java.io.IOException;
+
 public class MainPage extends Controller{
 
     @FXML private TableView<Ride> ridesTable;
@@ -39,6 +42,7 @@ public class MainPage extends Controller{
     @FXML private TableColumn asientos;
 
     private List<ActiveRideAdmin> rides;
+    private static final File file = new File("../PoolConFront/untitled/src/root/Data");
 
     public MainPage(ClientStage stage){
         super(stage);
@@ -48,6 +52,10 @@ public class MainPage extends Controller{
 
         stage.MyProfile();
 
+    }
+    
+    public void btLoadData(ActionEvent event) throws IOException, ClassNotFoundException{
+    	stage.loadData(file);
     }
 
     private ActiveRideAdmin getActiveRideAdmin(Ride ride){

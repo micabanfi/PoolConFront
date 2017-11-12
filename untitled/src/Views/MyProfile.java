@@ -52,7 +52,7 @@ public class MyProfile extends Controller {
 
     private List<ActiveRideAdmin> rides;
 
-    private static final File file = new File("../PoolConFront/untitled/src/root/Data");
+ 
     
     public MyProfile(ClientStage stage) {
 
@@ -132,9 +132,7 @@ public class MyProfile extends Controller {
         stage.AcceptRequest(rideAdmin);
     }
     
-    public void btLoadData(ActionEvent event) throws IOException, ClassNotFoundException{
-    	stage.loadData(file);
-    }
+   
 
 
     public void btRemovePassenger() {
