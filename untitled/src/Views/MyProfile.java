@@ -21,6 +21,8 @@ import root.User.Preferences;
 
 import javax.annotation.Resources;
 import javax.print.DocFlavor;
+
+import java.io.File;
 import java.util.List;
 
 public class MyProfile extends Controller {
@@ -49,11 +51,15 @@ public class MyProfile extends Controller {
 
     private List<ActiveRideAdmin> rides;
 
+    private static final File file = new File("../PoolConFront/untitled/src/root/Data");
+    
     public MyProfile(ClientStage stage) {
 
         super(stage);
 
     }
+    
+    
 
     public void init() {
         setProfileInfo();
@@ -123,6 +129,10 @@ public class MyProfile extends Controller {
         Ride ride=ridesTable.getSelectionModel().getSelectedItem();
         ActiveRideAdmin rideAdmin = this.getActiveRideAdmin(ride);
         stage.AcceptRequest(rideAdmin);
+    }
+    
+    public void btLoadData() {
+    	stage.loadData(file);;
     }
 
 

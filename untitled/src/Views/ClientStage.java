@@ -12,12 +12,16 @@ import root.User.User;
 import root.State.State;
 
 import javax.security.auth.login.LoginContext;
+
+import com.sun.java.util.jar.pack.Package.File;
+
 import java.io.IOException;
 import java.util.List;
 
 public class ClientStage extends Stage {
     private User user;
     private State state;
+	private Views.File file;
 
     public ClientStage(State state, String title){
         super();
@@ -49,6 +53,10 @@ public class ClientStage extends Stage {
         ride.getPassengers().remove(user);
     }
 
+    public void loadData(File file) {
+		state.loadData(file);
+    }
+    
     public void modifyUser(User user) throws InvalidFields{
         register(user);
         state.removeUser(this.user);
@@ -77,6 +85,7 @@ public class ClientStage extends Stage {
 
     public void MainPage() {
         setView("MainPage.fxml", new MainPage(this));
+        
     }
 
     public void MyProfile() {

@@ -47,6 +47,7 @@ public class MainPage extends Controller{
     public void myProfile(ActionEvent event) {
 
         stage.MyProfile();
+
     }
 
     private ActiveRideAdmin getActiveRideAdmin(Ride ride){
