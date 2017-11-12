@@ -43,6 +43,7 @@ public class ClientStage extends Stage {
     }
 
     public void removeRide(ActiveRideAdmin ride) throws NoPermission{
+
         if(!ride.getRide().getDriver().equals(user))
             throw new NoPermission();
         state.deleteRide(ride);

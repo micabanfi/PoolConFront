@@ -25,8 +25,8 @@ import java.util.List;
 
 public class State implements Serializable{
 
-    private static final long serialVersionUID = 1L;
-    private static final File file = new File("../PoolConFront/untitled/src/root/Data");
+    //private static final long serialVersionUID = 1L;
+    //private static final File file = new File("../PoolConFront/untitled/src/root/Data");
 
 
     private List<User> users;
@@ -62,7 +62,7 @@ public class State implements Serializable{
 
     public void initState() throws InvalidFields, IOException, ClassNotFoundException {
 
-        loadData(file);
+        //loadData(file);
 
         Vehicle vehicle1 = new Vehicle("Fiat", "500", "Blanco", 2015, "ABC123", 4);
         Vehicle vehicle2=new Vehicle("Ford","K","Celeste",2010,"ARX420",3);

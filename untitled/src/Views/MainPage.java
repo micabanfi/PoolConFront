@@ -41,7 +41,8 @@ public class MainPage extends Controller{
     @FXML private TableColumn permissions;
     @FXML private TableColumn asientos;
 
-    private List<ActiveRideAdmin> rides;
+    private List<ActiveRideAdmin> rides=stage.getActiveRideAdmins();
+
     private static final File file = new File("../PoolConFront/untitled/src/root/Data");
 
     public MainPage(ClientStage stage){
@@ -58,13 +59,6 @@ public class MainPage extends Controller{
     	stage.loadData(file);
     }
 
-    private ActiveRideAdmin getActiveRideAdmin(Ride ride){
-        for(ActiveRideAdmin rideAdmin:rides){
-            if(rideAdmin.getRide().equals(ride))
-                return rideAdmin;
-        }
-        return null;
-    }
 
     public void newRide(ActionEvent event) {
     	    if(!stage.getUser().getVehicles().isEmpty()) {
@@ -80,11 +74,9 @@ public class MainPage extends Controller{
 
     public ObservableList<Ride> getRides(){
         ObservableList<Ride> rides=FXCollections.observableArrayList();
-
-        for(int i=0;i<stage.getState().getCurrentRides().size();i++)
-            rides.add(stage.getState().getCurrentRides().get(i).getRide());
+        for(int i=0;i<stage.getActiveRideAdmins().size();i++)
+            rides.add(stage.getActiveRideAdmins().get(i).getRide());
         return rides;
-
     }
 
     public void init(){
@@ -94,7 +86,6 @@ public class MainPage extends Controller{
         conductor.setCellValueFactory(new PropertyValueFactory<>("driver"));
         asientos.setCellValueFactory(new PropertyValueFactory<>("vehicle"));
         ridesTable.setItems(getRides());
-
     }
 
     public void removeRide(){
@@ -106,7 +97,8 @@ public class MainPage extends Controller{
         
         try {
             stage.removeRide(getActiveRideAdmin(removeRide));
-        	allRides.removeAll(rideSelected);
+
+            allRides.removeAll(rideSelected);
         } catch(NoPermission e) {
         	Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
@@ -115,6 +107,15 @@ public class MainPage extends Controller{
             alert.showAndWait();
         }
     }
+
+    private ActiveRideAdmin getActiveRideAdmin(Ride ride){
+        for(ActiveRideAdmin rideAdmin:rides){
+            if(rideAdmin.getRide().equals(ride))
+                return rideAdmin;
+        }
+        return null;
+    }
+
 
     //HAY QUE ARREGLAR JOIN RIDE PQ NO ESTA GUARDANDO AL PASAJERO COMO Q ESTA EN EL RIDE
     //PORQUE NADIE LO ACEPTO. 
