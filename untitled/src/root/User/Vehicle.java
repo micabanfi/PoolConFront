@@ -15,6 +15,8 @@ public class Vehicle implements Serializable{
     private int year;
     private String plate;
     private int seats;
+    //esto de abajo es feo pero es para que se impriman en el front los free seats.
+    private int freeSeats;
 
     public Vehicle(String brand,String model,String color,int year,String plate,int seats ){
         this.brand=brand;
@@ -23,6 +25,7 @@ public class Vehicle implements Serializable{
         this.year=year;
         this.plate=plate;
         this.seats=seats;
+        this.freeSeats=seats;
     }
 
     public void writeObject(ObjectOutputStream out) throws IOException {
@@ -44,12 +47,18 @@ public class Vehicle implements Serializable{
         plate = ois.readUTF();
         seats = ois.readInt();
     }
+    
+    //esta funcion es para que se muestren en el front los free seats.
+    public void updateFreeSeats(int freeSeats) {
+    	this.freeSeats = freeSeats;
+    }
+    
+    
     //sabemos q el tostring este es feo, pero si no lo hacemos asi, no nos funciona el front bien.
     @Override
     public String toString(){
         //return "Vehicle:"+'\n'+"Brand:"+brand+"Model:"+model+" Color:"+color+" Plate:"+plate+"Seats:"+seats;
-        System.out.println(seats);
-        return Integer.toString(seats);
+        return Integer.toString(freeSeats);
     }
 
     public String getBrand() {

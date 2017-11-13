@@ -70,7 +70,7 @@ public class State implements Serializable{
 
         //loadData(file);
 
-        Vehicle vehicle1 = new Vehicle("Fiat", "500", "Blanco", 2015, "ABC123", 4);
+        Vehicle vehicle1 = new Vehicle("Fiat", "500", "Blanco", 2015, "ABC123", 0);
         Vehicle vehicle2=new Vehicle("Ford","K","Celeste",2010,"ARX420",3);
 
         Credential credential1 = new Credential("mica", "1234");

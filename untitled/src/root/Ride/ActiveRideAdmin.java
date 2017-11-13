@@ -59,8 +59,6 @@ public class ActiveRideAdmin extends RideAdmin implements Serializable{
     }
 
     public void addRequest(User person) throws AlreadyRequested, AlreadyInRide, SeatsTaken {
-    	//System.out.print("Requests antes de q pida unirse");
-    	//System.out.println(requests);
     	if(requests.contains(person)){
             throw new AlreadyRequested();
         }
@@ -71,8 +69,6 @@ public class ActiveRideAdmin extends RideAdmin implements Serializable{
             throw new SeatsTaken();
         }
         requests.add(person);
-        //System.out.print("Requests despues de q pida unirse");
-        //System.out.println(requests);
     }
 
     private void validateRequest(User driver, Person request) throws NoPermission, NotRequested{
@@ -90,10 +86,10 @@ public class ActiveRideAdmin extends RideAdmin implements Serializable{
             throw new SeatsTaken();
         }
         passengers.add(request);
-        //la linea de abajo what for?? la elimino pq me esta cargando el mismo viaje devuelta.
-        //driver.addRide(this);
         requests.remove(request);
         request.addRide(this);
+        //esto es para que se imprima en el front free seats 
+        this.getRide().getVehicle().updateFreeSeats(freeSeats());
     }
 
     public void declineRequest(User driver, User request)throws NoPermission, NotRequested{
