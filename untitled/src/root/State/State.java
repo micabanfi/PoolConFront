@@ -154,10 +154,10 @@ public class State implements Serializable{
     }
 
     public void deleteRide(ActiveRideAdmin ride){
-    		
             for(User user: ride.getPassengers()){
                 user.getActiveRides().remove(ride);
             }
+            ride.getRide().getDriver().getActiveRides().remove(ride);
             currentRides.remove(ride);
     }
 

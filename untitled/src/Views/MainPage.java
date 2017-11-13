@@ -116,7 +116,6 @@ public class MainPage extends Controller{
     //PORQUE NADIE LO ACEPTO. 
     public void joinRide() throws SeatsTaken {
     
-    	System.out.println(stage.getUser().getActiveRides());
         ObservableList<Ride> rideSelected,allRides;
         allRides=ridesTable.getItems();
         //este rudeSelected para q es?

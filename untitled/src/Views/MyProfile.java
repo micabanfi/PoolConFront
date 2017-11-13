@@ -160,15 +160,16 @@ public class MyProfile extends Controller {
             alert.setContentText(null);
             alert.showAndWait();
         }
+        else if(removeRide.getDriver().equalCredentials(stage.getUser().getCredential())) {
+        	Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Usted es el conductor del viaje");
+            alert.setContentText("Si quiere darse de baja, debe eliminar el viaje en la página principal");
+            alert.showAndWait();
+        }
         else{
-        //System.out.println("antes de eliminar al pasajero");
-        //System.out.println(getActiveRideAdmin(removeRide).getPassengers());
         stage.leaveRide(getActiveRideAdmin(removeRide));
-        System.out.println("entro a stage.leaveRIDE");
-        //System.out.println("depses de elimaiminarlo");
-        //System.out.println(getActiveRideAdmin(removeRide).getPassengers());
         ridesTable.setItems(getRides());
-        //System.out.println("cargo los rides a la tabla");
         }
     }
 
