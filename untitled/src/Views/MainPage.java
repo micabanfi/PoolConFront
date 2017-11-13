@@ -132,5 +132,12 @@ public class MainPage extends Controller{
            alert.setContentText(null);
            alert.showAndWait();
         }
+        catch(SeatsTaken e) {
+        	Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("No hay asientos disponibles");
+            alert.setContentText(null);
+            alert.showAndWait();
+        }
     }
 }
