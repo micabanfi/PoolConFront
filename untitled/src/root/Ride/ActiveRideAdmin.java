@@ -50,12 +50,17 @@ public class ActiveRideAdmin extends RideAdmin implements Serializable{
     }
 
     public void leaveRide(User passenger){
+    	System.out.println("active rides del passenger antes");
+        System.out.println(passenger.getActiveRides());
             passengers.remove(passenger);
+            passenger.getActiveRides().remove(this);
+            System.out.println("active rides del passenger luego");
+            System.out.println(passenger.getActiveRides());
     }
 
     public void addRequest(User person) throws AlreadyRequested, AlreadyInRide, SeatsTaken {
-    	System.out.print("Requests antes de q pida unirse");
-    	System.out.println(requests);
+    	//System.out.print("Requests antes de q pida unirse");
+    	//System.out.println(requests);
     	if(requests.contains(person)){
             throw new AlreadyRequested();
         }
@@ -66,8 +71,8 @@ public class ActiveRideAdmin extends RideAdmin implements Serializable{
             throw new SeatsTaken();
         }
         requests.add(person);
-        System.out.print("Requests despues de q pida unirse");
-        System.out.println(requests);
+        //System.out.print("Requests despues de q pida unirse");
+        //System.out.println(requests);
     }
 
     private void validateRequest(User driver, Person request) throws NoPermission, NotRequested{

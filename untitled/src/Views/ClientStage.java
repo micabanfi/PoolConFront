@@ -55,7 +55,7 @@ public class ClientStage extends Stage {
     }
     
     public void leaveRide(ActiveRideAdmin ride){
-        ride.getPassengers().remove(user);
+    	ride.leaveRide(user);
     }
 
     public void loadData(File file) throws IOException, ClassNotFoundException {

@@ -89,16 +89,10 @@ public class MainPage extends Controller{
     }
 
     public void removeRide(){
-        ObservableList<Ride> rideSelected,allRides;
-        allRides=ridesTable.getItems();
-        rideSelected=ridesTable.getSelectionModel().getSelectedItems();
-
         Ride removeRide=ridesTable.getSelectionModel().getSelectedItem();
-        
         try {
             stage.removeRide(getActiveRideAdmin(removeRide));
 
-            allRides.removeAll(rideSelected);
         } catch(NoPermission e) {
         	Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
@@ -106,6 +100,7 @@ public class MainPage extends Controller{
             alert.setContentText(null);
             alert.showAndWait();
         }
+        ridesTable.setItems(getRides());
     }
 
     private ActiveRideAdmin getActiveRideAdmin(Ride ride){

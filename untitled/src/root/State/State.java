@@ -106,7 +106,7 @@ public class State implements Serializable{
             addRideToList(rideAdmin1);
             addRideToList(rideAdmin2);
             user1.addRide(rideAdmin1);
-            //user2.addRide(rideAdmin2);
+            user2.addRide(rideAdmin2);
             user1.getExpiredRides().add(oldRideExp);
 
            // System.out.println(user1.getActiveRides().get(0).toString());
@@ -154,6 +154,7 @@ public class State implements Serializable{
     }
 
     public void deleteRide(ActiveRideAdmin ride){
+    		
             for(User user: ride.getPassengers()){
                 user.getActiveRides().remove(ride);
             }

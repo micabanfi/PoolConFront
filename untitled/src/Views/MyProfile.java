@@ -149,16 +149,27 @@ public class MyProfile extends Controller {
     }
     
    
-
-
     public void btRemovePassenger() {
-        ObservableList<Ride> rideSelected, allRides;
-        allRides = ridesTable.getItems();
-        rideSelected = ridesTable.getSelectionModel().getSelectedItems();
+   
         Ride removeRide = ridesTable.getSelectionModel().getSelectedItem();
-
+        System.out.println("agarro el ride");
+        if(removeRide ==null) {
+        	Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Debe seleccionar un viaje");
+            alert.setContentText(null);
+            alert.showAndWait();
+        }
+        else{
+        //System.out.println("antes de eliminar al pasajero");
+        //System.out.println(getActiveRideAdmin(removeRide).getPassengers());
         stage.leaveRide(getActiveRideAdmin(removeRide));
-
+        System.out.println("entro a stage.leaveRIDE");
+        //System.out.println("depses de elimaiminarlo");
+        //System.out.println(getActiveRideAdmin(removeRide).getPassengers());
+        ridesTable.setItems(getRides());
+        //System.out.println("cargo los rides a la tabla");
+        }
     }
 
 
