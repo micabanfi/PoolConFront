@@ -151,6 +151,7 @@ public class State implements Serializable{
             throw new ExistingRideException();
         }
         currentRides.add(ride);
+        ride.getRide().getDriver().addRide(ride);
     }
 
     public void deleteRide(ActiveRideAdmin ride){

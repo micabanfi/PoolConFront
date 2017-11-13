@@ -127,7 +127,7 @@ public class MainPage extends Controller{
         } catch (AlreadyRequested e) {
 			Alert alert = new Alert(Alert.AlertType.ERROR);
            alert.setTitle("Error");
-           alert.setHeaderText("Ya pidio estar en este viaje");
+           alert.setHeaderText("Solicitud envíada");
            alert.setContentText(null);
            alert.showAndWait();
         } catch(AlreadyInRide e) {

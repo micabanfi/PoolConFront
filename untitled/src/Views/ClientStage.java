@@ -38,6 +38,15 @@ public class ClientStage extends Stage {
     public void login(Credential cred) throws InvalidCredentials{
         this.user = state.login(cred);;
     }
+    
+    public void addRide(ActiveRideAdmin rideAdmin) {
+    	try {
+			state.addRideToList(rideAdmin);
+		} catch (ExistingRideException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
 
     public void newRide(ActiveRideAdmin ride) throws ExistingRideException{
         state.addRideToList(ride);

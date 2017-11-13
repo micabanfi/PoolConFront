@@ -89,17 +89,9 @@ public class NewRide extends Controller {
     		Vehicle vehicle = findUserVehicle(vehicleString);
     		Ride ride = new Ride(route1, vehicle, stage.getUser(), permissions, dateOf);
 			ActiveRideAdmin activeRide = new ActiveRideAdmin(ride);
-    		System.out.println(ride);
-    		try {
-				stage.getState().addRideToList(activeRide);
-			} catch (ExistingRideException e) {
-				 Alert alert = new Alert(Alert.AlertType.ERROR);
-		            alert.setTitle("Error");
-		            alert.setHeaderText("El viaje no pudo ser creado");
-		            alert.setContentText(null);
-		            alert.showAndWait();
-			}
+    		//System.out.println(ride);
     		
+    		stage.addRide(activeRide);
     		stage.MainPage();
     	}
     	

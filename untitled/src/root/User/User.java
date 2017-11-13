@@ -81,8 +81,10 @@ public class User extends Person implements Serializable{
 
 
     public void addRide(ActiveRideAdmin ride){
-        activeRides.add(ride);
-    }
+    	if(!activeRides.contains(ride)) {
+    		activeRides.add(ride);
+    	}
+    	}
 
     public void removeRide(Ride ride){
         activeRides.remove(ride);
