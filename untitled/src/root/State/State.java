@@ -96,7 +96,7 @@ public class State implements Serializable{
         ActiveRideAdmin rideAdmin2 = new ActiveRideAdmin(ride2);
 
 
-        System.out.println(1);
+        //System.out.println(1);
 
         try {
 
@@ -106,10 +106,10 @@ public class State implements Serializable{
             addRideToList(rideAdmin1);
             addRideToList(rideAdmin2);
             user1.addRide(rideAdmin1);
-            user2.addRide(rideAdmin2);
+            //user2.addRide(rideAdmin2);
             user1.getExpiredRides().add(oldRideExp);
 
-            System.out.println(user1.getActiveRides().get(0).toString());
+           // System.out.println(user1.getActiveRides().get(0).toString());
 
         } catch (InvalidFields e) {
             //Este no deberia ir en possibleErrors porque lohacemos nosotros,no deberiamos ser tan tontos ;)

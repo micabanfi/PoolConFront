@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import root.Exceptions.*;
 import root.Ride.ActiveRideAdmin;
+import root.Ride.Ride;
 import root.User.Credential;
 import root.User.User;
 import root.State.State;
@@ -49,6 +50,10 @@ public class ClientStage extends Stage {
         state.deleteRide(ride);
     }
 
+    public void addRequest(ActiveRideAdmin rideAdmin) throws AlreadyRequested, AlreadyInRide, SeatsTaken {
+    	rideAdmin.addRequest(user);
+    }
+    
     public void leaveRide(ActiveRideAdmin ride){
         ride.getPassengers().remove(user);
     }

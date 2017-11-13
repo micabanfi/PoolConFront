@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
@@ -11,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #afeeee;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #afeeee;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Button fx:id="MyProfile" layoutX="739.0" layoutY="107.0" mnemonicParsing="false" onAction="#myProfile" prefHeight="70.0" prefWidth="256.0" text="Mi perfil">
          <font>
@@ -58,5 +54,6 @@
             <Font size="20.0" />
          </font>
       </Button>
+      <Button fx:id="btLoadData" layoutX="836.0" layoutY="50.0" mnemonicParsing="false" onAction="#btLoadData" text="Load Data" />
    </children>
 </AnchorPane>

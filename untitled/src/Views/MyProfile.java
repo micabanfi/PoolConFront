@@ -59,8 +59,6 @@ public class MyProfile extends Controller {
         super(stage);
 
     }
-    
-    
 
     public void init() {
         setProfileInfo();
@@ -124,12 +122,30 @@ public class MyProfile extends Controller {
 
     public void btAcceptRequest(ActionEvent event) {
         //Hay que pasar como parametro el ActiveRideAdmine del ride seleccionado.
-    	ObservableList<Ride> rideSelected,allRides;
+    	/*ObservableList<Ride> rideSelected,allRides;
         allRides=ridesTable.getItems();
-        rideSelected=ridesTable.getSelectionModel().getSelectedItems();
-        Ride ride=ridesTable.getSelectionModel().getSelectedItem();
-        ActiveRideAdmin rideAdmin = this.getActiveRideAdmin(ride);
-        stage.AcceptRequest(rideAdmin);
+        rideSelected=ridesTable.getSelectionModel().getSelectedItems();*/
+    	Ride ride=ridesTable.getSelectionModel().getSelectedItem();
+        if(ride == null) {
+        	Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Debe seleccionar un viaje");
+            alert.setContentText(null);
+            alert.showAndWait();
+        }
+        else if(!stage.getUser().equalCredentials(ride.getDriver().getCredential())) {
+        	Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("No tiene permisos para aceptar solicitudes");
+            alert.setContentText("No es conductor del viaje");
+            alert.showAndWait();
+        }
+        else{
+        	ActiveRideAdmin rideAdmin = this.getActiveRideAdmin(ride);
+        	stage.AcceptRequest(rideAdmin);
+        }
+        
+        
     }
     
    
@@ -148,8 +164,7 @@ public class MyProfile extends Controller {
 
     public ObservableList<Ride> getRides() {
         ObservableList<Ride> rides = FXCollections.observableArrayList();
-
-        for (int i = 0; i < stage.getUser().getActiveRides().size(); i++) {
+        for(int i=0; i<stage.getUser().getActiveRides().size();i++) {
         	rides.add(stage.getUser().getActiveRides().get(i).getRide());
         }
         return rides;

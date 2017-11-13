@@ -120,37 +120,28 @@ public class MainPage extends Controller{
     //HAY QUE ARREGLAR JOIN RIDE PQ NO ESTA GUARDANDO AL PASAJERO COMO Q ESTA EN EL RIDE
     //PORQUE NADIE LO ACEPTO. 
     public void joinRide() throws SeatsTaken {
+    
+    	System.out.println(stage.getUser().getActiveRides());
         ObservableList<Ride> rideSelected,allRides;
         allRides=ridesTable.getItems();
+        //este rudeSelected para q es?
         rideSelected=ridesTable.getSelectionModel().getSelectedItems();
-
-        Ride ride=ridesTable.getSelectionModel().getSelectedItem();
-        /*ESTO ESTA MALLL pq ya hay un active ride admin
-          hacer stage.getstate.addrequest y que en state en la funcion add request
-       se llame al active ride admin correspondiente que YA esta creado
-       lo intente hacer pero seguia sin funcionar y borre todo. despues vuelvo a intentar
-       lo dejo escrito por si alguien se mete ahora
-       OTRA OPCION es hacer un get active ride admin desde state pero no se si esta bueno. 
-       */
-        ActiveRideAdmin aux=new ActiveRideAdmin(ride);
-       
-       try {
-           aux.addRequest(stage.getUser());
-
-       } catch (AlreadyRequested alreadyRequested) {
-           Alert alert = new Alert(Alert.AlertType.ERROR);
+        Ride ride =ridesTable.getSelectionModel().getSelectedItem();
+        ActiveRideAdmin rideAdmin = getActiveRideAdmin(ride);
+        try {
+			stage.addRequest(rideAdmin);
+        } catch (AlreadyRequested e) {
+			Alert alert = new Alert(Alert.AlertType.ERROR);
            alert.setTitle("Error");
            alert.setHeaderText("Ya pidio estar en este viaje");
            alert.setContentText(null);
            alert.showAndWait();
-       } catch (AlreadyInRide alreadyInRide) {
-           Alert alert = new Alert(Alert.AlertType.ERROR);
+        } catch(AlreadyInRide e) {
+			Alert alert = new Alert(Alert.AlertType.ERROR);
            alert.setTitle("Error");
            alert.setHeaderText("Ya se encuentra anotado en este viaje");
            alert.setContentText(null);
            alert.showAndWait();
-       }
-
-
+        }
     }
 }
