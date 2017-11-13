@@ -55,11 +55,6 @@ public class MainPage extends Controller{
 
     }
     
-    public void btLoadData(ActionEvent event) throws IOException, ClassNotFoundException{
-    	stage.loadData(file);
-    }
-
-
     public void newRide(ActionEvent event) {
     	    if(!stage.getUser().getVehicles().isEmpty()) {
                 stage.NewRide();

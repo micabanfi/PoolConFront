@@ -45,6 +45,10 @@ public class State implements Serializable{
             System.out.println("Problema initState");
         }
     }
+    
+    public List<User> getUsers(){
+    	return users;
+    }
 
     public void writeObject(ObjectOutputStream out) throws IOException{
         out.defaultWriteObject();
@@ -52,6 +56,8 @@ public class State implements Serializable{
         out.writeObject(currentRides);
         out.writeObject(expiredRides);
     }
+    
+ 
 
     public void readObject(ObjectInputStream ois) throws IOException, ClassNotFoundException{
         ois.defaultReadObject();

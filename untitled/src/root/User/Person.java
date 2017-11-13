@@ -16,6 +16,7 @@ public class Person implements Serializable{
     private String surname;
     private String phone;
     private Gender gender;//enum
+    
     // private LocalDate birthDate;
     private Preferences preferences;
 

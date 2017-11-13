@@ -67,9 +67,7 @@ public class ClientStage extends Stage {
     	ride.leaveRide(user);
     }
 
-    public void loadData(File file) throws IOException, ClassNotFoundException {
-		state.loadData(file);
-    }
+   
     
     public void modifyUser(User user) throws InvalidFields{
         register(user);

@@ -1,5 +1,12 @@
 package Views;
 
+/*BORRADOR MAITE
+rating.setCellValueFactory(new PropertyValueFactory<>(value -> {
+	for(int i=0; stage.getState().getUsers().size(); i++) {
+		if()
+	}
+});*/
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -31,7 +38,7 @@ public class AcceptRequest extends Controller {
     @FXML private TableColumn persona;
     @FXML private TableColumn apellido;
     @FXML private TableColumn telefono;
-    @FXML private TableColumn raiting;
+    @FXML private TableColumn rating;
 
     private ActiveRideAdmin rideAdmin;
 
@@ -60,8 +67,11 @@ public class AcceptRequest extends Controller {
     @Override
     public void init(){
         persona.setCellValueFactory(new PropertyValueFactory<>("name"));
-        //apellido.setCellValueFactory(new PropertyValueFactory<>("surname"));
-        //telefono.setCellValueFactory(new PropertyValueFactory<>("phone"));
+        apellido.setCellValueFactory(new PropertyValueFactory<>("surname"));
+        telefono.setCellValueFactory(new PropertyValueFactory<>("phone"));
+        //rating.setCellValueFactory(new PropertyValueFactory<>(value
+        
+  
         requestUsers.setItems(getUser());
     }
 

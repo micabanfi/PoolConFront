@@ -12,6 +12,11 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+
 public class User extends Person implements Serializable{
 
     private static final long serialVersionUID = 1L;
@@ -21,6 +26,8 @@ public class User extends Person implements Serializable{
     private List<ExpiredRideAdmin> expiredRides;
     private List<ActiveRideAdmin> activeRides;
     private Rating rating;
+   
+ 
    
     public User(Credential credential, String name, String surname, String career, String phone,boolean smoke,boolean food,Gender gender){
         super(name, surname, career, phone, smoke, food, gender);

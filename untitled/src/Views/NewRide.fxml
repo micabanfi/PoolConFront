@@ -130,7 +130,7 @@
             <Font size="20.0" />
          </font>
       </Button>
-      <Button fx:id="btMainPage" layoutX="808.0" layoutY="514.0" mnemonicParsing="false" onAction="#btMainPage" prefHeight="44.0" prefWidth="121.0" text="Menú Principal" />
+      <Button fx:id="btMainPage" layoutX="843.0" layoutY="533.0" mnemonicParsing="false" onAction="#btMainPage" prefHeight="53.0" prefWidth="143.0" text="Menú Principal" />
       <ChoiceBox fx:id="vehiclesCb" layoutX="275.0" layoutY="458.0" prefHeight="25.0" prefWidth="166.0" />
       <Label layoutX="56.0" layoutY="455.0" text="Seleccione el vehículo">
          <font>

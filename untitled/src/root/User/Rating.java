@@ -40,9 +40,15 @@ public class Rating implements Serializable{
         return positive/(positive+negative)*100;
     }
     
- /*   @Override
+   
+    /* la conversion de double a string arma alto quilombo en el front
+    @Override
     public String toString() {
-    	return "Rating= "+Double.toString(this.calculatePercentage())+"%"; 
+    	String s = String.valueOf(calculatePercentage()) + "%";
+    	return s;
     }
-*/
+    */
+ 
+    
+
 }
