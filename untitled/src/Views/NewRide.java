@@ -76,8 +76,6 @@ public class NewRide extends Controller {
     		vehicleString = vehiclesCb.getValue();
     		int hourInt=Integer.parseInt(hour);
     		int minutesInt = Integer.parseInt(minutes);
-    		//System.out.println("anio"+year+"mes"+month+"dia"+day+"hora"+hourInt+"min"+minutesInt);
-    		//LocalDateTime dateOf=LocalDateTime.of(17,8,12,14,30);
 			LocalDateTime dateOf=LocalDateTime.of(year,month,day,hourInt,minutesInt);
 
 			String rta = eatCb.getValue();
@@ -89,7 +87,6 @@ public class NewRide extends Controller {
     		Vehicle vehicle = findUserVehicle(vehicleString);
     		Ride ride = new Ride(route1, vehicle, stage.getUser(), permissions, dateOf);
 			ActiveRideAdmin activeRide = new ActiveRideAdmin(ride);
-    		//System.out.println(ride);
     		
     		stage.addRide(activeRide);
     		stage.MainPage();
@@ -109,7 +106,6 @@ public class NewRide extends Controller {
     return vehicleChoice;
     }
     
-   //PREGUNTAR: COMO hariamos esto con excepciones
     private boolean checkRequestedFields(){
         if( fromTx.getText().isEmpty() || toTx.getText().isEmpty() || routeTx.getText().isEmpty() ||
         		hourCb.getSelectionModel().isEmpty() || minutesCb.getSelectionModel().isEmpty() ||

@@ -38,6 +38,40 @@ public class Preferences implements Serializable{
         food = ois.readBoolean();
     }
 
+    public String getCareer() {
+        return career;
+    }
+
+    public boolean isFood() {
+        return food;
+    }
+
+    public boolean isSmoke() {
+        return smoke;
+    }
+
+    public void setCareer(String career) {
+        this.career = career;
+    }
+    
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (!(obj instanceof Preferences))
+            return false;
+        Preferences aux = (Preferences) obj;
+        return smoke == aux.smoke && food == aux.food && career.equals(aux.career);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = career != null ? career.hashCode() : 0;
+        result = 31 * result + (smoke ? 1 : 0);
+        result = 31 * result + (food ? 1 : 0);
+        return result;
+    }
+    
     @Override
     public String toString() {
         String smokeString ="";
@@ -56,40 +90,6 @@ public class Preferences implements Serializable{
         }
         String s = "Preferencias del usuario:\nCARRERA: "+career+"\nFUMAR: "+smokeString+"\nCOMIDA: "+ foodString+"\n";
         return s;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (!(obj instanceof Preferences))
-            return false;
-        Preferences aux = (Preferences) obj;
-        return smoke == aux.smoke && food == aux.food && career.equals(aux.career);
-    }
-
-    @Override
-    public int hashCode() {
-        int result = career != null ? career.hashCode() : 0;
-        result = 31 * result + (smoke ? 1 : 0);
-        result = 31 * result + (food ? 1 : 0);
-        return result;
-    }
-
-    public String getCareer() {
-        return career;
-    }
-
-    public boolean ifFood() {
-        return food;
-    }
-
-    public boolean isSmoke() {
-        return smoke;
-    }
-
-    public void setCareer(String career) {
-        this.career = career;
     }
 
 

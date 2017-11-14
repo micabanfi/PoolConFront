@@ -115,16 +115,12 @@ public class MyProfile extends Controller {
     public void saveChanges(ActionEvent event) {
         stage.getUser().setName(MyProfileNametx.getText());
         stage.getUser().setSurname(MyProfileSurnametx.getText());
-        stage.getUser().setPreferences(new Preferences(MyProfileCareertx.getText(), stage.getUser().getPreferences().isSmoke(), stage.getUser().getPreferences().ifFood()));
+        stage.getUser().setPreferences(new Preferences(MyProfileCareertx.getText(), stage.getUser().getPreferences().isSmoke(), stage.getUser().getPreferences().isFood()));
         stage.getUser().setPhone(MyProfilePhonetx.getText());
         stage.getUser().setCredential(new Credential(MyProfileUsernametx.getText(), MyProfilePasswordtx.getText()));
     }
 
     public void btAcceptRequest(ActionEvent event) {
-        //Hay que pasar como parametro el ActiveRideAdmine del ride seleccionado.
-    	/*ObservableList<Ride> rideSelected,allRides;
-        allRides=ridesTable.getItems();
-        rideSelected=ridesTable.getSelectionModel().getSelectedItems();*/
     	Ride ride=ridesTable.getSelectionModel().getSelectedItem();
         if(ride == null) {
         	Alert alert = new Alert(Alert.AlertType.ERROR);

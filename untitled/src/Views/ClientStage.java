@@ -75,7 +75,6 @@ public class ClientStage extends Stage {
         this.user = user;
     }
 
-    //Volver a llamar para hacer refresh
     public List<ActiveRideAdmin> getActiveRideAdmins(){
         return state.getCurrentRides();
     }

@@ -15,9 +15,7 @@ public class Person implements Serializable{
     private String name;
     private String surname;
     private String phone;
-    private Gender gender;//enum
-    
-    // private LocalDate birthDate;
+    private Gender gender;
     private Preferences preferences;
 
     public Person(String name, String surname, String career, String phone,boolean smoke,boolean food,Gender gender){
@@ -26,7 +24,6 @@ public class Person implements Serializable{
         this.phone=phone;
         this.preferences = new Preferences(career, smoke, food);
         this.gender=gender;
-        //this.birthDate=birthDate;
     }
 
     public void writeObject(ObjectOutputStream out) throws IOException {
@@ -84,19 +81,8 @@ public class Person implements Serializable{
         this.surname = surname;
     }
 
-    /*public LocalDate getBirthDate() {
-        return birthDate;
-    }*/
-
     public Preferences getPreferences() {
         return preferences;
-    }
-
-    @Override
-    public String toString() {
-        String s="";
-        s="Nombre: "+ name+"\nApellido: "+surname+"\nTelefono: "+phone+"\nSexo:"+gender.getGender()+"\n"+preferences.toString();
-        return s;
     }
 
     @Override
@@ -126,5 +112,13 @@ public class Person implements Serializable{
         result = 31*result + gender.hashCode();
         result = 31*result + preferences.hashCode();
         return result;
+    }
+    
+
+    @Override
+    public String toString() {
+        String s="";
+        s="Nombre: "+ name+"\nApellido: "+surname+"\nTelefono: "+phone+"\nSexo:"+gender.getGender()+"\n"+preferences.toString();
+        return s;
     }
 }

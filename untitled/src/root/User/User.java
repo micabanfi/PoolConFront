@@ -27,8 +27,6 @@ public class User extends Person implements Serializable{
     private List<ActiveRideAdmin> activeRides;
     private Rating rating;
    
- 
-   
     public User(Credential credential, String name, String surname, String career, String phone,boolean smoke,boolean food,Gender gender){
         super(name, surname, career, phone, smoke, food, gender);
         this.vehicles = new ArrayList<>();
@@ -59,12 +57,10 @@ public class User extends Person implements Serializable{
     public void setCredential(Credential credential) {
         this.credential = credential;
     }
-
-    @Override
-    public String toString() {
-        return  super.toString() + credential.toString() + rating.toString();
+  
+    public List<Vehicle> getVehicles(){
+    	return vehicles;
     }
-
 
     public Rating getRating() {
         return rating;
@@ -83,7 +79,7 @@ public class User extends Person implements Serializable{
     }
 
     public User getUser(){
-        return new User(this.credential, this.getName(), this.getSurname(), this.getPreferences().getCareer(), this.getPhone(), this.getPreferences().isSmoke(), this.getPreferences().ifFood(), this.getGender());
+        return new User(this.credential, this.getName(), this.getSurname(), this.getPreferences().getCareer(), this.getPhone(), this.getPreferences().isSmoke(), this.getPreferences().isFood(), this.getGender());
     }
 
 
@@ -130,10 +126,10 @@ public class User extends Person implements Serializable{
         return result;
     }
     
-    	
     
-    public List<Vehicle> getVehicles(){
-    	return vehicles;
+    @Override
+    public String toString() {
+        return  super.toString() + credential.toString() + rating.toString();
     }
     
 }

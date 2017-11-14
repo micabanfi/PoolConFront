@@ -14,6 +14,11 @@ public class Permissions implements Serializable{
     private boolean smoke;
     private boolean eat;
 
+    public Permissions(boolean smoke, boolean eat){
+        this.smoke = smoke;
+        this.eat = eat;
+    }
+    
     public void writeObject(ObjectOutputStream out) throws IOException {
         out.defaultWriteObject();
         out.writeBoolean(smoke);
@@ -24,11 +29,6 @@ public class Permissions implements Serializable{
         ois.defaultReadObject();
         smoke = ois.readBoolean();
         eat = ois.readBoolean();
-    }
-
-    public Permissions(boolean smoke, boolean eat){
-        this.smoke = smoke;
-        this.eat = eat;
     }
 
     public double compatibility(Preferences preferences){

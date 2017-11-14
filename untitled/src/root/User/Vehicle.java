@@ -15,7 +15,11 @@ public class Vehicle implements Serializable{
     private int year;
     private String plate;
     private int seats;
-    //esto de abajo es feo pero es para que se impriman en el front los free seats.
+    /*La variable freeSeats fue agregada para que en el cuadro del menú principal puedan
+     * verse la cantidad de asientos disponibles. No pudimos encontrar otra forma de hacerlo.
+     *  Sabemos que no es correcto que esté esta variable en esta clase, pero la pusimos para que 
+     *  pueda verse y entenderse el funcionamiento del carPool desde el front.   
+   */
     private int freeSeats;
 
     public Vehicle(String brand,String model,String color,int year,String plate,int seats ){
@@ -47,19 +51,6 @@ public class Vehicle implements Serializable{
         plate = ois.readUTF();
         seats = ois.readInt();
     }
-    
-    //esta funcion es para que se muestren en el front los free seats.
-    public void updateFreeSeats(int freeSeats) {
-    	this.freeSeats = freeSeats;
-    }
-    
-    
-    //sabemos q el tostring este es feo, pero si no lo hacemos asi, no nos funciona el front bien.
-    @Override
-    public String toString(){
-        //return "Vehicle:"+'\n'+"Brand:"+brand+"Model:"+model+" Color:"+color+" Plate:"+plate+"Seats:"+seats;
-        return Integer.toString(freeSeats);
-    }
 
     public String getBrand() {
         return brand;
@@ -83,6 +74,25 @@ public class Vehicle implements Serializable{
 
     public void setSeats(int seats) {
         this.seats = seats;
+    }
+    
+    /*La función updateFreeSeats fue agregada para que en el cuadro del menú principal puedan
+     * verse la cantidad de asientos disponibles. No pudimos encontrar otra forma de hacerlo. 
+   */
+    public void updateFreeSeats(int freeSeats) {
+    	this.freeSeats = freeSeats;
+    }
+    
+    
+    
+    @Override
+    public String toString(){
+        /* La implementación original del presente toString() era la siguiente:
+         return "Vehicle:"+'\n'+"Brand:"+brand+"Model:"+model+" Color:"+color+" Plate:"+plate+"Seats:"+seats;
+        Sin embargo, hicimos que devuelva un string con la cantidad de asientos disponibles del vehículo 
+        para que pueda verse pantalla.
+        */
+        return Integer.toString(freeSeats);
     }
 
 }

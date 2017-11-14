@@ -32,6 +32,23 @@ public class Credential implements Serializable{
         username = ois.readUTF();
     }
 
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setUserName(String userName) {
+        this.username = userName;
+    }
+    
     @Override
     public boolean equals(Object obj){
         if (this == obj)
@@ -56,19 +73,4 @@ public class Credential implements Serializable{
         return "Nombre de Usuario="+username;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public void setUserName(String userName) {
-        this.username = userName;
-    }
 }

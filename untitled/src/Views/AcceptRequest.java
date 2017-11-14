@@ -57,10 +57,6 @@ public class AcceptRequest extends Controller {
         for (int i = 0; i < rideAdmin.getRequests().size(); i++) {
         	users.add(requests.get(i));
         }
-        //stage.getState().getActiveRideAdminOfRide().getRequests();
-        //stage.getState().get
-        //for(int i=0;i<stage.getState().getRequest();i++)
-      
         return users;
     }
 
@@ -69,17 +65,18 @@ public class AcceptRequest extends Controller {
         persona.setCellValueFactory(new PropertyValueFactory<>("name"));
         apellido.setCellValueFactory(new PropertyValueFactory<>("surname"));
         telefono.setCellValueFactory(new PropertyValueFactory<>("phone"));
-        //rating.setCellValueFactory(new PropertyValueFactory<>(value
-        
-  
         requestUsers.setItems(getUser());
+        /*No pudimos hacer que en la columna rating aparezca el rating del usurio.
+         *  La idea era que, desde acá, se carguen en ObservableList los resultados para 
+         *  luego ser subidos en a la tabla de request Users. La invocación sería la siguiente:
+         	ObservableList<Double> rating =FXCollections.observableArrayList();
+        	for(int i=0;i<stage.getActiveRideAdmins().size();i++)
+            rating.add(stage.getUser().getRating());
+         * */
+        
     }
 
     public void btAcceptUser() throws NoPermission, RideDoesNotExist, NotRequested, InvalidCredentials {
-        /*ObservableList<User> allUsers,acceptUser;
-        allUsers=requestUsers.getItems();
-        acceptUser=requestUsers.getSelectionModel().getSelectedItems();*/
-
         User user=requestUsers.getSelectionModel().getSelectedItem();
         if(user==null) {
         	Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -91,12 +88,8 @@ public class AcceptRequest extends Controller {
         else {
 	        
 	        try {
-	        	//System.out.println("Passengers before");
-	        	//System.out.println(rideAdmin.getPassengers());
-	        	//System.out.println("passengers despes de q fueron agregados");
 				rideAdmin.acceptRequest(stage.getUser(), user);
-				requestUsers.setItems(getUser());
-				//System.out.println(rideAdmin.getPassengers());
+				requestUsers.setItems(getUser());				
 			} catch (SeatsTaken e) {
 				Alert alert = new Alert(Alert.AlertType.ERROR);
 		           alert.setTitle("Error");
@@ -105,19 +98,11 @@ public class AcceptRequest extends Controller {
 		           alert.showAndWait();
 			}
         }
-        //ActiveRideAdmin aux = new ActiveRideAdmin(removeRide);
-        //        Credential credential1 = new Credential("mica", "1234");
-   //      User user1 = new User(credential1, "Micaela", "Banfi", "Informatica", "1234567890", false, true, Gender.OTHER);
-
-        //allUsers.removeAll(acceptUser);
-        //stage.getState().acceptRideRequest(user.getCredential(),stage.getState().getCurrentRides().get(0).getRide(),stage.getUser(),user1);
+    
 
     }
     
     public void btDenyUser() {
-    	/*ObservableList<User> allUsers,acceptUser;
-        allUsers=requestUsers.getItems();
-        acceptUser=requestUsers.getSelectionModel().getSelectedItems();*/
         User user=requestUsers.getSelectionModel().getSelectedItem();
         if(user==null) {
         	Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -127,7 +112,7 @@ public class AcceptRequest extends Controller {
 	           alert.showAndWait();
         }
         else {
-	       //en este punto estas excepciones creo que nunca van a saltar. No deberiamos
+	       //en este punto estas excepciones  que nunca van a saltar. No deberiamos
         	//de sacarlas?
 				try {
 					rideAdmin.declineRequest(stage.getUser(), user);

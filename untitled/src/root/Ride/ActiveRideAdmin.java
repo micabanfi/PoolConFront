@@ -36,11 +36,7 @@ public class ActiveRideAdmin extends RideAdmin implements Serializable{
         passengers = (List<User>) ois.readObject();
         requests = (List<User>) ois.readObject();
     }
-
-    private int freeSeats(){
-        return getRide().getVehicle().getSeats() - passengers.size();
-    }
-
+    
     public Ride getRide(){
         return ride;
     }
@@ -88,8 +84,15 @@ public class ActiveRideAdmin extends RideAdmin implements Serializable{
         passengers.add(request);
         requests.remove(request);
         request.addRide(this);
-        //esto es para que se imprima en el front free seats 
+        /* Por lo explicado en la clase vehicle, la siguiente línea fue agregada porque de lo contrario,
+        * no se cargan ni actualizan los asientos disponibles de cada viaje por un problema con
+        * javafx que no sabemos resolver.
+       */
         this.getRide().getVehicle().updateFreeSeats(freeSeats());
+    }
+    
+    private int freeSeats(){
+        return getRide().getVehicle().getSeats() - passengers.size();
     }
 
     public void declineRequest(User driver, User request)throws NoPermission, NotRequested{

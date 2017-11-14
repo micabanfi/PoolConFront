@@ -33,10 +33,6 @@ public class LogIn extends Controller{
         passwordTx = LogInPassTx.getText();
         Credential credential = new Credential(userNameTx, passwordTx);
 
-        //si usuario o contrasenia estan vacios tirar error de completar campos.
-        //si ambos estan vacios y se aprieta iniciar secion tira error de completar campos
-        //si alguno esta vacio(null)me tira la excepcion,ver como que eso no pase
-
         try {
             stage.login(credential);
            stage.MainPage();

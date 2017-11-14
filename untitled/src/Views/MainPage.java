@@ -85,6 +85,15 @@ public class MainPage extends Controller{
         cDriver.setCellValueFactory(new PropertyValueFactory<>("driver"));
         cSeats.setCellValueFactory(new PropertyValueFactory<>("vehicle"));
         ridesTable.setItems(getRides());
+        
+        /*No pudimos hacer que en la columna compatibility aparezca la compatibilidad del
+         * usuario loggeado con cada viaje. La idea era que, desde acá, se carguen en un
+         * ObservableList los resultados para luego ser subidos a ridesTable. La invocación sería la siguiente:
+         	ObservableList<Double> compat=FXCollections.observableArrayList();
+        	for(int i=0;i<stage.getActiveRideAdmins().size();i++)
+            compat.add(stage.getActiveRideAdmins().get(i).compatibility(stage.getUser().getPreferences()));
+         * */
+        
     }
 
     public void removeRide(){
@@ -120,14 +129,7 @@ public class MainPage extends Controller{
     }
 
 
-    //HAY QUE ARREGLAR JOIN RIDE PQ NO ESTA GUARDANDO AL PASAJERO COMO Q ESTA EN EL RIDE
-    //PORQUE NADIE LO ACEPTO. 
     public void joinRide() throws SeatsTaken {
-    
-        ObservableList<Ride> rideSelected,allRides;
-        allRides=ridesTable.getItems();
-        //este rudeSelected para q es?
-        rideSelected=ridesTable.getSelectionModel().getSelectedItems();
         Ride ride =ridesTable.getSelectionModel().getSelectedItem();
         ActiveRideAdmin rideAdmin = getActiveRideAdmin(ride);
         if(rideAdmin==null) {

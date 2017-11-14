@@ -27,8 +27,6 @@ public class Ride implements Comparable<Ride>, Serializable{
         this.permissions = permissions;
         this.date=date;
     }
-    
-
 
     public void writeObject(ObjectOutputStream out) throws IOException {
         out.defaultWriteObject();
@@ -81,9 +79,7 @@ public class Ride implements Comparable<Ride>, Serializable{
             return false;
         Ride aux = (Ride) obj;
 
-        return aux.date.equals(date) && aux.driver.equals(driver); //DEBERIAMOS DE PROHIBIR Q UN USUARIO CREE
-        //VIAJES DISTINTOS A LA MISMA HORA pq sino este equals no sirve.
-        //O cambiar el equals y que el usuario se joda. Porque tambien podria crearlo 1 min dps y eso no lo podemos validar
+        return aux.date.equals(date) && aux.driver.equals(driver);
     }
 
     @Override
