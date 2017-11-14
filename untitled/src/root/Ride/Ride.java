@@ -19,7 +19,7 @@ public class Ride implements Comparable<Ride>, Serializable{
     private User driver;
     private Permissions permissions;
     private LocalDateTime date;
-
+   
     public Ride(Route route, Vehicle vehicle, User driver, Permissions permissions, LocalDateTime date){
         this.route=route;
         this.vehicle=vehicle;
@@ -27,6 +27,8 @@ public class Ride implements Comparable<Ride>, Serializable{
         this.permissions = permissions;
         this.date=date;
     }
+    
+
 
     public void writeObject(ObjectOutputStream out) throws IOException {
         out.defaultWriteObject();

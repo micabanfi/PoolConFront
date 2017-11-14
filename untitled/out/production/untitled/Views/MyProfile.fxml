@@ -81,17 +81,17 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Label layoutX="54.0" layoutY="481.0" text="Contrasenia">
+      <Label layoutX="54.0" layoutY="481.0" text="Contraseña">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Button fx:id="editProfile" layoutX="813.0" layoutY="40.0" mnemonicParsing="false" onAction="#editMyProfile" text="Editar Perfil">
+      <Button fx:id="editProfile" layoutX="850.0" layoutY="14.0" mnemonicParsing="false" onAction="#editMyProfile" text="Editar Perfil">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button fx:id="mainPage" layoutX="50.0" layoutY="533.0" mnemonicParsing="false" onAction="#mainPage" text="Menu Principal">
+      <Button fx:id="mainPage" layoutX="50.0" layoutY="533.0" mnemonicParsing="false" onAction="#mainPage" text="Menú Principal">
          <font>
             <Font size="20.0" />
          </font>
@@ -101,12 +101,12 @@
             <Font size="20.0" />
          </font>
       </TextField>
-      <Button fx:id="saveChanges" layoutX="755.0" layoutY="83.0" mnemonicParsing="false" onAction="#saveChanges" text="Guardar Cambios">
+      <Button fx:id="saveChanges" layoutX="797.0" layoutY="65.0" mnemonicParsing="false" onAction="#saveChanges" text="Guardar Cambios">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button fx:id="btAcceptRequest" layoutX="737.0" layoutY="127.0" mnemonicParsing="false" onAction="#btAcceptRequest" text="Aceptar Solicitudes">
+      <Button fx:id="btAcceptRequest" layoutX="782.0" layoutY="120.0" mnemonicParsing="false" onAction="#btAcceptRequest" text="Aceptar Solicitudes">
          <font>
             <Font size="20.0" />
          </font>
@@ -117,7 +117,7 @@
             <TableColumn fx:id="fecha" editable="false" minWidth="0.0" prefWidth="231.0" sortable="false" text="Fecha" />
          </columns>
       </TableView>
-      <Button fx:id="btRemovePassenger" layoutX="454.0" layoutY="533.0" mnemonicParsing="false" onAction="#btRemovePassenger" text="Darse de baja">
+      <Button fx:id="btRemovePassenger" layoutX="452.0" layoutY="533.0" mnemonicParsing="false" onAction="#btRemovePassenger" text="Darse de baja">
          <font>
             <Font size="20.0" />
          </font>

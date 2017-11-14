@@ -35,11 +35,12 @@ import java.io.IOException;
 public class MainPage extends Controller{
 
     @FXML private TableView<Ride> ridesTable;
-    @FXML private TableColumn ruta;
-    @FXML private TableColumn dia;
-    @FXML private TableColumn conductor;
-    @FXML private TableColumn permissions;
-    @FXML private TableColumn asientos;
+    @FXML private TableColumn cRoute;
+    @FXML private TableColumn cDay;
+    @FXML private TableColumn cDriver;
+    @FXML private TableColumn cPermissions;
+    @FXML private TableColumn cSeats;
+
 
     private List<ActiveRideAdmin> rides=stage.getActiveRideAdmins();
 
@@ -73,29 +74,41 @@ public class MainPage extends Controller{
             rides.add(stage.getActiveRideAdmins().get(i).getRide());
         return rides;
     }
+ 
+    
 
     public void init(){
-        ruta.setCellValueFactory(new PropertyValueFactory<>("route"));
-        dia.setCellValueFactory(new PropertyValueFactory<>("date"));
-        permissions.setCellValueFactory(new PropertyValueFactory<>("permissions"));
-        conductor.setCellValueFactory(new PropertyValueFactory<>("driver"));
-        asientos.setCellValueFactory(new PropertyValueFactory<>("vehicle"));
+
+        cRoute.setCellValueFactory(new PropertyValueFactory<>("route"));
+        cDay.setCellValueFactory(new PropertyValueFactory<>("date"));
+        cPermissions.setCellValueFactory(new PropertyValueFactory<>("permissions"));
+        cDriver.setCellValueFactory(new PropertyValueFactory<>("driver"));
+        cSeats.setCellValueFactory(new PropertyValueFactory<>("vehicle"));
         ridesTable.setItems(getRides());
     }
 
     public void removeRide(){
         Ride removeRide=ridesTable.getSelectionModel().getSelectedItem();
-        try {
-            stage.removeRide(getActiveRideAdmin(removeRide));
-
-        } catch(NoPermission e) {
+        if(removeRide==null) {
         	Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("Solamente el conductor puede eliminar el viaje");
-            alert.setContentText(null);
-            alert.showAndWait();
+	           alert.setTitle("Error");
+	           alert.setHeaderText("Debe seleccionar el viaje que quiere eliminar");
+	           alert.setContentText(null);
+	           alert.showAndWait();
         }
-        ridesTable.setItems(getRides());
+        else {
+	        try {
+	            stage.removeRide(getActiveRideAdmin(removeRide));
+	
+	        } catch(NoPermission e) {
+	        	Alert alert = new Alert(Alert.AlertType.ERROR);
+	            alert.setTitle("Error");
+	            alert.setHeaderText("Solamente el conductor puede eliminar el viaje");
+	            alert.setContentText(null);
+	            alert.showAndWait();
+	        }
+	        ridesTable.setItems(getRides());
+	    }
     }
 
     private ActiveRideAdmin getActiveRideAdmin(Ride ride){
@@ -117,27 +130,37 @@ public class MainPage extends Controller{
         rideSelected=ridesTable.getSelectionModel().getSelectedItems();
         Ride ride =ridesTable.getSelectionModel().getSelectedItem();
         ActiveRideAdmin rideAdmin = getActiveRideAdmin(ride);
-        try {
-			stage.addRequest(rideAdmin);
-        } catch (AlreadyRequested e) {
-			Alert alert = new Alert(Alert.AlertType.ERROR);
-           alert.setTitle("Error");
-           alert.setHeaderText("Solicitud envíada");
-           alert.setContentText(null);
-           alert.showAndWait();
-        } catch(AlreadyInRide e) {
-			Alert alert = new Alert(Alert.AlertType.ERROR);
-           alert.setTitle("Error");
-           alert.setHeaderText("Ya se encuentra anotado en este viaje");
-           alert.setContentText(null);
-           alert.showAndWait();
-        }
-        catch(SeatsTaken e) {
+        if(rideAdmin==null) {
         	Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("No hay asientos disponibles");
-            alert.setContentText(null);
-            alert.showAndWait();
+	           alert.setTitle("Error");
+	           alert.setHeaderText("Debe seleccionar un viaje al cual unirse");
+	           alert.setContentText(null);
+	           alert.showAndWait();
         }
+        else {
+        
+	        try {
+				stage.addRequest(rideAdmin);
+	        } catch (AlreadyRequested e) {
+				Alert alert = new Alert(Alert.AlertType.ERROR);
+	           alert.setTitle("Error");
+	           alert.setHeaderText("Solicitud envíada");
+	           alert.setContentText(null);
+	           alert.showAndWait();
+	        } catch(AlreadyInRide e) {
+				Alert alert = new Alert(Alert.AlertType.ERROR);
+	           alert.setTitle("Error");
+	           alert.setHeaderText("Ya se encuentra anotado en este viaje");
+	           alert.setContentText(null);
+	           alert.showAndWait();
+	        }
+	        catch(SeatsTaken e) {
+	        	Alert alert = new Alert(Alert.AlertType.ERROR);
+	            alert.setTitle("Error");
+	            alert.setHeaderText("No hay asientos disponibles");
+	            alert.setContentText(null);
+	            alert.showAndWait();
+	        }
+	    }
     }
 }

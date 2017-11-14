@@ -19,19 +19,19 @@
             <TableColumn fx:id="persona" editable="false" prefWidth="90.0" sortable="false" text="Nombre" />
             <TableColumn fx:id="apellido" prefWidth="94.0" text="Apellido" />
             <TableColumn fx:id="telefono" prefWidth="108.0" text="Telefono" />
-            <TableColumn fx:id="raiting" prefWidth="113.0" text="Raiting" />
+            <TableColumn fx:id="raiting" prefWidth="113.0" text="Rating" />
          </columns>
       </TableView>
       <Button fx:id="btAcceptUser" layoutX="774.0" layoutY="266.0" mnemonicParsing="false" onAction="#btAcceptUser" prefHeight="39.0" prefWidth="206.0" text="Aceptar Pasajero">
          <font>
             <Font size="20.0" />
          </font></Button>
-      <Button fx:id="btDenyUser" layoutX="772.0" layoutY="371.0" mnemonicParsing="false" onAction="#btDenyUser" text="Denegar Pasajero">
+      <Button fx:id="btDenyUser" layoutX="774.0" layoutY="340.0" mnemonicParsing="false" onAction="#btDenyUser" prefHeight="44.0" prefWidth="206.0" text="Denegar Pasajero">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button fx:id="mainPage" layoutX="43.0" layoutY="541.0" mnemonicParsing="false" onAction="#mainPage" text="Pagina Principal">
+      <Button fx:id="mainPage" layoutX="43.0" layoutY="541.0" mnemonicParsing="false" onAction="#mainPage" text="Página Principal">
          <font>
             <Font size="20.0" />
          </font>

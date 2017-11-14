@@ -25,13 +25,13 @@
          </font></Label>
       <TableView fx:id="ridesTable" editable="false" layoutX="33.0" layoutY="107.0" prefHeight="479.0" prefWidth="680.0">
          <columns>
-            <TableColumn fx:id="ruta" editable="false" prefWidth="100.0" sortable="false" text="Ruta" />
-            <TableColumn fx:id="dia" editable="false" minWidth="0.0" prefWidth="115.0" sortable="false" text="Fecha" />
-            <TableColumn fx:id="conductor" editable="false" prefWidth="116.0" sortable="false" text="Conductor" />
+            <TableColumn fx:id="cRoute" editable="false" prefWidth="100.0" sortable="false" text="Ruta" />
+            <TableColumn fx:id="cDay" editable="false" minWidth="0.0" prefWidth="115.0" sortable="false" text="Fecha" />
+            <TableColumn fx:id="cDriver" editable="false" prefWidth="116.0" sortable="false" text="Conductor" />
             <TableColumn editable="false" prefWidth="112.0" sortable="false" text="Compatibilidad" />
 
-            <TableColumn fx:id="permissions" editable="false" prefWidth="133.0" sortable="false" text="Se permite..." />
-            <TableColumn fx:id="asientos" editable="false" prefWidth="103.0" sortable="false" text="Asientos" />
+            <TableColumn fx:id="cPermissions" editable="false" prefWidth="133.0" sortable="false" text="Se permite..." />
+            <TableColumn fx:id="cSeats" editable="false" prefWidth="103.0" sortable="false" text="Asientos" />
          </columns>
       </TableView>
       <Button fx:id="removeBt" layoutX="747.0" layoutY="509.0" mnemonicParsing="false" onAction="#removeRide" prefHeight="70.0" prefWidth="236.0" text="Eliminar Viaje">
