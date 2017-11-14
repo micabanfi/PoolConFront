@@ -108,16 +108,11 @@ public class MyProfile extends Controller {
         MyProfileSurnametx.setEditable(true);
         MyProfileCareertx.setEditable(true);
         MyProfilePhonetx.setEditable(true);
-        MyProfileUsernametx.setEditable(true);
         MyProfilePasswordtx.setEditable(true);
     }
 
     public void saveChanges(ActionEvent event) {
-        stage.getUser().setName(MyProfileNametx.getText());
-        stage.getUser().setSurname(MyProfileSurnametx.getText());
-        stage.getUser().setPreferences(new Preferences(MyProfileCareertx.getText(), stage.getUser().getPreferences().isSmoke(), stage.getUser().getPreferences().isFood()));
-        stage.getUser().setPhone(MyProfilePhonetx.getText());
-        stage.getUser().setCredential(new Credential(MyProfileUsernametx.getText(), MyProfilePasswordtx.getText()));
+        stage.modifyUser(MyProfileNametx.getText(), MyProfileSurnametx.getText(), MyProfilePhonetx.getText(), new Preferences(MyProfileCareertx.getText(), stage.getUser().getPreferences().isSmoke(), stage.getUser().getPreferences().ifFood()), MyProfilePasswordtx.getText());
     }
 
     public void btAcceptRequest(ActionEvent event) {
@@ -160,7 +155,7 @@ public class MyProfile extends Controller {
         	Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText("Usted es el conductor del viaje");
-            alert.setContentText("Si quiere darse de baja, debe eliminar el viaje en la página principal");
+            alert.setContentText("Si quiere darse de baja, debe eliminar el viaje en la pï¿½gina principal");
             alert.showAndWait();
         }
         else{

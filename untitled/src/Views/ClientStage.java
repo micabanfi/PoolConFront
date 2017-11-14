@@ -9,6 +9,7 @@ import root.Exceptions.*;
 import root.Ride.ActiveRideAdmin;
 import root.Ride.Ride;
 import root.User.Credential;
+import root.User.Preferences;
 import root.User.User;
 import root.State.State;
 
@@ -69,10 +70,12 @@ public class ClientStage extends Stage {
 
    
     
-    public void modifyUser(User user) throws InvalidFields{
-        register(user);
-        state.removeUser(this.user);
-        this.user = user;
+    public void modifyUser(String name, String surname, String phone, Preferences pref, String password) {
+        user.setName(name);
+        user.setSurname(surname);
+        user.setPhone(phone);
+        user.setPreferences(pref);
+        user.getCredential().setPassword(password);
     }
 
     public List<ActiveRideAdmin> getActiveRideAdmins(){

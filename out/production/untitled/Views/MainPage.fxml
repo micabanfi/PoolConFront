@@ -9,12 +9,12 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #afeeee;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button fx:id="MyProfile" layoutX="739.0" layoutY="107.0" mnemonicParsing="false" onAction="#myProfile" prefHeight="70.0" prefWidth="256.0" text="Mi perfil">
+      <Button fx:id="MyProfile" layoutX="747.0" layoutY="14.0" mnemonicParsing="false" onAction="#myProfile" prefHeight="70.0" prefWidth="236.0" text="Mi perfil">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button fx:id="NewRide" layoutX="747.0" layoutY="355.0" mnemonicParsing="false" onAction="#newRide" prefHeight="70.0" prefWidth="236.0" text="Crear nuevo viaje">
+      <Button fx:id="NewRide" layoutX="747.0" layoutY="347.0" mnemonicParsing="false" onAction="#newRide" prefHeight="70.0" prefWidth="236.0" text="Crear nuevo viaje">
          <font>
             <Font size="20.0" />
          </font>
@@ -25,35 +25,24 @@
          </font></Label>
       <TableView fx:id="ridesTable" editable="false" layoutX="33.0" layoutY="107.0" prefHeight="479.0" prefWidth="680.0">
          <columns>
-            <TableColumn fx:id="ruta" editable="false" prefWidth="100.0" sortable="false" text="Ruta" />
-            <TableColumn fx:id="dia" editable="false" minWidth="0.0" prefWidth="115.0" sortable="false" text="Fecha" />
-            <TableColumn fx:id="conductor" editable="false" prefWidth="116.0" sortable="false" text="Conductor" />
+            <TableColumn fx:id="cRoute" editable="false" prefWidth="100.0" sortable="false" text="Ruta" />
+            <TableColumn fx:id="cDay" editable="false" minWidth="0.0" prefWidth="115.0" sortable="false" text="Fecha" />
+            <TableColumn fx:id="cDriver" editable="false" prefWidth="116.0" sortable="false" text="Conductor" />
             <TableColumn editable="false" prefWidth="112.0" sortable="false" text="Compatibilidad" />
 
-            <TableColumn fx:id="permissions" editable="false" prefWidth="133.0" sortable="false" text="Se permite..." />
-            <TableColumn fx:id="asientos" editable="false" prefWidth="103.0" sortable="false" text="Asientos" />
+            <TableColumn fx:id="cPermissions" editable="false" prefWidth="133.0" sortable="false" text="Se permite..." />
+            <TableColumn fx:id="cSeats" editable="false" prefWidth="103.0" sortable="false" text="Asientos" />
          </columns>
       </TableView>
-      <Button fx:id="removeBt" layoutX="745.0" layoutY="432.0" mnemonicParsing="false" onAction="#removeRide" prefHeight="70.0" prefWidth="236.0" text="Eliminar Viaje">
+      <Button fx:id="removeBt" layoutX="747.0" layoutY="509.0" mnemonicParsing="false" onAction="#removeRide" prefHeight="70.0" prefWidth="236.0" text="Eliminar Viaje">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button fx:id="NewRide2" layoutX="744.0" layoutY="509.0" mnemonicParsing="false" onAction="#newRide" prefHeight="70.0" prefWidth="236.0" text="Modificar Viaje">
+      <Button fx:id="refresh1" layoutX="747.0" layoutY="430.0" mnemonicParsing="false" onAction="#joinRide" prefHeight="70.0" prefWidth="236.0" text="Unirse al viaje">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button fx:id="refresh" layoutX="748.0" layoutY="278.0" mnemonicParsing="false" onAction="#init" prefHeight="70.0" prefWidth="236.0" text="Actualizar">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Button>
-      <Button fx:id="refresh1" layoutX="746.0" layoutY="203.0" mnemonicParsing="false" onAction="#joinRide" prefHeight="70.0" prefWidth="236.0" text="Unirse al viaje">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Button>
-      <Button fx:id="btLoadData" layoutX="836.0" layoutY="50.0" mnemonicParsing="false" onAction="#btLoadData" text="Load Data" />
    </children>
 </AnchorPane>

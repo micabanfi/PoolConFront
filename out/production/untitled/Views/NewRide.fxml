@@ -48,7 +48,7 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Label layoutX="57.0" layoutY="420.0" text="Se permite comer?">
+      <Label layoutX="56.0" layoutY="406.0" text="Se permite comer?">
          <font>
             <Font size="20.0" />
          </font>
@@ -117,7 +117,7 @@
            </FXCollections>
        </items>
        </ChoiceBox>
-       <ChoiceBox fx:id="eatCb" layoutX="276.0" layoutY="422.0" prefHeight="24.0" prefWidth="64.0">
+       <ChoiceBox fx:id="eatCb" layoutX="275.0" layoutY="408.0" prefHeight="24.0" prefWidth="64.0">
            <items>
                <FXCollections fx:factory="observableArrayList">
                    <String fx:value="Si" />
@@ -125,11 +125,17 @@
                </FXCollections>
            </items>
        </ChoiceBox>
-      <Button fx:id="btCreateRide" layoutX="53.0" layoutY="475.0" mnemonicParsing="false" onAction="#btCreateRide" prefHeight="78.0" prefWidth="278.0" text="Crear Viaje">
+      <Button fx:id="btCreateRide" layoutX="56.0" layoutY="508.0" mnemonicParsing="false" onAction="#btCreateRide" prefHeight="78.0" prefWidth="278.0" text="Crear Viaje">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button fx:id="btMainPage" layoutX="808.0" layoutY="514.0" mnemonicParsing="false" onAction="#btMainPage" prefHeight="44.0" prefWidth="121.0" text="Menú Principal" />
+      <Button fx:id="btMainPage" layoutX="843.0" layoutY="533.0" mnemonicParsing="false" onAction="#btMainPage" prefHeight="53.0" prefWidth="143.0" text="Menú Principal" />
+      <ChoiceBox fx:id="vehiclesCb" layoutX="275.0" layoutY="458.0" prefHeight="25.0" prefWidth="166.0" />
+      <Label layoutX="56.0" layoutY="455.0" text="Seleccione el vehículo">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

@@ -39,11 +39,11 @@ public class State implements Serializable{
         users = new ArrayList<>();
         currentRides = new LinkedList<>();
         expiredRides = new ArrayList<>();
-        try {
-            initState();
-        } catch (Exception e) {
-            System.out.println("Problema initState");
-        }
+//        try {
+//            initState();
+//        } catch (Exception e) {
+//            System.out.println("Problema initState");
+//        }
     }
     
     public List<User> getUsers(){
@@ -56,8 +56,6 @@ public class State implements Serializable{
         out.writeObject(currentRides);
         out.writeObject(expiredRides);
     }
-    
- 
 
     public void readObject(ObjectInputStream ois) throws IOException, ClassNotFoundException{
         ois.defaultReadObject();
@@ -66,70 +64,70 @@ public class State implements Serializable{
         expiredRides = (List<ExpiredRideAdmin>) ois.readObject();
     }
 
-    public void initState() throws InvalidFields, IOException, ClassNotFoundException {
-
-        //loadData(file);
-
-        Vehicle vehicle1 = new Vehicle("Fiat", "500", "Blanco", 2015, "ABC123", 0);
-        Vehicle vehicle2=new Vehicle("Ford","K","Celeste",2010,"ARX420",3);
-
-        Credential credential1 = new Credential("mica", "1234");
-        Credential credential2=new Credential("maimai","maite1234");
-
-        User user1 = new User(credential1, "Micaela", "Banfi", "Informatica", "1234567890", false, true, Gender.OTHER);
-        User user2=new User(credential2,"Maite","Herran","Infor","11112222",false,false, Gender.FEMALE);
-        User user3= new User(new Credential("a","a"),"a","a","a","a", true, true, Gender.MALE);
-
-        user1.addVehicle(vehicle1);
-        user1.addVehicle(vehicle2);
-        user2.addVehicle(vehicle1);
-
-        LocalDateTime date=LocalDateTime.of(2018,12,20,14,30);
-        Ride ride1=new Ride(new Route("Victoria","Itba","Libertador"),vehicle1,user1,new Permissions(false,true), date);
-        ActiveRideAdmin rideAdmin1 = new ActiveRideAdmin(ride1);
-
-        LocalDateTime date2=LocalDateTime.of(2018,8,3,9,15);
-        Ride ride2=new Ride(new Route("Mi Casa","Tu casa","Paranamerica"),vehicle2,user2,new Permissions(false,true),date2);
-
-        LocalDateTime date3 = LocalDateTime.of(2017, 11,11,15,15);
-        Ride oldRide = new Ride(new Route ("Nordelta", "ITBA", "Panamericana"), vehicle1, user1, new Permissions(false, false), date3);
-
-        List<User> listOldRide = new ArrayList<>();
-        listOldRide.add(user2);
-        listOldRide.add(user3);
-
-        ExpiredRideAdmin oldRideExp = new ExpiredRideAdmin(oldRide, listOldRide);
-        ActiveRideAdmin rideAdmin2 = new ActiveRideAdmin(ride2);
-
-
-        //System.out.println(1);
-
-        try {
-
-            register(user1);
-            register(user2);
-            register(user3);
-            addRideToList(rideAdmin1);
-            addRideToList(rideAdmin2);
-            user1.addRide(rideAdmin1);
-            user2.addRide(rideAdmin2);
-            user1.getExpiredRides().add(oldRideExp);
-
-           // System.out.println(user1.getActiveRides().get(0).toString());
-
-        } catch (InvalidFields e) {
-            //Este no deberia ir en possibleErrors porque lohacemos nosotros,no deberiamos ser tan tontos ;)
-            System.out.println("Usuario ya existente");
-        } catch (ExistingRideException e) {
-            System.out.println("No se pudo crear el ride");//este tampoco en error
-        } catch(Exception e){
-            System.out.println(e.getMessage());
-        }
-        for (User auss : users)
-            System.out.println(auss.toString());
-
-
-    }
+//    public void initState() throws InvalidFields, IOException, ClassNotFoundException {
+//
+//        //loadData(file);
+//
+//        Vehicle vehicle1 = new Vehicle("Fiat", "500", "Blanco", 2015, "ABC123", 0);
+//        Vehicle vehicle2=new Vehicle("Ford","K","Celeste",2010,"ARX420",3);
+//
+//        Credential credential1 = new Credential("mica", "1234");
+//        Credential credential2=new Credential("maimai","maite1234");
+//
+//        User user1 = new User(credential1, "Micaela", "Banfi", "Informatica", "1234567890", false, true, Gender.OTHER);
+//        User user2=new User(credential2,"Maite","Herran","Infor","11112222",false,false, Gender.FEMALE);
+//        User user3= new User(new Credential("a","a"),"a","a","a","a", true, true, Gender.MALE);
+//
+//        user1.addVehicle(vehicle1);
+//        user1.addVehicle(vehicle2);
+//        user2.addVehicle(vehicle1);
+//
+//        LocalDateTime date=LocalDateTime.of(2018,12,20,14,30);
+//        Ride ride1=new Ride(new Route("Victoria","Itba","Libertador"),vehicle1,user1,new Permissions(false,true), date);
+//        ActiveRideAdmin rideAdmin1 = new ActiveRideAdmin(ride1);
+//
+//        LocalDateTime date2=LocalDateTime.of(2018,8,3,9,15);
+//        Ride ride2=new Ride(new Route("Mi Casa","Tu casa","Paranamerica"),vehicle2,user2,new Permissions(false,true),date2);
+//
+//        LocalDateTime date3 = LocalDateTime.of(2017, 11,11,15,15);
+//        Ride oldRide = new Ride(new Route ("Nordelta", "ITBA", "Panamericana"), vehicle1, user1, new Permissions(false, false), date3);
+//
+//        List<User> listOldRide = new ArrayList<>();
+//        listOldRide.add(user2);
+//        listOldRide.add(user3);
+//
+//        ExpiredRideAdmin oldRideExp = new ExpiredRideAdmin(oldRide, listOldRide);
+//        ActiveRideAdmin rideAdmin2 = new ActiveRideAdmin(ride2);
+//
+//
+//        //System.out.println(1);
+//
+//        try {
+//
+//            register(user1);
+//            register(user2);
+//            register(user3);
+//            addRideToList(rideAdmin1);
+//            addRideToList(rideAdmin2);
+//            user1.addRide(rideAdmin1);
+//            user2.addRide(rideAdmin2);
+//            user1.getExpiredRides().add(oldRideExp);
+//
+//           // System.out.println(user1.getActiveRides().get(0).toString());
+//
+//        } catch (InvalidFields e) {
+//            //Este no deberia ir en possibleErrors porque lohacemos nosotros,no deberiamos ser tan tontos ;)
+//            System.out.println("Usuario ya existente");
+//        } catch (ExistingRideException e) {
+//            System.out.println("No se pudo crear el ride");//este tampoco en error
+//        } catch(Exception e){
+//            System.out.println(e.getMessage());
+//        }
+//        for (User auss : users)
+//            System.out.println(auss.toString());
+//
+//
+//    }
 
     public User login(Credential cred) throws InvalidCredentials{
         for (User user : users){
@@ -190,17 +188,6 @@ public class State implements Serializable{
     }
 
     public List<ActiveRideAdmin> getCurrentRides() { return currentRides; }
-
-    public User modifyUser(User user) throws NotExistingUserException{
-       for(User us : users) {
-           if (us.equals(user)) {
-               users.remove(us);
-               users.add(user);
-               return user;
-           }
-       }
-       throw new NotExistingUserException();
-   }
 
     // metodos para llamar la serializacion/ guardar/loadear datos
 
