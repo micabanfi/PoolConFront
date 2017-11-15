@@ -127,9 +127,6 @@ public class User extends Person implements Serializable{
     }
     
     
-    @Override
-    public String toString() {
-        return  super.toString() + credential.toString() + rating.toString();
-    }
+
     
 }

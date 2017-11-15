@@ -1,5 +1,6 @@
 package Views;
 
+import Views.Table.ViajesAnotados.ViajesAnotadosTable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -15,10 +16,7 @@ import root.Exceptions.NoPermission;
 import root.Exceptions.NotInRide;
 import root.Ride.ActiveRideAdmin;
 import root.Ride.Ride;
-import root.User.Credential;
-import root.User.Gender;
-import root.User.Preferences;
-import root.User.Vehicle;
+import root.User.*;
 
 import javax.annotation.Resources;
 import javax.print.DocFlavor;
@@ -45,7 +43,7 @@ public class MyProfile extends Controller {
     private TextField MyProfilePasswordtx;
 
     @FXML
-    private TableView<Ride> ridesTable;
+    private TableView<ViajesAnotadosTable> ridesTable;
     @FXML
     private TableColumn ruta;
     @FXML
@@ -56,25 +54,15 @@ public class MyProfile extends Controller {
  
     
     public MyProfile(ClientStage stage) {
-
         super(stage);
-
     }
 
     public void init() {
         setProfileInfo();
-        ruta.setCellValueFactory(new PropertyValueFactory<>("route"));
-        fecha.setCellValueFactory(new PropertyValueFactory<>("date"));
+        ruta.setCellValueFactory(new PropertyValueFactory<>("ruta"));
+        fecha.setCellValueFactory(new PropertyValueFactory<>("fecha"));
         ridesTable.setItems(getRides());
 
-    }
-
-    private ActiveRideAdmin getActiveRideAdmin(Ride ride){
-        for(ActiveRideAdmin rideAdmin:stage.getUser().getActiveRides()){
-            if(rideAdmin.getRide().equals(ride))
-                return rideAdmin;
-        }
-        return null;
     }
 
     public void setProfileInfo() {
@@ -117,28 +105,25 @@ public class MyProfile extends Controller {
     }
 
     public void btAcceptRequest(ActionEvent event) {
-    	Ride ride=ridesTable.getSelectionModel().getSelectedItem();
-        if(ride == null) {
+    	ViajesAnotadosTable viajes=ridesTable.getSelectionModel().getSelectedItem();
+        if(viajes == null) {
         	Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText("Debe seleccionar un viaje");
             alert.setContentText(null);
             alert.showAndWait();
-        }
-        else if(!stage.getUser().equalCredentials(ride.getDriver().getCredential())) {
+        }else if(!stage.getUser().equals(viajes.getActiveRideAdmin().getRide().getDriver())) {
         	Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText("No tiene permisos para aceptar solicitudes");
             alert.setContentText("No es conductor del viaje");
             alert.showAndWait();
+        }else{
+            stage.AcceptRequest(viajes.getActiveRideAdmin());
         }
-        else{
-        	ActiveRideAdmin rideAdmin = this.getActiveRideAdmin(ride);
-        	stage.AcceptRequest(rideAdmin);
-        }    
     }
     
-    /*Este botón añade 2 autos default al usuario y nos exime de hacer un formulario 
+    /*Este botï¿½n aï¿½ade 2 autos default al usuario y nos exime de hacer un formulario 
      * para ingresar autos. */
     public void btDefaultVehicle() {
     	 Vehicle vehicle1 = new Vehicle("Fiat", "500", "Blanco", 2015, "ABC123", 0);
@@ -152,7 +137,7 @@ public class MyProfile extends Controller {
    
     public void btRemovePassenger() {
    
-        Ride removeRide = ridesTable.getSelectionModel().getSelectedItem();
+        ActiveRideAdmin removeRide = ridesTable.getSelectionModel().getSelectedItem().getActiveRideAdmin();
         System.out.println("agarro el ride");
         if(removeRide ==null) {
         	Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -161,7 +146,7 @@ public class MyProfile extends Controller {
             alert.setContentText(null);
             alert.showAndWait();
         }
-        else if(removeRide.getDriver().equalCredentials(stage.getUser().getCredential())) {
+        else if(removeRide.getRide().getDriver().equalCredentials(stage.getUser().getCredential())) {
         	Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText("Usted es el conductor del viaje");
@@ -169,16 +154,16 @@ public class MyProfile extends Controller {
             alert.showAndWait();
         }
         else{
-        stage.leaveRide(getActiveRideAdmin(removeRide));
+        stage.leaveRide(removeRide);
         ridesTable.setItems(getRides());
         }
     }
 
 
-    public ObservableList<Ride> getRides() {
-        ObservableList<Ride> rides = FXCollections.observableArrayList();
-        for(int i=0; i<stage.getUser().getActiveRides().size();i++) {
-        	rides.add(stage.getUser().getActiveRides().get(i).getRide());
+    public ObservableList<ViajesAnotadosTable> getRides() {
+        ObservableList<ViajesAnotadosTable> rides = FXCollections.observableArrayList();
+        for(ActiveRideAdmin rideAdmin : stage.getUser().getActiveRides()){
+        	rides.add(new ViajesAnotadosTable(rideAdmin));
         }
         return rides;
     }

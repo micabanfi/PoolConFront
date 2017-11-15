@@ -37,15 +37,16 @@ public class Rating implements Serializable{
     }
 
     public double calculatePercentage(){
+        if(positive+negative == 0) return 50;
         return positive/(positive+negative)*100;
     }
     
    
-    /*  No pudimos encontrar qué parte del código realizado en javafx
-     * causa que la siguiente implementación del toString() no permita que se carguen los
+    /*  No pudimos encontrar quï¿½ parte del cï¿½digo realizado en javafx
+     * causa que la siguiente implementaciï¿½n del toString() no permita que se carguen los
      * pasajeros en la ventana acceptRequests. Por eso, decidimios comentarlo para que el
      *  programa pueda ser probado. Aclararmos, entonces, que en la columna de rating no 
-     *  aparecerá ningún valor. 
+     *  aparecerï¿½ ningï¿½n valor. 
     @Override
     public String toString() {
     	String s = String.valueOf(calculatePercentage()) + "%";

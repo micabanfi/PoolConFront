@@ -43,8 +43,11 @@ public class Permissions implements Serializable{
         return aux;
     }
 
-    @Override
-    public String toString() {
-        return "Smoke: "+smoke+"\nComer: "+eat;
+    public Boolean getSmoke(){
+        return smoke;
+    }
+
+    public Boolean getEat(){
+        return eat;
     }
 }

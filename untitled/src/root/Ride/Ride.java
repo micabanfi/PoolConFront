@@ -55,6 +55,8 @@ public class Ride implements Comparable<Ride>, Serializable{
         return driver;
     }
 
+    //????????
+    @Deprecated
     public Ride getRide(){
         return this;
     }

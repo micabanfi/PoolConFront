@@ -7,6 +7,7 @@ rating.setCellValueFactory(new PropertyValueFactory<>(value -> {
 	}
 });*/
 
+import Views.Table.Solicitudes.Solicitudes;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -34,11 +35,11 @@ import javax.jws.soap.SOAPBinding;
 
 public class AcceptRequest extends Controller {
 
-    @FXML private TableView<User> requestUsers;
+    @FXML private TableView<Solicitudes> requestUsers;
     @FXML private TableColumn persona;
     @FXML private TableColumn apellido;
     @FXML private TableColumn telefono;
-    @FXML private TableColumn rating;
+    @FXML private TableColumn puntaje;
 
     private ActiveRideAdmin rideAdmin;
 
@@ -51,20 +52,21 @@ public class AcceptRequest extends Controller {
         stage.MainPage();
     }
 
-    public ObservableList<User> getUser(){
-        ObservableList<User> users= FXCollections.observableArrayList();
+    public ObservableList<Solicitudes> getUser(){
+        ObservableList<Solicitudes> users= FXCollections.observableArrayList();
         List<User> requests = rideAdmin.getRequests();
         for (User user: requests) {
-        	users.add(user);
+        	users.add(new Solicitudes(user));
         }
         return users;
     }
 
     @Override
     public void init(){
-        persona.setCellValueFactory(new PropertyValueFactory<>("name"));
-        apellido.setCellValueFactory(new PropertyValueFactory<>("surname"));
-        telefono.setCellValueFactory(new PropertyValueFactory<>("phone"));
+        persona.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        apellido.setCellValueFactory(new PropertyValueFactory<>("apellido"));
+        telefono.setCellValueFactory(new PropertyValueFactory<>("telefono"));
+        //puntaje.setCellValueFactory(new PropertyValueFactory<>("puntaje"));
         requestUsers.setItems(getUser());
         /*No pudimos hacer que en la columna rating aparezca el rating del usurio.
          *  La idea era que, desde ac�, se carguen en ObservableList los resultados para 
@@ -77,8 +79,8 @@ public class AcceptRequest extends Controller {
     }
 
     public void btAcceptUser() throws NoPermission, RideDoesNotExist, NotRequested, InvalidCredentials {
-        User user=requestUsers.getSelectionModel().getSelectedItem();
-        if(user==null) {
+        Solicitudes solicitudes=requestUsers.getSelectionModel().getSelectedItem();
+        if(solicitudes==null) {
         	Alert alert = new Alert(Alert.AlertType.ERROR);
 	           alert.setTitle("Error");
 	           alert.setHeaderText("Debe seleccionar a un pasajero");
@@ -86,7 +88,7 @@ public class AcceptRequest extends Controller {
 	           alert.showAndWait();
         }
         else {
-	        
+	        User user = solicitudes.getUser();
 	        try {
 				rideAdmin.acceptRequest(stage.getUser(), user);
 				requestUsers.setItems(getUser());				
@@ -103,29 +105,18 @@ public class AcceptRequest extends Controller {
     }
     
     public void btDenyUser() {
-        User user=requestUsers.getSelectionModel().getSelectedItem();
-        if(user==null) {
-        	Alert alert = new Alert(Alert.AlertType.ERROR);
-	           alert.setTitle("Error");
-	           alert.setHeaderText("Debe seleccionar a un pasajero");
-	           alert.setContentText(null);
-	           alert.showAndWait();
+        Solicitudes solicitudes = requestUsers.getSelectionModel().getSelectedItem();
+        if (solicitudes == null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Debe seleccionar a un pasajero");
+            alert.setContentText(null);
+            alert.showAndWait();
+        } else {
+            User user = solicitudes.getUser();
+            requestUsers.setItems(getUser());
         }
-        else {
-	       //en este punto estas excepciones  que nunca van a saltar. No deberiamos
-        	//de sacarlas?
-				try {
-					rideAdmin.declineRequest(stage.getUser(), user);
-				} catch (NoPermission e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (NotRequested e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-			requestUsers.setItems(getUser());
-        }
+    }
  
 }
 

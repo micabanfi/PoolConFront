@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import Views.Table.Vehiculo;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -48,9 +49,9 @@ public class NewRide extends Controller {
 	    @FXML
 	    private ChoiceBox<String> smokeCb;
 	    @FXML
-	    private ChoiceBox<String> vehiclesCb;
-	    private List<String> listVehicles = new ArrayList<>();
-	    private ObservableList<String> observableListVehicles;
+	    private ChoiceBox<Vehiculo> vehiclesCb;
+	    private List<Vehiculo> listVehicles = new ArrayList<>();
+	    private ObservableList<Vehiculo> observableListVehicles;
 
     public NewRide(ClientStage stage){
         super(stage);
@@ -62,7 +63,8 @@ public class NewRide extends Controller {
     public void btCreateRide(ActionEvent event) {
     	boolean emptyFields = checkRequestedFields();
     	if(!emptyFields) {
-    		String from, to, route, eatAux, smokeAux,hour,minutes, vehicleString;
+    		String from, to, route, eatAux, smokeAux,hour,minutes;
+    		Vehiculo vehiculo;
     		boolean eat, smoke;
     		LocalDate date=dateDp.getValue();
     		int year=date.getYear();
@@ -73,7 +75,7 @@ public class NewRide extends Controller {
     		route = routeTx.getText();
     		hour = hourCb.getValue();
     		minutes=minutesCb.getValue();
-    		vehicleString = vehiclesCb.getValue();
+    		vehiculo = vehiclesCb.getValue();
     		int hourInt=Integer.parseInt(hour);
     		int minutesInt = Integer.parseInt(minutes);
 			LocalDateTime dateOf=LocalDateTime.of(year,month,day,hourInt,minutesInt);
@@ -84,7 +86,7 @@ public class NewRide extends Controller {
 			smoke = rta.compareTo("Si") == 0;
     		Route route1 = new Route(from, to, route);
     		Permissions permissions = new Permissions(smoke, eat);
-    		Vehicle vehicle = findUserVehicle(vehicleString);
+    		Vehicle vehicle = vehiculo.getVehicle();
     		Ride ride = new Ride(route1, vehicle, stage.getUser(), permissions, dateOf);
 			ActiveRideAdmin activeRide = new ActiveRideAdmin(ride);
     		
@@ -127,8 +129,9 @@ public class NewRide extends Controller {
     }
 
     public void init() {
-    	for (Vehicle vehicle : stage.getUser().getVehicles())
-		listVehicles.add("Vehicle:"+'\n'+"Brand:"+vehicle.getBrand()+"Model:"+vehicle.getModel()+" Color:"+vehicle.getColor()+" Plate:"+vehicle.getPlate()+"Seats:"+vehicle.getSeats());
+    	for (Vehicle vehicle : stage.getUser().getVehicles()) {
+			listVehicles.add(new Vehiculo(vehicle));
+		}
 		observableListVehicles = FXCollections.observableArrayList(listVehicles);
 		vehiclesCb.setItems(observableListVehicles);
     }

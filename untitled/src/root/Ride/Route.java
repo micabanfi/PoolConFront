@@ -58,9 +58,4 @@ public class Route implements Serializable{
         this.through = through;
     }
 
-    @Override
-    public String toString(){
-        return "Desde:"+from+"\nHasta:"+to+"\nRuta:"+through;
-    }
-
 }

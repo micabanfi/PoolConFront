@@ -90,9 +90,14 @@ public class ActiveRideAdmin extends RideAdmin implements Serializable{
     }
     
     private int freeSeats(){
-        if(passengers.isEmpty())
-            return getRide().getVehicle().getSeats();//nullpointerexceptionn
-        return getRide().getVehicle().getSeats() - passengers.size();
+        try{
+            int aux = ride.getVehicle().getSeats() - passengers.size();
+        }catch (Exception e){
+            System.out.println("aaa");
+            System.out.println(e.getMessage());
+        }
+        //return ride.getVehicle().getSeats() - passengers.size();
+        return 1;
     }
 
     public void declineRequest(User driver, User request)throws NoPermission, NotRequested{
@@ -105,7 +110,10 @@ public class ActiveRideAdmin extends RideAdmin implements Serializable{
         for(User user: passengers){
             passengerRating += user.getRating().calculatePercentage();
         }
-        passengerRating = passengerRating/passengers.size();
+        if(passengers.size() != 0)
+            passengerRating = passengerRating/passengers.size();
+        else
+            passengerRating = 0;
         double driverRating = ride.getDriver().getRating().calculatePercentage();
         double preferencesRating= ride.getPermissions().compatibility(preferences);
 
