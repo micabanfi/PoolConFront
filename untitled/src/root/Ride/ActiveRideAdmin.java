@@ -25,8 +25,6 @@ public class ActiveRideAdmin extends RideAdmin implements Serializable{
 
     public void writeObject(ObjectOutputStream out) throws IOException {
         out.defaultWriteObject();
-        out.writeObject(ride);
-        out.writeObject(passengers);
         out.writeObject(requests);
     }
 
