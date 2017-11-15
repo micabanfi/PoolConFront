@@ -54,8 +54,8 @@ public class AcceptRequest extends Controller {
     public ObservableList<User> getUser(){
         ObservableList<User> users= FXCollections.observableArrayList();
         List<User> requests = rideAdmin.getRequests();
-        for (int i = 0; i < rideAdmin.getRequests().size(); i++) {
-        	users.add(requests.get(i));
+        for (User user: requests) {
+        	users.add(user);
         }
         return users;
     }
@@ -67,8 +67,8 @@ public class AcceptRequest extends Controller {
         telefono.setCellValueFactory(new PropertyValueFactory<>("phone"));
         requestUsers.setItems(getUser());
         /*No pudimos hacer que en la columna rating aparezca el rating del usurio.
-         *  La idea era que, desde acá, se carguen en ObservableList los resultados para 
-         *  luego ser subidos en a la tabla de request Users. La invocación sería la siguiente:
+         *  La idea era que, desde acï¿½, se carguen en ObservableList los resultados para 
+         *  luego ser subidos en a la tabla de request Users. La invocaciï¿½n serï¿½a la siguiente:
          	ObservableList<Double> rating =FXCollections.observableArrayList();
         	for(int i=0;i<stage.getActiveRideAdmins().size();i++)
             rating.add(stage.getUser().getRating());

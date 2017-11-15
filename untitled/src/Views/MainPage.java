@@ -23,6 +23,7 @@ import root.Exceptions.SeatsTaken;
 import root.Ride.ActiveRideAdmin;
 import root.Ride.Ride;
 import root.Ride.Route;
+import root.User.Vehicle;
 
 
 import java.util.List;
@@ -70,8 +71,10 @@ public class MainPage extends Controller{
 
     public ObservableList<Ride> getRides(){
         ObservableList<Ride> rides=FXCollections.observableArrayList();
-        for(int i=0;i<stage.getActiveRideAdmins().size();i++)
-            rides.add(stage.getActiveRideAdmins().get(i).getRide());
+        for(ActiveRideAdmin rideAdmin : stage.getActiveRideAdmins()){
+            rides.add(rideAdmin.getRide());
+        }
+
         return rides;
     }
  
@@ -87,8 +90,8 @@ public class MainPage extends Controller{
         ridesTable.setItems(getRides());
         
         /*No pudimos hacer que en la columna compatibility aparezca la compatibilidad del
-         * usuario loggeado con cada viaje. La idea era que, desde acá, se carguen en un
-         * ObservableList los resultados para luego ser subidos a ridesTable. La invocación sería la siguiente:
+         * usuario loggeado con cada viaje. La idea era que, desde acï¿½, se carguen en un
+         * ObservableList los resultados para luego ser subidos a ridesTable. La invocaciï¿½n serï¿½a la siguiente:
          	ObservableList<Double> compat=FXCollections.observableArrayList();
         	for(int i=0;i<stage.getActiveRideAdmins().size();i++)
             compat.add(stage.getActiveRideAdmins().get(i).compatibility(stage.getUser().getPreferences()));
@@ -130,39 +133,37 @@ public class MainPage extends Controller{
 
 
     public void joinRide() throws SeatsTaken {
-        Ride ride =ridesTable.getSelectionModel().getSelectedItem();
+        Ride ride = ridesTable.getSelectionModel().getSelectedItem();
         ActiveRideAdmin rideAdmin = getActiveRideAdmin(ride);
-        if(rideAdmin==null) {
-        	Alert alert = new Alert(Alert.AlertType.ERROR);
-	           alert.setTitle("Error");
-	           alert.setHeaderText("Debe seleccionar un viaje al cual unirse");
-	           alert.setContentText(null);
-	           alert.showAndWait();
+       if (ride == null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Debe seleccionar un viaje al cual unirse");
+            alert.setContentText(null);
+            alert.showAndWait();
+        } else {
+
+            try {
+                stage.addRequest(rideAdmin);
+            } catch (AlreadyRequested e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("Solicitud envï¿½ada");
+                alert.setContentText(null);
+                alert.showAndWait();
+            } catch (AlreadyInRide e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("Ya se encuentra anotado en este viaje");
+                alert.setContentText(null);
+                alert.showAndWait();
+            } catch (SeatsTaken e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("No hay asientos disponibles");
+                alert.setContentText(null);
+                alert.showAndWait();
+            }
         }
-        else {
-        
-	        try {
-				stage.addRequest(rideAdmin);
-	        } catch (AlreadyRequested e) {
-				Alert alert = new Alert(Alert.AlertType.ERROR);
-	           alert.setTitle("Error");
-	           alert.setHeaderText("Solicitud envíada");
-	           alert.setContentText(null);
-	           alert.showAndWait();
-	        } catch(AlreadyInRide e) {
-				Alert alert = new Alert(Alert.AlertType.ERROR);
-	           alert.setTitle("Error");
-	           alert.setHeaderText("Ya se encuentra anotado en este viaje");
-	           alert.setContentText(null);
-	           alert.showAndWait();
-	        }
-	        catch(SeatsTaken e) {
-	        	Alert alert = new Alert(Alert.AlertType.ERROR);
-	            alert.setTitle("Error");
-	            alert.setHeaderText("No hay asientos disponibles");
-	            alert.setContentText(null);
-	            alert.showAndWait();
-	        }
-	    }
     }
 }

@@ -59,9 +59,9 @@ public class ActiveRideAdmin extends RideAdmin implements Serializable{
         if(passengers.contains(person) || person.equals(ride.getDriver())){
             throw new AlreadyInRide();
         }
-        if(freeSeats()==0){
-            throw new SeatsTaken();
-        }
+            if (freeSeats() == 0) {
+                throw new SeatsTaken();
+            }
         requests.add(person);
     }
 
