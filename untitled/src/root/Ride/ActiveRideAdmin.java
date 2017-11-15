@@ -84,7 +84,7 @@ public class ActiveRideAdmin extends RideAdmin implements Serializable{
         passengers.add(request);
         requests.remove(request);
         request.addRide(this);
-        /* Por lo explicado en la clase vehicle, la siguiente línea fue agregada porque de lo contrario,
+        /* Por lo explicado en la clase vehicle, la siguiente lï¿½nea fue agregada porque de lo contrario,
         * no se cargan ni actualizan los asientos disponibles de cada viaje por un problema con
         * javafx que no sabemos resolver.
        */
@@ -92,6 +92,8 @@ public class ActiveRideAdmin extends RideAdmin implements Serializable{
     }
     
     private int freeSeats(){
+        if(passengers.isEmpty())
+            return getRide().getVehicle().getSeats();//nullpointerexceptionn
         return getRide().getVehicle().getSeats() - passengers.size();
     }
 

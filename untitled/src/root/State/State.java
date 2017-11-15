@@ -25,8 +25,7 @@ import java.util.List;
 
 public class State implements Serializable{
 
-    //private static final long serialVersionUID = 1L;
-    //private static final File file = new File("../PoolConFront/untitled/src/root/Data");
+    private static final long serialVersionUID = 1L;
 
 
     private List<User> users;
@@ -35,7 +34,7 @@ public class State implements Serializable{
 
     private List<ExpiredRideAdmin> expiredRides;
 
-    public State() {//Porque habias sacado el costructor?? Por lo que dijo franco de que cree una unica instancia de State. Creo que vos habias dicho de hacer esto tmb y yo te dije que era mala palabra jaja
+    public State() {
         users = new ArrayList<>();
         currentRides = new LinkedList<>();
         expiredRides = new ArrayList<>();
