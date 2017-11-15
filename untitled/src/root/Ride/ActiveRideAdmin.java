@@ -90,14 +90,7 @@ public class ActiveRideAdmin extends RideAdmin implements Serializable{
     }
     
     private int freeSeats(){
-        try{
-            int aux = ride.getVehicle().getSeats() - passengers.size();
-        }catch (Exception e){
-            System.out.println("aaa");
-            System.out.println(e.getMessage());
-        }
-        //return ride.getVehicle().getSeats() - passengers.size();
-        return 1;
+        return ride.getVehicle().getSeats() - passengers.size();
     }
 
     public void declineRequest(User driver, User request)throws NoPermission, NotRequested{
