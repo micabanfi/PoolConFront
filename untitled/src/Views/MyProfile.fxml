@@ -127,5 +127,6 @@
             <Font size="20.0" />
          </font>
       </Label>
+      <Button fx:id="btDefaultVehicle" layoutX="50.0" layoutY="120.0" mnemonicParsing="false" onAction="#btDefaultVehicle" prefHeight="25.0" prefWidth="197.0" text="Añadir un vehículo default" />
    </children>
 </AnchorPane>

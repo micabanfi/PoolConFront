@@ -18,6 +18,7 @@ import root.Ride.Ride;
 import root.User.Credential;
 import root.User.Gender;
 import root.User.Preferences;
+import root.User.Vehicle;
 
 import javax.annotation.Resources;
 import javax.print.DocFlavor;
@@ -112,7 +113,7 @@ public class MyProfile extends Controller {
     }
 
     public void saveChanges(ActionEvent event) {
-        stage.modifyUser(MyProfileNametx.getText(), MyProfileSurnametx.getText(), MyProfilePhonetx.getText(), new Preferences(MyProfileCareertx.getText(), stage.getUser().getPreferences().isSmoke(), stage.getUser().getPreferences().ifFood()), MyProfilePasswordtx.getText());
+        stage.modifyUser(MyProfileNametx.getText(), MyProfileSurnametx.getText(), MyProfilePhonetx.getText(), new Preferences(MyProfileCareertx.getText(), stage.getUser().getPreferences().isSmoke(), stage.getUser().getPreferences().isFood()), MyProfilePasswordtx.getText());
     }
 
     public void btAcceptRequest(ActionEvent event) {
@@ -134,10 +135,19 @@ public class MyProfile extends Controller {
         else{
         	ActiveRideAdmin rideAdmin = this.getActiveRideAdmin(ride);
         	stage.AcceptRequest(rideAdmin);
-        }
-        
-        
+        }    
     }
+    
+    /*Este botón añade 2 autos default al usuario y nos exime de hacer un formulario 
+     * para ingresar autos. */
+    public void btDefaultVehicle() {
+    	 Vehicle vehicle1 = new Vehicle("Fiat", "500", "Blanco", 2015, "ABC123", 0);
+    	 Vehicle vehicle2=new Vehicle("Ford","K","Celeste",2010,"ARX420",3);
+    	 stage.getUser().addVehicle(vehicle1);
+    	 stage.getUser().addVehicle(vehicle2);
+    	
+    }
+    
     
    
     public void btRemovePassenger() {
