@@ -94,28 +94,28 @@ public class ClientStage extends Stage {
     }
 
     public void LogIn(){
-        setView("LogIn.fxml", new LogIn(this));
+        setView("FXMLs/LogIn.fxml", new LogIn(this));
     }
 
     public void MainPage() {
-        setView("MainPage.fxml", new MainPage(this));
+        setView("FXMLs/MainPage.fxml", new MainPage(this));
         
     }
 
     public void MyProfile() {
-        setView("MyProfile.fxml", new MyProfile(this));
+        setView("FXMLs/MyProfile.fxml", new MyProfile(this));
     }
 
     public void NewRide(){
-        setView("NewRide.fxml", new NewRide(this));
+        setView("FXMLs/NewRide.fxml", new NewRide(this));
     }
 
     public void Register(){
-        setView("Register.fxml", new Register(this));
+        setView("FXMLs/Register.fxml", new Register(this));
     }
 
     public void AcceptRequest(ActiveRideAdmin rideAdmin){
-        setView("AcceptRequest.fxml",new AcceptRequest(this, rideAdmin));
+        setView("FXMLs/AcceptRequest.fxml",new AcceptRequest(this, rideAdmin));
     }
 
     //Usar los metodos de ClientStage en lugar

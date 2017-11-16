@@ -19,7 +19,7 @@
             <TableColumn fx:id="persona" editable="false" prefWidth="90.0" sortable="false" text="Nombre" />
             <TableColumn fx:id="apellido" prefWidth="94.0" text="Apellido" />
             <TableColumn fx:id="telefono" prefWidth="108.0" text="Telefono" />
-            <TableColumn fx:id="raiting" prefWidth="113.0" text="Rating" />
+            <TableColumn fx:id="puntaje" prefWidth="113.0" text="Puntaje" />
          </columns>
       </TableView>
       <Button fx:id="btAcceptUser" layoutX="774.0" layoutY="266.0" mnemonicParsing="false" onAction="#btAcceptUser" prefHeight="39.0" prefWidth="206.0" text="Aceptar Pasajero">

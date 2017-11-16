@@ -165,7 +165,11 @@ public class State implements Serializable{
             currentRides.remove(ride);
     }
 
-    // Arreglar lo de Date en todo el programa
+    /**
+     * refreshRides hace el cambio de listas entre viajes activos y expirados.
+     *
+     */
+
     public void refreshRides(){
         boolean aux = true;
         LocalDateTime currentDate = LocalDateTime.now();
@@ -188,23 +192,6 @@ public class State implements Serializable{
 
     public List<ActiveRideAdmin> getCurrentRides() { return currentRides; }
 
-    // metodos para llamar la serializacion/ guardar/loadear datos
-
-    public void loadData(File file) throws IOException, ClassNotFoundException {
-        ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(file));
-        users = (List<User>) objectInputStream.readObject();
-        currentRides = (List<ActiveRideAdmin>) objectInputStream.readObject();
-        expiredRides = (List<ExpiredRideAdmin>) objectInputStream.readObject();
-        objectInputStream.close();
-    }
-
-    public void saveData(File file) throws IOException {
-        ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(file));
-        objectOutputStream.writeObject(users);
-        objectOutputStream.writeObject(currentRides);
-        objectOutputStream.writeObject(expiredRides);
-        objectOutputStream.close();
-    }
 
 
     /*

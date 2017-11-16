@@ -28,7 +28,7 @@
             <TableColumn fx:id="cRoute" editable="false" prefWidth="100.0" sortable="false" text="Ruta" />
             <TableColumn fx:id="cDay" editable="false" minWidth="0.0" prefWidth="115.0" sortable="false" text="Fecha" />
             <TableColumn fx:id="cDriver" editable="false" prefWidth="116.0" sortable="false" text="Conductor" />
-            <TableColumn editable="false" prefWidth="112.0" sortable="false" text="Compatibilidad" />
+            <TableColumn fx:id="cCompatibility" editable="false" prefWidth="112.0" sortable="false" text="Compatibilidad" />
 
             <TableColumn fx:id="cPermissions" editable="false" prefWidth="133.0" sortable="false" text="Se permite..." />
             <TableColumn fx:id="cSeats" editable="false" prefWidth="103.0" sortable="false" text="Asientos" />
